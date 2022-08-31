@@ -1,0 +1,48 @@
+~ EXCELSIOR ~ 
+
+Excelsior is a mod who's focus is to fill in what we feel is missing from the base game, while exploring or own concepts as well.
+It features 200+ items, 3 new bosses, and a new Class : The Cleric.
+The Cleric has two sides to it, the life-consuming dps : Necrotic and the healer : Radiant.  Each have their differences but work best when used together
+
+
+List of Major content in the mod : 
+- New class : Cleric Class
+- 3 new bosses 
+- 1 new town npc
+- 90+ new weapons
+- 10+ new healing tools
+- 12 new armor sets
+- 20+ new accessories
+- 7 new ammunitions
+- new worldgen
+- 1 custom music track
+
+
+Special thanks to :
+Maikli/Daluyan, Hyou, & propaganda machine for help with sprites
+HBDeus for composing a custom track
+Top Hat Mark, Bologna, VittOP, alfini, & xinim for helping out
+
+
+We have a discord server!  It's the best spot to reach us, suggest new content, see spoilers, or just hang out.
+-> https://discord.gg/C7hzssgN8p
+
+And we have a wiki!  It is missing mostly weapon pages, but most of the important info is here.
+-> https://terrariamods.fandom.com/wiki/Excelsior
+
+
+~ version log ~
+
+1.2.6 - added 8 flamethrowers, 5 flamethrower ammunitions, 2 support tools, lots of balance changes and fixes
+1.2.5 - added radiance bar, 2 weapons, and an accessory
+1.2.4 - added a armor set, 9 weapons, 2 healing tools, new worldgen, numerous balance changes and several fixes
+1.2.3 - added a armor set, 3 weapons, 2 healing tools, and several balance changes
+1.2.2 - added 2 early-game cleric weapons
+1.2.1 - additional cleric toolips
+1.2 - added cleric class, along with a buch of new weapons, healing tools, accessories, and armor
+1.1.1 - added weapons and armor
+1.1 - added a new boss, the Stellar Starship & new loot dropped from it
+1.0.3 - added 3 enemies to the Frost Legion, 3 new weapons, and 1 new vanity + a crafting recipe for the Snow Globe
+1.0.2 - added chlorophyte gun and shroomite gun + bow + launcher
+1.0.1 - added a new armor set, wings, and sword
+1.0 - added a bunch of things (very big surprise)

@@ -1,0 +1,149 @@
+﻿
+
+Mods: {
+	excels: {
+		Config: {
+			ClericTooltip: {
+				Header: "Advanced Cleric Tooltips"
+				Label: "Cleric Weapon info"
+				Tip: "Displays the sources of Cleric damage bonuses"
+
+				HealLabel: "Cleric Healing Tool info"
+				HealTip: "Displays how much healing tools benefit from heal bonuses"
+			}
+		}
+
+		ItemNames: {
+			ArmorNames: {
+				AvianHeadPiece: "Avian Hat"
+				AvianChestPiece: "Avian Wraps"
+				AvianLegPiece: "Avian Skirt"
+
+				CrusaderHeadPiece: "Crusader Helmet"
+				CrusaderChestPiece: "Crusader Garments"
+				CrusaderLegPiece: "Crusader Greaves"
+
+				FloralHeadPiece: "Floral Stethoscope"
+				FloralChestPiece: "Floral Jacket"
+				FloralLegPiece: "Floral Boots"
+
+				FossilHeadPiece: "Prehistoric Mask"
+				FossilChestPiece: "Prehistoric Platemail"
+				FossilLegPiece: "Prehistoric Greaves"
+
+				GlacialHeadPiece: "Glacial Mask"
+				GlacialChestPiece: "Glacial Breastplate"
+				GlacialLegPiece: "Glacial Leggings"
+
+				HeartbeatHeadPiece: "Heartbeat Mask"
+				HeartbeatChestPiece: "Heartbeat Coat"
+				HeartbeatLegPiece: "Heartbeat Greaves"
+
+				HolyknightHeadPiece: "Holy Knight Helmet"
+				HolyknightChestPiece: "Holy Knight Chestplate"
+				HolyknightLegPiece: "Holy Knight Boots"
+
+				PriestHeadPiece: "Priest's Hood"
+				PriestChestPiece: "Priest's Robes"
+				PriestLegPiece: "Priest's Boots"
+
+				SkylineHeadPiece: "Skyline Circlet"
+				SkylineChestPiece: "Skyline Platemail"
+				SkylineLegPiece: "Skyline Boots"
+
+				StellarHeadPiece: "Stellar Mask"
+				StellarChestPiece: "Stellar Spacesuit"
+				StellarLegPiece: "Stellar Boots"
+
+				WyvernscaleHeadPiece: "Wyvern Scale Hood"
+				WyvernscaleChestPiece: "Wyvern Scalemail"
+				WyvernscaleLegPiece: "Wyvern Scale Boots"
+
+			}
+
+			AmmunitionNames: {
+				
+			}
+
+			AccessoryNames: {
+			
+			}
+
+			HealingToolNames: {
+			
+			}
+
+			MaterialNames: {
+			
+			}
+
+			WeaponNames: {
+			
+			}
+
+			VanityNames: {
+				DevCoat: "nightlight's Coat"
+				AceMask: "The Eternal Ace's Gold Fox Mask"
+				SnowmanGangsterHat: "Mafioso Hat"
+
+				BossMasks: {
+					ChasmMask: "Chasm Mask"
+					StarshipMask: "Stellar Starship Mask"
+				}
+			}
+		}
+
+		Bestiary: {
+			Priestess: "Although quite young, she does her best to help others achieve peace, though no one really pays her any attention."
+		}
+
+		TownNPCMood: {
+			Priestess: {
+				Content: "I'm doing quite fine right now."
+				NoHome: "I'd prefer if I had somewhere to live."
+				LoveSpace: "I enjoy the fresh air here."
+				FarFromHome: "I seem to have taken the path less traveled."
+
+				DislikeCrowded: "There is to many people here.  I can't concentrate."
+				HateCrowded: "This is hell."
+
+				LoveBiome: "I love it here, the snow has a mysterious feel to it!"
+				LikeBiome: "It's quite beautiful here, but those unicorns are a bit of an issue."
+				DislikeBiome: "It's very strange here, I can't properly concentrate."
+				HateBiome: "It's horrible here!  Death is walking right outside my door!"
+
+				LoveNPC: "I simply adore {NPCName}'s mysterious aura!  I'd love to learn more about her past!"
+				LikeNPC: "I enjoy {NPCName}'s company, they're quite nice!"
+				DislikeNPC: "I don't really like {NPCName}, they just are not very nice."
+				HateNPC: "I despise {NPCName}, their greed knows no bounds."
+			}
+		}
+
+		Dialogue:{
+			Priestess: {
+				Standard1: "How are you doing today?"
+				Standard2: "It's dangerous to pray here.  All god-like beings here only want to kill us all!"
+				Standard3: "I'm intrigued by Niflheim's creation.  How is it possible to have been born from prayers alone?  Strange."
+				Standard4: "A always carry an extra pair of robes, just in case.  Would you like it?"
+				Hardmode1: "The Hallow is a mystical place, I'd love to visit it someday!  But the killer unicorns that live there are an issue."
+
+				PriestArmorEquipped: "I see you've donned my garments!  Sorry, but it was difficult for me to replicate the entire dress..."
+
+				Demolitionist: "I'm not to fond of {0}'s love for explosions.  Those things are dangerous!"
+				ArmsDealer: "I wish {0} would stop using innocent critters for target practice."
+				Nurse: "This is unacceptable!  How can {0} overcharge injured people so much and still sleep at night?  You're better off just waiting for the wound to heal naturally!"
+				Painter: "{0} has been giving me painting lessons recently!  You should try it too!"
+
+				Raining: "I love the soothing sound of rain hitting the ground.  It helps me focus."
+				NoBadWeather: "It's a beautiful day today!"
+				Windy: "Don't you love the soft breeze of the wind?  Just be on the lookout for dandilions!"
+
+				DownedCultist: "Interesting.  I've never though about praying to the moon itself.  However I that it would lead us all to our doom."
+			
+				BlessingAlreadyRecieved: "You currently have my blessing, come back when it runs out."
+				BlessingRadiant: "You have my blessing!  I hope it helps save others!"
+				BlessingNecrotic: "We seem to walk different paths.  Still, I'll see what I can do!"
+			}
+		}
+	}
+}

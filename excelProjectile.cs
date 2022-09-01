@@ -97,7 +97,7 @@ namespace excels
                     {
                         if (Main.npc[i].active && Main.npc[i].type == NPCID.Nymph && projectile.Hitbox.Intersects(Main.npc[i].Hitbox))
                         {
-                            //Main.npc[i].Transform(NPCType<FallenSoul>());
+                            Main.npc[i].Transform(ModContent.NPCType<NPCs.Town.Geologist>());
                             // this bool will be used to allow the geologist to move in without purifiying another nymph
                             if (!excelWorld.transformedNymph)
                             {

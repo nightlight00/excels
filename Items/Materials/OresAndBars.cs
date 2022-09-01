@@ -111,7 +111,7 @@ namespace excels.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }
 
         public override void SetDefaults()
@@ -265,7 +265,7 @@ namespace excels.Items.Materials
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("A stone cleansed of all evil");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }
 
         public override void SetDefaults()
@@ -285,9 +285,9 @@ namespace excels.Items.Materials
         }
     }
 
-        #endregion
+    #endregion
 
-        #region Shattered Heartbeat
+    #region Shattered Heartbeat
         public class ShatteredHeartbeat : ModItem
     {
         public override void SetStaticDefaults()
@@ -324,6 +324,7 @@ namespace excels.Items.Materials
             Tooltip.SetDefault("'The depth of the universe is being crushed by this fragment'");
             ItemID.Sets.ItemNoGravity[Item.type] = true;
             ItemID.Sets.ItemIconPulse[Item.type] = true;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;
         }
 
         public override void SetDefaults()

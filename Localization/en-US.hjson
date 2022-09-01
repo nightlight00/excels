@@ -95,6 +95,7 @@ Mods: {
 
 		Bestiary: {
 			Priestess: "Although quite young, she does her best to help others achieve peace, though no one really pays her any attention."
+			Geologist: "Now purified, the Geologist is able to follow her passion: Learning about the rocks and minerals beneath ourselves."
 		}
 
 		TownNPCMood: {
@@ -116,6 +117,13 @@ Mods: {
 				LikeNPC: "I enjoy {NPCName}'s company, they're quite nice!"
 				DislikeNPC: "I don't really like {NPCName}, they just are not very nice."
 				HateNPC: "I despise {NPCName}, their greed knows no bounds."
+			}
+			Geologist: {
+				NoHome: "Though roaming around is great for finding ores, I need somewhere to store them all."
+				FarFromHome: "I should probably get going back soon, there's nothing here."
+
+				LoveBiome: "Rocks galore down here!"
+				DislikeBiome: "It's too cold here, my hands keep shaking!"
 			}
 		}
 
@@ -143,6 +151,26 @@ Mods: {
 				BlessingAlreadyRecieved: "You currently have my blessing, come back when it runs out."
 				BlessingRadiant: "You have my blessing!  I hope it helps save others!"
 				BlessingNecrotic: "We seem to walk different paths.  Still, I'll see what I can do!"
+			}
+
+			Geologist: {
+				DonationCompletePreHard: "Great job, that's about all the ores my teacher's have told me!  However, I have the feeling there's more to discover..."
+				DonationCompleteHard: "Holy!  You've managed to complete all my demands!  I think I have a gold star sticker somewhere in my backpack...   Give me a minute, ok?"
+			
+				Standard1: "Isn't strange that some ores can be used in alchemy?"
+				Standard2: "My teacher has taught me all that I know.  I hope one day I'll make him proud with my accomplishments!"
+				Standard3: "Thanks again for helping me out back there!  Now I can focus on the important things in life: Rocks!"
+				Standard4: "Hurry up and get digging!  Those rocks won't mine themselves!"
+				Hardmode1: "See?  I was right!  There is more ores to discover!"
+
+				TaxMan: "I sympathize with {0}, our path's are not so different.  Howver, he gets points deducted for taking my money."
+
+				PostQueenSlime: "Strange that the Queen of Slimes was drawn here by a crystal.  I might need to get a closer look at it."
+
+				NoMeteor: "Personally, I have no interest in Meteorite.  Just ain't my style."
+				LanternOnly: "I've managed to replicate Life Crystals, however they're only strong enough to work in lanterns."
+
+				HellstoneDelivered: "Hot hot hot!  Quick, go get me an Obsidian Skull!  Don't worry it was just a joke."
 			}
 		}
 	}

@@ -66,15 +66,33 @@ Mods: {
 			}
 
 			AccessoryNames: {
-			
+				BattleStandardRegen: "Inspirational Banner"
+				BattleStandardImp: "Fiendish Battle Standard"
+				BattleStandardGoblin: "Goblin Battle Standard"
+				BattleStandardVenom: "Venomous Battle Standard"
+				HealSatchel: "Apothecary's Satchel"
+				
+				NiflheimAcc: "Nastrond"
+				ChasmAcc: "Super Medicine"
+
 			}
 
 			HealingToolNames: {
-			
+				WallofFleshDrop: "Calling of the Pheonix"
+				Acclepius: "Asclepius"
+				Caduceus: "Caduceus"
+				WoodenCross: "Wooden Cross"
+
 			}
 
 			MaterialNames: {
-			
+			       SkylineOre: "Skyline Pebble"
+                               SkylineBar: "Skyline Bar"
+                               GlacialOre: "Glacial Ore"
+                               GlacialBar: "Glacial Bar"
+                               GraniteEnergy: "Energized Granite"
+                               ShatteredHeartbeat: "Shattered Heartbeat"
+                               
 			}
 
 			WeaponNames: {

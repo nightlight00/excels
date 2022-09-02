@@ -209,7 +209,33 @@ Mods: {
                                                 SkylineWhip: "Feather Duster"
                                                 PerennialWhip: "Perennial Bloom"
                                         }                                          
-                                }                                                                                                                                                 
+                                }   
+                                Cleric: {
+                                        Radiant: {
+                                                NatureBombWand: "Nature Bomb Wand"
+                                                CoralScepter: "Coral Scepter"
+                                                PearlStaff: "Staff of Pearls"
+                                                LunarReflection: "Lunar Reflection"
+                                                TideClamp: "Tide Clamp:
+                                                StarbornStaff: "Starborn Staff"
+                                                CrystallineStaff: "Crystalline Staff"
+                                                PowerDrain: "Power Drain"
+                                        }       
+                                        Necrotic: {
+                                                GraniteSurge: "Granite Surge"
+                                                BloodyZombieHand: "Bloody Zombie Hand"
+                                                UmbraCross: "Umbra Cross"
+                                                DevouringRod: "Devouring Rod"
+                                                BloodlettingStaff: "Bloodletting Staff"
+                                                DevilPitchfork: "Devilish Pitchfork"
+                                                SpinalCrucifix: "Spinal Crucifix"
+                                                FangpireStaff: "Fangpire Staff"
+                                                Harbinger: "Harbinger"
+                                                Hemorrhage: "Hemorrhage"
+                                                WitchsCauldron: "Witch's Cauldron"
+                                                Apotheosis: "Apotheosis"
+                                        }                       
+                                }                                                                                                                              
 			}
 
 			VanityNames: {

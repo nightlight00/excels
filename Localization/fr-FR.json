@@ -116,7 +116,7 @@ Mods: {
                                GraniteEnergy: "Granite stimuler"
                                ShatteredHeartbeat: "Battement du Coeur briseé"
                                StellarPlating: "Plaquage stellaire"
-                               WyvernScale: "Écaillr du vouivre"   
+                               WyvernScale: "Écaille du vouivre"   
                                AncientFossil: "Fossile ancienne"    
                                BlackholeFragment: "Fragment trou noir"
                                Gladiolus: "Glaïeul"           
@@ -125,71 +125,71 @@ Mods: {
 			WeaponNames: {
                                 Melee: {
                                         Swords: {
-                                                ShroomSword: "Shroom Sword"
-                                                EnergySword: "Energy Sword"
-                                                BerserkerBlade: "Berserker Blade"
-                                                StellarSword: "Stellar Sword"
-                                                CrystallineSword: "Crystalline Sword"
-                                                FossilizedBlade: "Fossilized Blade"
-                                                ScarletScythe: "Scarlet Scythe"
-                                                HyperionSword: "Hyperion Longsword"
-                                                Skewer: "Skewer"
+                                                ShroomSword: "Épeé en champignon"
+                                                EnergySword: "Épeé stimuler"
+                                                BerserkerBlade: "Lame du Berserker"
+                                                StellarSword: "Épeé stellaire"
+                                                CrystallineSword: "Épeé cristallin"
+                                                FossilizedBlade: "Épeé en fossile"
+                                                ScarletScythe: "Faux écarlate"
+                                                HyperionSword: "Épeé longue en hyperion"
+                                                Skewer: "Brochette"
                                         }    
                                         Yoyos: {
-                                                Arial: "Arial"
-                                                DarkEye: "Dark Eye"
+                                                Arial: "Aérien"
+                                                DarkEye: "Oeil sombre"
                                         }                
                                         Spears: {
-                                                Froslance: "Froslance"
+                                                Froslance: "Lance gelée"
                                         } 
                                         Boomerangs: {
                                                 Glaive: "Glaive"
                                         } 
                                         Flails: {
-                                                Birdie: "Birdie"
+                                                Birdie: "Oiselet"
                                         }
                                         Others: {
-                                                FrostChainblade: "Frost Chainblade"
-                                                MidnightBlaze: "Mid-Night Blaze"
+                                                FrostChainblade: "Lame de chaîne geleé"
+                                                MidnightBlaze: "Incendie minuit"
                                         }                                                                         
                                 }                                
 	                        Ranged: {
                                         Guns: {
                                                 GraniteGlock: "Grock"
-                                                GlacialGun: "Glacial Gun"
-                                                FossilizedShotgun: "Fossilized Chomper"  
+                                                GlacialGun: "Pistolet en glace"
+                                                FossilizedShotgun: "Mâcher fossilisé"  
                                                 ThompsonSubMachine: "Tommy Gun" 
-                                                DeadlyKiss: "Deadly Kiss"
-                                                HyperionRifle: "Hyperion Shock Rifle"
-                                                MeanGreens: "Mean Greens"
-                                                V90: "Vindicator"
-                                                ShroomiteGun: "Shroomite Shredder"
+                                                DeadlyKiss: "Embrasse meurtrière"
+                                                HyperionRifle: "Fusil du choc en hyperion"
+                                                MeanGreens: "Piètre verts"
+                                                V90: "Défenseur"
+                                                ShroomiteGun: "Déchiqueteuse en champignite"
                                         }
                                         Bows: {
-                                                SkylineBow: "Drizzlebow"
-                                                JungleBow: "Jungle Bow"
-                                                HunterBow: "Hunter's Longbow"
-                                                StellarBow: "Stellar Bow"
-                                                StalkerBow: "Stalker's Longbow"
-                                                CrystallineBow: "Crystalline Bow"
-                                                ShroomiteBow: "Shroomite Bow"
+                                                SkylineBow: "Arc bruine"
+                                                JungleBow: "Arc du jungle"
+                                                HunterBow: "Arc du chasseur"
+                                                StellarBow: "Arc stellaire"
+                                                StalkerBow: "Arc du harceleur"
+                                                CrystallineBow: "Arc en cristallin"
+                                                ShroomiteBow: "Arc en champignite"
                                         }
                                         Launchers: {
-                                                ShroomiteLauncher: "Shroomite Lobber"
+                                                ShroomiteLauncher: "Lobeur en champignite"
                                         }               
                                         Flamethrowers: {                             
-                                                SparkSpitter: "Spark Spitter"
-                                                Flashlight: "Overcharged Flashlight"
-                                                BoltTorch: "Wielder"
-                                                Hellslinger: "Hellslinger"
-                                                Roaster: "Roaster"
-                                                Hypothermia: "Hypothermia"
-                                                PurpleHaze: "Purple Haze"
-                                                AfterBurner: "After Burner"
-                                                InfernalBubbleGun: "Infernal Bubbler"
-                                                ShroomiteFlame: "Shroomite Flamethrower"
-                                                GolemFlashlight: "Solar Reverie"
-                                                Trailblazer: "Trailblazer"
+                                                SparkSpitter: "Cracher d'étincelles"
+                                                Flashlight: "Lampe surcharger"
+                                                BoltTorch: "Soudeur"
+                                                Hellslinger: "Fondeur d'Enfer"
+                                                Roaster: "Caniculaire"
+                                                Hypothermia: "Hypothermie"
+                                                PurpleHaze: "Brume violet"
+                                                AfterBurner: "Postcombustion"
+                                                InfernalBubbleGun: "Fontaine infernal"
+                                                ShroomiteFlame: "Lance-flames en champignite"
+                                                GolemFlashlight: "Rêverie solaire"
+                                                Trailblazer: "Trace-incendie"
                                         }         
                                         Others: {
                                                 HyperionThrowingAxe: "Hyperion Throwing Axe"

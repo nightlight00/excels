@@ -62,7 +62,13 @@ Mods: {
 			}
 
 			AmmunitionNames: {
-				
+				GlacialBullet: "Glacial Bullet"
+                                PoisonousArrow: "Poisonous Arrow"
+                                EndlessGel: "Endless Gel Canister"
+                                LampOil: "Lamp Oil"
+                                LighterFluid: "Lighter Fluid"
+                                FrostfireOil: "Frostfire Oil"
+                                ShadowfireOil: "Shadowfire Oil"                                             
 			}
 
 			AccessoryNames: {
@@ -70,19 +76,34 @@ Mods: {
 				BattleStandardImp: "Fiendish Battle Standard"
 				BattleStandardGoblin: "Goblin Battle Standard"
 				BattleStandardVenom: "Venomous Battle Standard"
-				HealSatchel: "Apothecary's Satchel"
 				
-				NiflheimAcc: "Nastrond"
+                                HealSatchel: "Apothecary's Satchel"
+                                AntiToxins: "Anti-Toxins"
+                                NectarBottle: "Nectar Bottle"
+                                JungleBrew: "Jungle Brew"
+                                SkullPendant: "Skull Pendant"
+                                DeadManPendant: "Dead Man's Pendant"
+                                ClericEmblem: "Cleric Emblem"  
+                                HyperHeart: "Hyperion Heart"
+                                StainedGlassCross: "Stained Glass Cross"                         
+				
+				NiflheimAcc: "Voluspa"
 				ChasmAcc: "Super Medicine"
 
 			}
 
 			HealingToolNames: {
+                                PixieWand: "Pixie Wand"               
 				WallofFleshDrop: "Calling of the Pheonix"
 				Acclepius: "Asclepius"
 				Caduceus: "Caduceus"
+                                RoseWand: "Rose Wand"                
 				WoodenCross: "Wooden Cross"
-
+                                GrandCross: "Grand Cross"
+                                BeatingHeart: "Beating Heart"
+                                GlacialGuardian: "Glacial Guardian Staff"
+                                Prophecy: "Prophecy" 
+                                ThrownHealthPot: "Throwable Health Potion"                             
 			}
 
 			MaterialNames: {
@@ -94,7 +115,11 @@ Mods: {
                                PurityBar: "Purity Bar"
                                GraniteEnergy: "Energized Granite"
                                ShatteredHeartbeat: "Shattered Heartbeat"
-                               
+                               StellarPlating: "Stellar Plating"
+                               WyvernScale: "Wyvern Scale"   
+                               AncientFossil: "Ancient Fossil"    
+                               BlackholeFragment: "Blackhole Fragment"
+                               Gladiolus: "Gladiolus"           
 			}
 
 			WeaponNames: {

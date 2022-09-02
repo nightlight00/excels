@@ -5,7 +5,7 @@ Mods: {
 		Config: {
 			ClericTooltip: {
 				Header: "Advanced Cleric Tooltips"
-				Label: "Cleric Weapon info"
+				Label: "Info d'Armes du Prêtre"
 				Tip: "Displays the sources of Cleric damage bonuses"
 
 				HealLabel: "Cleric Healing Tool info"
@@ -15,49 +15,49 @@ Mods: {
 
 		ItemNames: {
 			ArmorNames: {
-				AvianHeadPiece: "Avian Hat"
-				AvianChestPiece: "Avian Wraps"
-				AvianLegPiece: "Avian Skirt"
+				AvianHeadPiece: "Chapeux d'aviaire"
+				AvianChestPiece: "Châle d'aviaire"
+				AvianLegPiece: "Jupe d'aviaire"
 
-				CrusaderHeadPiece: "Crusader Helmet"
-				CrusaderChestPiece: "Crusader Garments"
-				CrusaderLegPiece: "Crusader Greaves"
+				CrusaderHeadPiece: "Heaume du Croisé"
+				CrusaderChestPiece: "Vêtements du Croisé"
+				CrusaderLegPiece: "Grèves du Croisé"
 
-				FloralHeadPiece: "Floral Stethoscope"
-				FloralChestPiece: "Floral Jacket"
-				FloralLegPiece: "Floral Boots"
+				FloralHeadPiece: "Stéthoscope floral"
+				FloralChestPiece: "Veste floral"
+				FloralLegPiece: "Bottes floral"
 
-				FossilHeadPiece: "Prehistoric Mask"
-				FossilChestPiece: "Prehistoric Platemail"
-				FossilLegPiece: "Prehistoric Greaves"
+				FossilHeadPiece: "Masque préhistorique"
+				FossilChestPiece: "Plastron préhistorique"
+				FossilLegPiece: "Grèves préhistorique"
 
-				GlacialHeadPiece: "Glacial Mask"
-				GlacialChestPiece: "Glacial Breastplate"
-				GlacialLegPiece: "Glacial Leggings"
+				GlacialHeadPiece: "Masque glacial"
+				GlacialChestPiece: "Plastron glacial"
+				GlacialLegPiece: "Jambière glacial"
 
-				HeartbeatHeadPiece: "Heartbeat Mask"
-				HeartbeatChestPiece: "Heartbeat Coat"
-				HeartbeatLegPiece: "Heartbeat Greaves"
+				HeartbeatHeadPiece: "Masque des battements du Coeur"
+				HeartbeatChestPiece: "Manteau des battements du Coeur"
+				HeartbeatLegPiece: "Grèves des battements du Coeur"
 
-				HolyknightHeadPiece: "Holy Knight Helmet"
-				HolyknightChestPiece: "Holy Knight Chestplate"
-				HolyknightLegPiece: "Holy Knight Boots"
+				HolyknightHeadPiece: "Casque du chevalier sacré"
+				HolyknightChestPiece: "Plastron du chevalier sacré"
+				HolyknightLegPiece: "Bottes du chevalier sacré"
 
-				PriestHeadPiece: "Priest's Hood"
-				PriestChestPiece: "Priest's Robes"
-				PriestLegPiece: "Priest's Boots"
+				PriestHeadPiece: "Capuche du Prêtre"
+				PriestChestPiece: "Robe du Prêtre"
+				PriestLegPiece: "Bottes du Prêtre"
 
-				SkylineHeadPiece: "Skyline Circlet"
-				SkylineChestPiece: "Skyline Platemail"
-				SkylineLegPiece: "Skyline Boots"
+				SkylineHeadPiece: "Bandeau d'horizon"
+				SkylineChestPiece: "Plastron d'horizon"
+				SkylineLegPiece: "Bottes d'horizon"
 
-				StellarHeadPiece: "Stellar Mask"
-				StellarChestPiece: "Stellar Spacesuit"
-				StellarLegPiece: "Stellar Boots"
+				StellarHeadPiece: "Masque en stellaire"
+				StellarChestPiece: "Armure stellaire"
+				StellarLegPiece: "Bottes en stellaire"
 
-				WyvernscaleHeadPiece: "Wyvern Scale Hood"
-				WyvernscaleChestPiece: "Wyvern Scalemail"
-				WyvernscaleLegPiece: "Wyvern Scale Boots"
+				WyvernscaleHeadPiece: "Capuche en écaille du vouivre"
+				WyvernscaleChestPiece: "Plastron en écaille du vouivre"
+				WyvernscaleLegPiece: "Bottes en écaille di vouivre"
 
 			}
 
@@ -108,9 +108,9 @@ Mods: {
 
 			MaterialNames: {
 			       SkylineOre: "Skyline Pebble"
-                               SkylineBar: "Skyline Bar"
+                               SkylineBar: "Lingot du Horizon"
                                GlacialOre: "Glacial Ore"
-                               GlacialBar: "Glacial Bar"
+                               GlacialBar: "Lingot Glacial"
                                PurityOre: "Purified Rock"
                                PurityBar: "Purity Bar"
                                GraniteEnergy: "Energized Granite"

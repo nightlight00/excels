@@ -5,8 +5,8 @@ Mods: {
 		Config: {
 			ClericTooltip: {
 				Header: "Advanced Cleric Tooltips"
-				Label: "Info d'Armes du Prêtre"
-				Tip: "Displays the sources of Cleric damage bonuses"
+				Label: "Info d'Armes du Clerc"
+				Tip: "Demontre les sourcesDisplays the sources of Cleric damage bonuses"
 
 				HealLabel: "Cleric Healing Tool info"
 				HealTip: "Displays how much healing tools benefit from heal bonuses"

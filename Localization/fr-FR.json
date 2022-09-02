@@ -158,7 +158,7 @@ Mods: {
                                                 GraniteGlock: "Grock"
                                                 GlacialGun: "Pistolet en glace"
                                                 FossilizedShotgun: "Mâcher fossilisé"  
-                                                ThompsonSubMachine: "Tommy Gun" 
+                                                ThompsonSubMachine: "Fusil du Tommy" 
                                                 DeadlyKiss: "Embrasse meurtrière"
                                                 HyperionRifle: "Fusil du choc en hyperion"
                                                 MeanGreens: "Piètre verts"
@@ -167,7 +167,7 @@ Mods: {
                                         }
                                         Bows: {
                                                 SkylineBow: "Arc bruine"
-                                                JungleBow: "Arc du jungle"
+                                                JungleBow: "Arc de la jungle"
                                                 HunterBow: "Arc du chasseur"
                                                 StellarBow: "Arc stellaire"
                                                 StalkerBow: "Arc du harceleur"
@@ -184,7 +184,7 @@ Mods: {
                                                 Hellslinger: "Fondeur d'Enfer"
                                                 Roaster: "Caniculaire"
                                                 Hypothermia: "Hypothermie"
-                                                PurpleHaze: "Brume violet"
+                                                PurpleHaze: "Brume Violet"
                                                 AfterBurner: "Postcombustion"
                                                 InfernalBubbleGun: "Fontaine infernal"
                                                 ShroomiteFlame: "Lance-flames en champignite"
@@ -192,73 +192,73 @@ Mods: {
                                                 Trailblazer: "Trace-incendie"
                                         }         
                                         Others: {
-                                                HyperionThrowingAxe: "Hyperion Throwing Axe"
-                                                FlurryCannon: "Flurry Hand-Cannon"
+                                                HyperionThrowingAxe: "Lancer de hache en hyperion"
+                                                FlurryCannon: "Canon à main de bourrasque"
                                         }                                               
                                 }  
                                 Magic: {
                                         Staves: {
-                                                ShroomStaff: "Shroom Staff"
-                                                SkylineStaff: "Plumage Staff"
-                                                JungleStaff: "Spore Staff"
-                                                SingeStaff: "Singe Staff"
-                                                BladeBaton: "Blade Baton"
-                                                GlacialStaff: "Snowdance"
+                                                ShroomStaff: "Bâton des champignons"
+                                                SkylineStaff: "Bâton des plumes"
+                                                JungleStaff: "Bâton des spores"
+                                                SingeStaff: "Bâton en flammes"
+                                                BladeBaton: "Baguette des lames"
+                                                GlacialStaff: "Dance du neige"
                                                 Nastrond: "Nastrond"
-                                                IceFireStaff: "Dance of Ice and Fire"
-                                                ElementalEnvoy: "Elemental Envoy"
-                                                FrozenScarf: "Frozen Scarf"
+                                                IceFireStaff: "Dance du glace et feu"
+                                                ElementalEnvoy: "Émissaire Élementaire"
+                                                FrozenScarf: "Foulard geleé"
                                         } 
                                         MagicGuns: {
-                                                ThunderLord: "Thunder Lord"
-                                                StellarSidearm: "Stellar Sidearm"
-                                                StormCaller: "Storm Caller"
+                                                ThunderLord: "Maître de tonner"
+                                                StellarSidearm: "Pistolet stellaire"
+                                                StormCaller: "Appeller des tempêtes"
                                                 Zeus: "Zeus"
                                         }       
                                         SpellTomes: {
-                                                SeekingDischarge: "Seeking Discharge"
-                                                AncientDebris: "Ancient Debris"
+                                                SeekingDischarge: "Décharge cherchant"
+                                                AncientDebris: "Débris ancienne"
                                         }                                       
                                 }      
                                 Summoner: {
                                         Minions: {
-                                                SkylineCane: "Skyline Cane"
-                                                Mushroomling: "Strange Shroom"
+                                                SkylineCane: "Houlette d'horizon"
+                                                Mushroomling: "Champignon étrange"
                                         }   
                                         Spirits: {
-                                                DripplingStick: "Drippling Stick"
-                                                MagmaRod: "Magma Rod"
-                                                StarshipCommadRod: "Starship Command Rod"
+                                                DripplingStick: "Bâton d'un dégoulineur jumelle"
+                                                MagmaRod: "Tige en magma"
+                                                StarshipCommadRod: "Tige de commandant des vaisseau spatiale"
                                         }
                                         Whips: {
-                                                SkylineWhip: "Feather Duster"
-                                                PerennialWhip: "Perennial Bloom"
+                                                SkylineWhip: "Chiffon en plumes"
+                                                PerennialWhip: "Fleur vivance"
                                         }                                          
                                 }   
                                 Cleric: {
                                         Radiant: {
-                                                NatureBombWand: "Nature Bomb Wand"
-                                                CoralScepter: "Coral Scepter"
-                                                PearlStaff: "Staff of Pearls"
-                                                LunarReflection: "Lunar Reflection"
-                                                TideClamp: "Tide Clamp:
-                                                StarbornStaff: "Starborn Staff"
-                                                CrystallineStaff: "Crystalline Staff"
-                                                PowerDrain: "Power Drain"
+                                                NatureBombWand: "Baguette des explosions naturel"
+                                                CoralScepter: "Bâton en corail"
+                                                PearlStaff: "Bâton des perles"
+                                                LunarReflection: "Reflection de la lune"
+                                                TideClamp: "Pince marée"
+                                                StarbornStaff: "Bâton né des étoiles"
+                                                CrystallineStaff: "Bâton en cristallin"
+                                                PowerDrain: "Vider d'énergie"
                                         }       
                                         Necrotic: {
-                                                GraniteSurge: "Granite Surge"
-                                                BloodyZombieHand: "Bloody Zombie Hand"
-                                                UmbraCross: "Umbra Cross"
-                                                DevouringRod: "Devouring Rod"
-                                                BloodlettingStaff: "Bloodletting Staff"
-                                                DevilPitchfork: "Devilish Pitchfork"
-                                                SpinalCrucifix: "Spinal Crucifix"
-                                                FangpireStaff: "Fangpire Staff"
-                                                Harbinger: "Harbinger"
-                                                Hemorrhage: "Hemorrhage"
-                                                WitchsCauldron: "Witch's Cauldron"
-                                                Apotheosis: "Apotheosis"
+                                                GraniteSurge: "Flot d'énergie en granite"
+                                                BloodyZombieHand: "Main saignant d'un zombie"
+                                                UmbraCross: "Croix ombre"
+                                                DevouringRod: "Tige de dévorer"
+                                                BloodlettingEye: "Œil saignée"
+                                                DevilPitchfork: "Fourche diabolique"
+                                                SpinalCrucifix: "Crucifix en os"
+                                                FangpireStaff: "Bâton d'un crochet-pire"
+                                                Harbinger: "Héraut"
+                                                Hemorrhage: "Hémorragie"
+                                                WitchsCauldron: "Chaudron d'un sorcière"
+                                                Apotheosis: "Apothéose"
                                         }                       
                                 }                                                                                                                              
 			}

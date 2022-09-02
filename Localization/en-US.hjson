@@ -90,13 +90,126 @@ Mods: {
                                SkylineBar: "Skyline Bar"
                                GlacialOre: "Glacial Ore"
                                GlacialBar: "Glacial Bar"
+                               PurityOre: "Purified Rock"
+                               PurityBar: "Purity Bar"
                                GraniteEnergy: "Energized Granite"
                                ShatteredHeartbeat: "Shattered Heartbeat"
                                
 			}
 
 			WeaponNames: {
-			
+                                Melee: {
+                                        Swords: {
+                                                ShroomSword: "Shroom Sword"
+                                                EnergySword: "Energy Sword"
+                                                BerserkerBlade: "Berserker Blade"
+                                                StellarSword: "Stellar Sword"
+                                                CrystallineSword: "Crystalline Sword"
+                                                FossilizedBlade: "Fossilized Blade"
+                                                ScarletScythe: "Scarlet Scythe"
+                                                HyperionSword: "Hyperion Longsword"
+                                                Skewer: "Skewer"
+                                        }    
+                                        Yoyos: {
+                                                Arial: "Arial"
+                                                DarkEye: "Dark Eye"
+                                        }                
+                                        Spears: {
+                                                Froslance: "Froslance"
+                                        } 
+                                        Boomerangs: {
+                                                Glaive: "Glaive"
+                                        } 
+                                        Flails: {
+                                                Birdie: "Birdie"
+                                        }
+                                        Others: {
+                                                FrostChainblade: "Frost Chainblade"
+                                                MidnightBlaze: "Mid-Night Blaze"
+                                        }                                                                         
+                                }                                
+	                        Ranged: {
+                                        Guns: {
+                                                GraniteGlock: "Grock"
+                                                GlacialGun: "Glacial Gun"
+                                                FossilizedShotgun: "Fossilized Chomper"  
+                                                ThompsonSubMachine: "Tommy Gun" 
+                                                DeadlyKiss: "Deadly Kiss"
+                                                HyperionRifle: "Hyperion Shock Rifle"
+                                                MeanGreens: "Mean Greens"
+                                                V90: "Vindicator"
+                                                ShroomiteGun: "Shroomite Shredder"
+                                        }
+                                        Bows: {
+                                                SkylineBow: "Drizzlebow"
+                                                JungleBow: "Jungle Bow"
+                                                HunterBow: "Hunter's Longbow"
+                                                StellarBow: "Stellar Bow"
+                                                StalkerBow: "Stalker's Longbow"
+                                                CrystallineBow: "Crystalline Bow"
+                                                ShroomiteBow: "Shroomite Bow"
+                                        }
+                                        Launchers: {
+                                                ShroomiteLauncher: "Shroomite Lobber"
+                                        }               
+                                        Flamethrowers: {                             
+                                                SparkSpitter: "Spark Spitter"
+                                                Flashlight: "Overcharged Flashlight"
+                                                BoltTorch: "Wielder"
+                                                Hellslinger: "Hellslinger"
+                                                Roaster: "Roaster"
+                                                Hypothermia: "Hypothermia"
+                                                PurpleHaze: "Purple Haze"
+                                                AfterBurner: "After Burner"
+                                                InfernalBubbleGun: "Infernal Bubbler"
+                                                ShroomiteFlame: "Shroomite Flamethrower"
+                                                GolemFlashlight: "Solar Reverie"
+                                                Trailblazer: "Trailblazer"
+                                        }         
+                                        Others: {
+                                                HyperionThrowingAxe: "Hyperion Throwing Axe"
+                                                FlurryCannon: "Flurry Hand-Cannon"
+                                        }                                               
+                                }  
+                                Magic: {
+                                        Staves: {
+                                                ShroomStaff: "Shroom Staff"
+                                                SkylineStaff: "Plumage Staff"
+                                                JungleStaff: "Spore Staff"
+                                                SingeStaff: "Singe Staff"
+                                                BladeBaton: "Blade Baton"
+                                                GlacialStaff: "Snowdance"
+                                                Nastrond: "Nastrond"
+                                                IceFireStaff: "Dance of Ice and Fire"
+                                                ElementalEnvoy: "Elemental Envoy"
+                                                FrozenScarf: "Frozen Scarf"
+                                        } 
+                                        MagicGuns: {
+                                                ThunderLord: "Thunder Lord"
+                                                StellarSidearm: "Stellar Sidearm"
+                                                StormCaller: "Storm Caller"
+                                                Zeus: "Zeus"
+                                        }       
+                                        SpellTomes: {
+                                                SeekingDischarge: "Seeking Discharge"
+                                                AncientDebris: "Ancient Debris"
+                                        }                                       
+                                }      
+                                Summoner: {
+                                        Minions: {
+                                                SkylineCane: "Skyline Cane"
+                                                Mushroomling: "Strange Shroom"
+                                        }   
+                                        Spirits: {
+                                                DripplingStick: "Drippling Stick"
+                                                MagmaRod: "Magma Rod"
+                                                StarshipCommadRod: "Starship Command Rod"
+                                        }
+                                        Whips: {
+                                                SkylineWhip: "Feather Duster"
+                                                PerennialWhip: "Perennial Bloom"
+                                        }                                          
+                                }                                                                                                                                                 
 			}
 
 			VanityNames: {

@@ -276,6 +276,19 @@ Mods: {
 		}
 
 		ItemDescriptions: {	
+			ItemDescriptions: {
+			        SkylineBar: "An incredibly light metal"
+			        GlacialBar: "'Don't freeze your fingers off!'"
+			        PurityOre: "A stone cleasend of all evil"
+			        PurityBar: "Purity refined into a forge-able ingot"
+			        GraniteEnergy: "A chunk of granite overflowing with energy"
+			        ShatteredHeartbeat: "Somehow it's still beating"
+			        StellarPlating: "Armor taken from an interstellar warship"
+			        WyvernScale: "The scales of a mystical flying creature"
+			        AncientFossil: "Prehistoric bones from beneath the sands"
+			        BlackholeFragment: "'The depth of the universe is bring crushed by this fragment'"
+       			}
+        
 		        Weapons: {				
 			        Melee: {
                                         Swords: {

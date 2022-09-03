@@ -275,6 +275,21 @@ Mods: {
 			}
 		}
 
+                ItemDescriptions: {	
+			MaterialDescriptions: {
+			        SkylineBar: "Un mêtal encroyablement lêger"
+			        GlacialBar: "'Don't freeze your fingers off!'"
+			        PurityOre: "Un roche purifier de tout mal"
+			        PurityBar: "Pureté raffiné au'un ingot"
+			        GraniteEnergy: "Un morceau du granite qui déborde avec énergie"
+			        ShatteredHeartbeat: "D'un façon au un autre, c'est encore batte"
+			        StellarPlating: "L'armeure d'une machine du geurre interstellaire"
+			        WyvernScale: "L'écailles d'un créature volant mythic"
+			        AncientFossil: "Os préhistorique du sous la sable"
+			        BlackholeFragment: "'La profondeur d'univers est écrasé par cet fragment'"
+       			}
+                }
+
 		Bestiary: {
 			Priestess: "Although quite young, she does her best to help others achieve peace, though no one really pays her any attention."
 			Geologist: "Now purified, the Geologist is able to follow her passion: Learning about the rocks and minerals beneath ourselves."

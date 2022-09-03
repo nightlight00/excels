@@ -311,9 +311,9 @@ Mods: {
 
 		Dialogue:{
 			Priestess: {
-				Standard1: "How are you doing today?"
-				Standard2: "It's dangerous to pray here.  All god-like beings here only want to kill us all!"
-				Standard3: "I'm intrigued by Niflheim's creation.  How is it possible to have been born from prayers alone?  Strange."
+				Standard1: "Comment ça va aujourd'hui ?"
+				Standard2: "C'est dangerux du prie ici.  All god-like beings here only want to kill us all !"
+				Standard3: "Je suis intriguer par la creation du Niflheim.  Comment est que c'est possible d'être né par seulment des priers ?  C'est tout étrange."
 				Standard4: "A always carry an extra pair of robes, just in case.  Would you like it?"
 				Hardmode1: "The Hallow is a mystical place, I'd love to visit it someday!  But the killer unicorns that live there are an issue."
 

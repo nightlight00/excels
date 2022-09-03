@@ -4,9 +4,9 @@ Mods: {
 	excels: {
 		Config: {
 			ClericTooltip: {
-				Header: "Advanced Cleric Tooltips"
+				Header: "Infobulles Clérical avancer"
 				Label: "Info d'Armes du Clerc"
-				Tip: "Demontre les sourcesDisplays the sources of Cleric damage bonuses"
+				Tip: "Demontre les sources des boni pour des dégâts clérical"
 
 				HealLabel: "Cleric Healing Tool info"
 				HealTip: "Displays how much healing tools benefit from heal bonuses"
@@ -62,13 +62,13 @@ Mods: {
 			}
 
 			AmmunitionNames: {
-				GlacialBullet: "Glacial Bullet"
-                                PoisonousArrow: "Poisonous Arrow"
-                                EndlessGel: "Endless Gel Canister"
-                                LampOil: "Lamp Oil"
-                                LighterFluid: "Lighter Fluid"
-                                FrostfireOil: "Frostfire Oil"
-                                ShadowfireOil: "Shadowfire Oil"                                             
+				GlacialBullet: "Balle glacial"
+                                PoisonousArrow: "Flèche empoisonné"
+                                EndlessGel: "Bonbonne infinie du gel"
+                                LampOil: "Huile de paraffine"
+                                LighterFluid: "Essence à briquet"
+                                FrostfireOil: "Huile de brûledegivre"
+                                ShadowfireOil: "Huile de flamme d'ombre"                                             
 			}
 
 			AccessoryNames: {
@@ -77,14 +77,14 @@ Mods: {
 				BattleStandardGoblin: "Goblin Battle Standard"
 				BattleStandardVenom: "Venomous Battle Standard"
 				
-                                HealSatchel: "Apothecary's Satchel"
-                                AntiToxins: "Anti-Toxins"
-                                NectarBottle: "Nectar Bottle"
-                                JungleBrew: "Jungle Brew"
-                                SkullPendant: "Skull Pendant"
-                                DeadManPendant: "Dead Man's Pendant"
-                                ClericEmblem: "Cleric Emblem"  
-                                HyperHeart: "Hyperion Heart"
+                                HealSatchel: "Sacoche d'apothicaire"
+                                AntiToxins: "Contre-toxines"
+                                NectarBottle: "Bouteille du nectar"
+                                JungleBrew: "Jus du jungle"
+                                SkullPendant: "Pendant d'un crâne"
+                                DeadManPendant: "Pendant d'un homme mort"
+                                ClericEmblem: "Emblème de clerc"  
+                                HyperHeart: "Coeur en hyperion"
                                 StainedGlassCross: "Stained Glass Cross"                         
 				
 				NiflheimAcc: "Voluspa"

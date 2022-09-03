@@ -276,7 +276,7 @@ Mods: {
 		}
 
 		ItemDescriptions: {	
-			ItemDescriptions: {
+			MaterialDescriptions: {
 			        SkylineBar: "An incredibly light metal"
 			        GlacialBar: "'Don't freeze your fingers off!'"
 			        PurityOre: "A stone cleasend of all evil"

@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
+using Terraria.Localization;
 using System;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
@@ -14,7 +15,8 @@ namespace excels.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("An incredibly light metal");
+            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.MaterialNames.SkylineBar"));
+            Tooltip.SetDefault(Language.GetTextValue("Mods.excels.ItemDescriptions.MaterialDescriptions.SkylineBar"));
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;
         }
 
@@ -49,7 +51,7 @@ namespace excels.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Skyline Pebble");
+            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.MaterialNames.SkylineOre"));
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
 
@@ -77,6 +79,8 @@ namespace excels.Items.Materials
     {
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.MaterialNames.GlacialBar"));
+            Tooltip.SetDefault(Language.GetTextValue("Mods.excels.ItemDescriptions.MaterialDescriptions.GlacialBar"));
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;
         }
 
@@ -111,6 +115,7 @@ namespace excels.Items.Materials
     {
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.MaterialNames.GlacialOre"));
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }
 
@@ -138,7 +143,8 @@ namespace excels.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("A chunk of granite that emits a strange energy");
+            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.MaterialNames.GraniteEnergy"));
+            Tooltip.SetDefault(Language.GetTextValue("Mods.excels.ItemDescriptions.MaterialDescriptions.GraniteEnergy"));
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;
         }
 

@@ -206,6 +206,7 @@ namespace excels.Items.Weapons.Blood
 
         public override void AI()
         {
+            Projectile.GetGlobalProjectile<excelProjectile>().healStrength = healPower;
             HealDistance(Main.LocalPlayer, Main.player[Projectile.owner], 32);
 
             Projectile.timeLeft = 2;

@@ -32,6 +32,7 @@ namespace excels
         int SnowflakeCooldown = 0;
         public bool FireBadge = false;
         public bool ArtemisSigil = false;
+        public bool VirtualShades = false;
         // expert
         public bool NiflheimAcc = false;
         public bool ChasmAcc = false;
@@ -345,6 +346,12 @@ namespace excels
                 Projectile.NewProjectile(source, position, velocity.RotatedByRandom(MathHelper.ToRadians(8)), ModContent.ProjectileType<Items.Weapons.Fossil.FossilChunkR>(), 30, 1, Player.whoAmI);
                 FossilSetReset = 23;
             }
+
+            if (VirtualShades && item.DamageType == DamageClass.Ranged && item.noUseGraphic && item.consumable && Main.rand.NextBool(5))
+            {
+                Projectile.NewProjectile(source, position, velocity.RotatedBy(MathHelper.ToRadians(8)) * Main.rand.NextFloat(0.9f, 1.1f), type, damage, knockback, Player.whoAmI);
+            }
+
             return true;
         }
 
@@ -364,7 +371,8 @@ namespace excels
             if (MimicNecklace)
             {
                 SoundEngine.PlaySound(SoundID.NPCHit26, Player.Center);
-                FakeHitPVP(target, 15, target.getRect());
+                FakeHitPVP(target, (int)(damage * 1.25f), target.getRect());
+                target.AddBuff(BuffID.Bleeding, damage * 45);
             }
 
             if (NiflheimAcc)
@@ -393,12 +401,13 @@ namespace excels
             }
 
             // if returning a hit to an npc, a some basic checks need to be done first
-            if (npc.lifeMax > 5 && damage > 1) // prevents from working with spell enemies and if attack was dodged
+            if (npc.lifeMax > 5 && damage >= 1) // prevents from working with spell enemies and if attack was dodged
             {
                 if (MimicNecklace)
                 {
                     SoundEngine.PlaySound(SoundID.NPCHit26, Player.Center);
-                    FakeHitNPC(npc, 35, npc.getRect());
+                    FakeHitNPC(npc, damage * 2, npc.getRect());
+                    npc.AddBuff(BuffID.Bleeding, damage * 45);
                 }
                 if (ShieldReflect)
                 {

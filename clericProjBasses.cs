@@ -88,12 +88,14 @@ namespace excels
     public abstract class clericHealProj : clericProj
     {
         public List<int> heallist = new List<int>();
+        public List<int> healTimer = new List<int>();
 
         public int healPenetrate = 1;
         public bool healUsesBuffs = false;
         public bool canHealOwner = false;
         public bool buffConsumesPenetrate = false;
 
+        public int timeBetweenHeal = 30;
         public bool canDealDamage = false;
 
         public override void PreDefaults()
@@ -112,6 +114,19 @@ namespace excels
         }
         public override bool CanHitPvp(Player target) => canDealDamage;
 
+        public override bool PreAI()
+        {
+            for (var i = 0; i < healTimer.Count; i++)
+            {
+                if (healTimer[i]-- <= 0)
+                {
+                    healTimer.RemoveAt(i);
+                    heallist.RemoveAt(i);
+                }
+
+            }
+            return base.PreAI();
+        }
 
         public void BuffCollision(Player target, Player healer)
         {
@@ -137,6 +152,7 @@ namespace excels
                         return;
                     }
                     heallist.Add(target.whoAmI);
+                    healTimer.Add(timeBetweenHeal); 
                 }
             }
         }
@@ -164,6 +180,7 @@ namespace excels
                         return;
                     }
                     heallist.Add(target.whoAmI);
+                    healTimer.Add(timeBetweenHeal);
                 }
             }
         }
@@ -244,6 +261,7 @@ namespace excels
 
             var lifeBeforeHeal = target.statLife;
             heallist.Add(target.whoAmI);
+            healTimer.Add(timeBetweenHeal);
 
             // put post heal here so percentage heals still have this option
             PostHealEffects(target, healer);
@@ -258,7 +276,7 @@ namespace excels
 
                 trueHeal += (int)(healer.GetModPlayer<excelPlayer>().healBonus * healRate);
 
-                if (healer.GetModPlayer<excelPlayer>().PrismiteSet && Main.rand.Next(100) < 5)
+                if (healer.GetModPlayer<excelPlayer>().PrismiteSet && Main.rand.NextBool(20))
                 {
                     trueHeal += healAmount / 2;
                     target.AddBuff(ModContent.BuffType<Buffs.ClericBonus.PrismiteHeart>(), GetBuffTime(healer, trueHeal * 0.7f));

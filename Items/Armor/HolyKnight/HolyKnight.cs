@@ -61,7 +61,7 @@ namespace excels.Items.Armor.HolyKnight
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Materials.MysticCrystal>(), 4)
+                .AddIngredient(ModContent.ItemType<Materials.MysticCrystal>(), 8)
                 .AddTile(TileID.Anvils)
                 .Register();
         }
@@ -94,7 +94,7 @@ namespace excels.Items.Armor.HolyKnight
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Materials.MysticCrystal>(), 5)
+                .AddIngredient(ModContent.ItemType<Materials.MysticCrystal>(), 12)
                 .AddTile(TileID.Anvils)
                 .Register();
         }
@@ -127,7 +127,7 @@ namespace excels.Items.Armor.HolyKnight
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Materials.MysticCrystal>(), 4)
+                .AddIngredient(ModContent.ItemType<Materials.MysticCrystal>(), 10)
                 .AddTile(TileID.Anvils)
                 .Register();
         }

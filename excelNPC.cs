@@ -349,11 +349,7 @@ namespace excels
         {
             if (DebuffMycosis)
             {
-                int dot = 8;
-                if (Main.hardMode) { 
-                    dot += 8; 
-                    if (NPC.downedPlantBoss) { dot += 12; }
-                }
+                int dot = NPC.downedPlantBoss ? 28 : Main.hardMode ? 16 : 8;
                 if (npc.lifeRegen > 0)
                 {
                     npc.lifeRegen = 0;
@@ -376,9 +372,7 @@ namespace excels
 
             if (npc.HasBuff(BuffID.Electrified))
             {
-                int dot = 10;
-                if (MathF.Abs(npc.velocity.X) > 1)
-                    dot = 24;
+                int dot = (MathF.Abs(npc.velocity.X) > 1) ? 24 : 10;
 
                 if (npc.lifeRegen > 0)
                 {
@@ -388,6 +382,18 @@ namespace excels
                 if (damage < 1)
                 {
                     damage = 1;
+                }
+            }
+            if (npc.HasBuff(BuffID.Bleeding))
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= 11;
+                if (damage < 3)
+                {
+                    damage = 3;
                 }
             }
         }

@@ -174,6 +174,24 @@ namespace excels.Tiles.Misc
 	}
 	#endregion
 
+	#region Skyline Brick
+	internal class MushroomTile : ModTile
+	{
+		public override void SetStaticDefaults()
+		{
+			Main.tileSolid[Type] = true;
+			Main.tileMergeDirt[Type] = true;
+
+			AddMapEntry(new Color(190, 90, 25));
+
+			//DustType = ;
+			ItemDrop = ItemID.Mushroom;
+			//HitSound = SoundID.;
+			//sound = 1;
+		}
+	}
+	#endregion
+
 	public class StarlightAnvilTile : ModTile
     {
 		public override void SetStaticDefaults()

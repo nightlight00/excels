@@ -38,7 +38,6 @@ namespace excels.NPCs.Glacial
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             { // Influences how the NPC looks in the Bestiary
                 Position = new Vector2(0f, 50f),
-                Frame = 3,
                 PortraitScale = 1.05f
                 //PortraitPositionYOverride = 12f
             };

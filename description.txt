@@ -8,12 +8,12 @@ The Cleric has two sides to it, the life-consuming dps : Necrotic and the healer
 List of Major content in the mod : 
 - New class : Cleric Class
 - 3 new bosses 
-- 1 new town npc
-- 90+ new weapons
-- 10+ new healing tools
+- 2 new town npcs
+- 100+ new weapons
+- 15+ healing tools
 - 12 new armor sets
 - 20+ new accessories
-- 7 new ammunitions
+- 8 new ammunitions
 - new worldgen
 - 1 custom music track
 
@@ -33,6 +33,7 @@ And we have a wiki!  It is missing mostly weapon pages, but most of the importan
 
 ~ version log ~
 
+1.2.7 - added Geologist, along with several weapons, a healing tool, and reworks to the wooden cross and its upgrades
 1.2.6 - added 8 flamethrowers, 5 flamethrower ammunitions, 2 support tools, lots of balance changes and fixes
 1.2.5 - added radiance bar, 2 weapons, and an accessory
 1.2.4 - added a armor set, 9 weapons, 2 healing tools, new worldgen, numerous balance changes and several fixes

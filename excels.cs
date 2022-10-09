@@ -47,6 +47,5 @@ namespace excels
 
         }
         public override uint ExtraPlayerBuffSlots => 44;
-
     }
 }

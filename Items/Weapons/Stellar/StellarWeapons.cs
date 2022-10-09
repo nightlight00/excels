@@ -9,6 +9,7 @@ using Terraria.DataStructures;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Linq;
+using Terraria.GameContent;
 
 namespace excels.Items.Weapons.Stellar
 {
@@ -236,8 +237,14 @@ namespace excels.Items.Weapons.Stellar
             Item.UseSound = SoundID.Item5;
             Item.sellPrice(0, 0, 82);
 
-            NormTip = "";
-            PowerTip = "Set bonus: Every third shot transforms arrows into a shooting star";
+            NormTip = "Converts wooden arrows into seeking bolts";
+            PowerTip = "\nSet bonus: Every third shot transforms arrows into a shooting star";
+        }
+
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        {
+            if (type == ProjectileID.WoodenArrowFriendly)
+                type = ModContent.ProjectileType<StellarArrow>();
         }
 
         public int Turn = 0;
@@ -258,7 +265,85 @@ namespace excels.Items.Weapons.Stellar
         }
     }
 
-    
+    public class StellarArrow : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
+        }
+
+        public override void SetDefaults()
+        {
+            Projectile.CloneDefaults(ProjectileID.WoodenArrowFriendly);
+            AIType = ProjectileID.WoodenArrowFriendly;
+        }
+
+        public override void AI()
+        {
+            Projectile.rotation = Projectile.velocity.ToRotation();
+
+            Vector2 targetPos = Vector2.Zero;
+            float targetDist = 700;
+            bool target = false;
+            for (int k = 0; k < 200; k++)
+            {
+                NPC npc = Main.npc[k];
+                if (npc.CanBeChasedBy(this, false))
+                {
+                    float distance = Vector2.Distance(npc.Center, Projectile.Center);
+                    if (distance < targetDist)
+                    {
+                        targetDist = distance;
+                        targetPos = npc.Center;
+                        target = true;
+                    }
+                }
+            }
+            if (target)
+            {
+                Vector2 move = (targetPos - Projectile.Center).SafeNormalize(Vector2.Zero) * 7;
+
+                AdjustMagnitude(ref move);
+                Projectile.velocity = (Projectile.velocity.Length() * Projectile.velocity + move); // / 5f;
+                AdjustMagnitude(ref Projectile.velocity);
+            }
+        }
+
+        private void AdjustMagnitude(ref Vector2 vector)
+        {
+            float magnitude = (float)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
+            if (magnitude > 6f)
+            {
+                vector *= 15 / magnitude;
+            }
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
+            return base.OnTileCollide(oldVelocity);
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Main.instance.LoadProjectile(Projectile.type);
+            Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
+
+            // Redraw the projectile with the color not influenced by light
+            for (int k = 0; k < Projectile.oldPos.Length; k++)
+            {
+                Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
+                Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
+                Color color = Projectile.GetAlpha(lightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
+                Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.oldRot[k], drawOrigin, 1, SpriteEffects.None, 0);
+            }
+
+            return true;
+        }
+    }
+
+
     internal class StellarCommandRod : StellarWeapon
     {
         public override void SetStaticDefaults()

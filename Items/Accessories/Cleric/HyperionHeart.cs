@@ -14,7 +14,7 @@ namespace excels.Items.Accessories.Cleric
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Hyperion Heart");
-            Tooltip.SetDefault("Increases max radiance by 15\nWhile under the effects of Anguished Soul, greatly boosts radiance regeneration\n'Strengthens in response to psychological trauma'");
+            Tooltip.SetDefault("Increases max radiance by 15\nWhile under the effects of Anguished Soul, increases radiant damage by 10%\n'Strengthens in response to psychological trauma'");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -31,8 +31,7 @@ namespace excels.Items.Accessories.Cleric
             player.GetModPlayer<ClericClassPlayer>().radianceStatMax2 += 15;
             player.GetModPlayer<excelPlayer>().hyperionHeart = true;
             if (player.HasBuff(ModContent.BuffType<Buffs.ClericCld.AnguishedSoul>())) {
-                player.GetModPlayer<ClericClassPlayer>().radianceRegenRate -= 0.15f;
-                player.GetModPlayer<ClericClassPlayer>().radianceRegenTimeChange += 10;
+                player.GetModPlayer<ClericClassPlayer>().clericRadiantMult += 0.1f;
             }
         }
 

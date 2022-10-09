@@ -332,6 +332,138 @@ namespace excels.Items.Weapons.Skyline
     }
     #endregion
 
+    #region Throwing Axe
+    internal class SkylineHatchet : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Skyline Hatchet");
+            Tooltip.SetDefault("33% chance to not be consumed on use");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+
+        public override void SetDefaults()
+        {
+            Item.width = Item.height = 26;
+            Item.DamageType = DamageClass.Ranged;
+            Item.useTime = Item.useAnimation = 21;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.noUseGraphic = true;
+            Item.noMelee = true;
+            Item.damage = 16;
+            Item.knockBack = 1.3f;
+            Item.rare = 1;
+            Item.UseSound = SoundID.Item71;
+            Item.shoot = ModContent.ProjectileType<SkylineHatchetProj>();
+            Item.shootSpeed = 2.6f;
+            Item.maxStack = 999;
+            Item.consumable = true;
+            Item.autoReuse = true;
+            Item.sellPrice(0, 0, 0, 25);
+        }
+
+        public override bool ConsumeItem(Player player)
+        {
+            return Main.rand.NextFloat() >= 0.33f;
+        }
+
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        {
+            velocity = velocity.RotatedByRandom(MathHelper.ToRadians(4));
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe(80)
+                .AddIngredient(ModContent.ItemType<Items.Materials.SkylineBar>(), 3)
+                .AddTile(TileID.Anvils)
+                .Register();
+        }
+    }
+
+    public class SkylineHatchetProj : ModProjectile
+    {
+        public override string Texture => "excels/Items/Weapons/Skyline/SkylineHatchet";
+
+        public override void SetStaticDefaults()
+        {
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 30;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
+        }
+
+        public override void SetDefaults()
+        {
+            Projectile.width = Projectile.height = 26;
+            Projectile.timeLeft = 400;
+            Projectile.DamageType = DamageClass.Ranged;
+            Projectile.ignoreWater = true;
+            Projectile.penetrate = 3;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 30;
+            Projectile.extraUpdates = 3;
+            Projectile.friendly = true;
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Main.instance.LoadProjectile(Projectile.type);
+            Texture2D texture = Mod.Assets.Request<Texture2D>("Items/Weapons/Skyline/SkylineHatchetTrail").Value;
+
+            // Redraw the projectile with the color not influenced by light
+            for (int k = 0; k < Projectile.oldPos.Length; k++)
+            {
+                if (k % 3 == 0)
+                {
+                    Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
+                    Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
+                    Color color = (Color.White * 0.66f) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
+                    Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.oldRot[k], drawOrigin, 1, SpriteEffects.None, 0);
+                }
+            }
+
+            return true;
+        }
+
+        public override void PostDraw(Color lightColor)
+        {
+            Texture2D texture = Mod.Assets.Request<Texture2D>("Items/Weapons/Skyline/SkylineHatchetTrail").Value;
+            Main.EntitySpriteDraw(texture, Projectile.position, null, Color.White * 0.66f, Projectile.rotation, new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f), 1, SpriteEffects.None, 0);
+        }
+
+        public override void AI()
+        {
+            Projectile.rotation += MathHelper.ToRadians(Projectile.velocity.Length()) * 3.5f;
+            Lighting.AddLight(Projectile.Center, new Vector3(255 / 124, 255 / 255, 255 / 234) / 3);
+
+            if (++Projectile.ai[0] > 30)
+            {
+                Projectile.velocity *= 0.99f;
+                if (Math.Abs(Projectile.velocity.Length()) < 0.2f)
+                    Projectile.Kill();
+            }
+        }
+
+        public override void Kill(int timeLeft)
+        {
+            for (var i = 0; i < 20; i++)
+            {
+                int type = ModContent.DustType<Dusts.SkylineDust>();
+                Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, type);
+                d.scale *= Main.rand.NextFloat(1, 1.1f);
+                d.velocity = (Projectile.velocity / 2) + new Vector2(Main.rand.NextFloat(0.33f, 1)).RotatedByRandom(MathHelper.ToRadians(180));
+                if (Main.rand.NextBool(3))
+                    d.noGravity = true;
+            }
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
+            return true;
+        }
+    }
+    #endregion
+
     #region Flail 
     public class Birdie : ModItem
     {

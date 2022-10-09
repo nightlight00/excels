@@ -360,7 +360,7 @@ namespace excels.Items.Weapons.Staff1
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-				.AddIngredient(ModContent.ItemType<Materials.MysticCrystal>(), 3)
+				.AddIngredient(ModContent.ItemType<Materials.MysticCrystal>(), 6)
 				.AddTile(TileID.Anvils)
 				.Register();
 		}

@@ -12,6 +12,23 @@ using Terraria.GameContent;
 
 namespace excels.Items.Accessories.Ranged
 {
+    #region Virtual Shades
+    public class VirtualShades : ModItem
+    {
+        public override void SetDefaults()
+        {
+            Item.accessory = true;
+        }
+
+        public override void UpdateEquip(Player player)
+        {
+            player.GetModPlayer<excelPlayer>().VirtualShades = true;
+        }
+    }
+    #endregion
+
+
+    /*
     internal class ArtemisQuiver : ModItem
     {
         public override void SetStaticDefaults()
@@ -162,5 +179,6 @@ namespace excels.Items.Accessories.Ranged
             }
         }
     }
+*/
 }
 

@@ -97,6 +97,8 @@ namespace excels
 
         public override void PostSetupContent()
         {
+			//RecipeBroswerIntegration();
+
 			BossChecklistIntegration();
 		}
 
@@ -166,6 +168,16 @@ namespace excels
 			);
 		}
 
+		private void RecipeBroswerIntegration()
+		{
+			if (!ModLoader.TryGetMod("RecipeBrowser", out Mod recipeBrowser))
+				return;
+			if (!Main.dedServ)
+			{
+				Texture2D cTexture = ModContent.Request<Texture2D>($"excels/Textures/RecipeBrowser/ClericIcon", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+				recipeBrowser.Call("AddItemCategory", "Cleric", "Weapons", cTexture, (Predicate<Item>)((Item item) => item.DamageType == ModContent.GetInstance<ClericClass>()));
+			}
+		}
 
 
 		public override void SaveWorldData(TagCompound tag)

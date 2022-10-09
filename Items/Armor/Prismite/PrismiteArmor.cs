@@ -50,7 +50,7 @@ namespace excels.Items.Armor.Prismite
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-				.AddIngredient(ItemID.PearlwoodGreaves)
+				.AddIngredient(ModContent.ItemType<Armor.HolyKnight.HolyKnightHelmet>())
 				.AddIngredient(ItemID.CrystalShard, 8)
 				.AddIngredient(ItemID.SoulofLight, 7)
 				.AddTile(TileID.MythrilAnvil)
@@ -88,7 +88,7 @@ namespace excels.Items.Armor.Prismite
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-				.AddIngredient(ItemID.PearlwoodBreastplate)
+				.AddIngredient(ModContent.ItemType<Armor.HolyKnight.HolyKnightChest>())
 				.AddIngredient(ItemID.CrystalShard, 10)
 				.AddIngredient(ItemID.SoulofLight, 8)
 				.AddTile(TileID.MythrilAnvil)
@@ -126,7 +126,7 @@ namespace excels.Items.Armor.Prismite
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-				.AddIngredient(ItemID.PearlwoodGreaves)
+				.AddIngredient(ModContent.ItemType<Armor.HolyKnight.HolyKnightBoots>())
 				.AddIngredient(ItemID.CrystalShard, 7)
 				.AddIngredient(ItemID.SoulofLight, 5)
 				.AddTile(TileID.MythrilAnvil)

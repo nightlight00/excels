@@ -187,9 +187,9 @@ namespace excels.Items.Weapons.Whips
                         for (var s = 0; s < 50; s++)
                         {
                             Vector2 pos = new Vector2(0.5f * ((s+1) / 5)).RotatedBy(Projectile.rotation + MathHelper.ToRadians(((360 / 5) * p) + (20*s*i)));
-                            Dust d = Dust.NewDustPerfect(Projectile.Center + pos, 177);
+                            Dust d = Dust.NewDustPerfect(Projectile.Center + pos, ModContent.DustType<Dusts.FloralDust>());
                             d.noGravity = true;
-                          //  d.noLight = true;
+                            d.noLight = false;
                             d.velocity = pos * 1.1f;
                             d.scale = 1.5f + ((s+1) / 20);
                         }

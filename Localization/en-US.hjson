@@ -1,513 +1,548 @@
 
+# really useful for figuring out how this works 
+# https://github.com/SamsonAllen13/ClickerClass/blob/master/Localization/fr-FR.hjson
 
-Mods: {
-	excels: {
-		Config: {
-			ClericTooltip: {
-				Header: "Advanced Cleric Tooltips"
-				Label: "Cleric Weapon info"
-				Tip: "Displays the sources of Cleric damage bonuses"
+Mods.excels: {
 
-				HealLabel: "Cleric Healing Tool info"
-				HealTip: "Displays how much healing tools benefit from heal bonuses"
-			}
+    BuffNames: {
+        AnguishedSoul: Anguished Soul
+        EnergyUnleash: Energy Unleash
+        GlacialGuard: Glacial Guard
+        HolyGuard: Holy Guard
+    }
+
+    Common: {
+        Tooltips: {
+            IncreasesRadiantDamage: increased radiant damage
+            IncreasesNecroticDamage: increased necrotic damage
+            IncreasesClericCritChance: increased cleric critical strike chance
+            IncreasesRadiance: Increases max radiance
+            HealAmount: Heals {0} health
+            RadianceCost: Uses {0} radiance
+            BloodCost: Drains {0} drops of blood
+            SingleBloodCost: Drains 1 drop of blood
+        }
+
+        DamageClass: {
+            ClericClass: Cleric Class
+            RadiantDamage: radiant damage
+            NecroticDamage: necrotic damage
+        }
+
+        Radiant: radiant
+        Necrotic: necrotic
+    }
+
+	Config: {
+		ClericTooltip: {
+			Header: "Advanced Cleric Tooltips"
+			Label: "Cleric Weapon info"
+			Tip: "Displays the sources of Cleric damage bonuses"
+
+			HealLabel: "Cleric Healing Tool info"
+			HealTip: "Displays how much healing tools benefit from heal bonuses"
+		}
+	}
+
+
+
+
+
+	ItemNames: {
+		ArmorNames: {
+			AvianHeadPiece: "Avian Hat"
+			AvianChestPiece: "Avian Wraps"
+			AvianLegPiece: "Avian Skirt"
+
+			CrusaderHeadPiece: "Crusader Helmet"
+			CrusaderChestPiece: "Crusader Garments"
+			CrusaderLegPiece: "Crusader Greaves"
+
+			FloralHeadPiece: "Floral Stethoscope"
+			FloralChestPiece: "Floral Jacket"
+			FloralLegPiece: "Floral Boots"
+
+			FossilHeadPiece: "Prehistoric Mask"
+			FossilChestPiece: "Prehistoric Platemail"
+			FossilLegPiece: "Prehistoric Greaves"
+
+			GlacialHeadPiece: "Glacial Mask"
+			GlacialChestPiece: "Glacial Breastplate"
+			GlacialLegPiece: "Glacial Leggings"
+
+			HeartbeatHeadPiece: "Heartbeat Mask"
+			HeartbeatChestPiece: "Heartbeat Coat"
+			HeartbeatLegPiece: "Heartbeat Greaves"
+
+			HolyknightHeadPiece: "Holy Knight Helmet"
+			HolyknightChestPiece: "Holy Knight Chestplate"
+			HolyknightLegPiece: "Holy Knight Boots"
+
+			PriestHeadPiece: "Priest's Hood"
+			PriestChestPiece: "Priest's Robes"
+			PriestLegPiece: "Priest's Boots"
+
+			SkylineHeadPiece: "Skyline Circlet"
+			SkylineChestPiece: "Skyline Platemail"
+			SkylineLegPiece: "Skyline Boots"
+
+			StellarHeadPiece: "Stellar Mask"
+			StellarChestPiece: "Stellar Spacesuit"
+			StellarLegPiece: "Stellar Boots"
+
+			WyvernscaleHeadPiece: "Wyvern Scale Hood"
+			WyvernscaleChestPiece: "Wyvern Scalemail"
+			WyvernscaleLegPiece: "Wyvern Scale Boots"
 		}
 
-		ItemNames: {
-			ArmorNames: {
-				AvianHeadPiece: "Avian Hat"
-				AvianChestPiece: "Avian Wraps"
-				AvianLegPiece: "Avian Skirt"
+		AmmunitionNames: {
+			GlacialBullet: "Glacial Bullet"
+            PoisonousArrow: "Poisonous Arrow"
+            EndlessGel: "Endless Gel Canister"
+            LampOil: "Lamp Oil"
+            LighterFluid: "Lighter Fluid"
+            FrostfireOil: "Frostfire Oil"
+            ShadowfireOil: "Shadowfire Oil"                                             
+		}
 
-				CrusaderHeadPiece: "Crusader Helmet"
-				CrusaderChestPiece: "Crusader Garments"
-				CrusaderLegPiece: "Crusader Greaves"
-
-				FloralHeadPiece: "Floral Stethoscope"
-				FloralChestPiece: "Floral Jacket"
-				FloralLegPiece: "Floral Boots"
-
-				FossilHeadPiece: "Prehistoric Mask"
-				FossilChestPiece: "Prehistoric Platemail"
-				FossilLegPiece: "Prehistoric Greaves"
-
-				GlacialHeadPiece: "Glacial Mask"
-				GlacialChestPiece: "Glacial Breastplate"
-				GlacialLegPiece: "Glacial Leggings"
-
-				HeartbeatHeadPiece: "Heartbeat Mask"
-				HeartbeatChestPiece: "Heartbeat Coat"
-				HeartbeatLegPiece: "Heartbeat Greaves"
-
-				HolyknightHeadPiece: "Holy Knight Helmet"
-				HolyknightChestPiece: "Holy Knight Chestplate"
-				HolyknightLegPiece: "Holy Knight Boots"
-
-				PriestHeadPiece: "Priest's Hood"
-				PriestChestPiece: "Priest's Robes"
-				PriestLegPiece: "Priest's Boots"
-
-				SkylineHeadPiece: "Skyline Circlet"
-				SkylineChestPiece: "Skyline Platemail"
-				SkylineLegPiece: "Skyline Boots"
-
-				StellarHeadPiece: "Stellar Mask"
-				StellarChestPiece: "Stellar Spacesuit"
-				StellarLegPiece: "Stellar Boots"
-
-				WyvernscaleHeadPiece: "Wyvern Scale Hood"
-				WyvernscaleChestPiece: "Wyvern Scalemail"
-				WyvernscaleLegPiece: "Wyvern Scale Boots"
-
-			}
-
-			AmmunitionNames: {
-				GlacialBullet: "Glacial Bullet"
-                                PoisonousArrow: "Poisonous Arrow"
-                                EndlessGel: "Endless Gel Canister"
-                                LampOil: "Lamp Oil"
-                                LighterFluid: "Lighter Fluid"
-                                FrostfireOil: "Frostfire Oil"
-                                ShadowfireOil: "Shadowfire Oil"                                             
-			}
-
-			AccessoryNames: {
-				BattleStandardRegen: "Inspirational Banner"
-				BattleStandardImp: "Fiendish Battle Standard"
-				BattleStandardGoblin: "Goblin Battle Standard"
-				BattleStandardVenom: "Venomous Battle Standard"
+		AccessoryNames: {
+			BattleStandardRegen: "Inspirational Banner"
+			BattleStandardImp: "Fiendish Battle Standard"
+			BattleStandardGoblin: "Goblin Battle Standard"
+			BattleStandardVenom: "Venomous Battle Standard"
 				
-                                HealSatchel: "Apothecary's Satchel"
-                                AntiToxins: "Anti-Toxins"
-                                NectarBottle: "Nectar Bottle"
-                                JungleBrew: "Jungle Brew"
-                                SkullPendant: "Skull Pendant"
-                                DeadManPendant: "Dead Man's Pendant"
-                                ClericEmblem: "Cleric Emblem"  
-                                HyperHeart: "Hyperion Heart"
-                                StainedGlassCross: "Stained Glass Cross"                         
+            HealSatchel: "Apothecary's Satchel"
+            AntiToxins: "Anti-Toxins"
+            NectarBottle: "Nectar Bottle"
+            JungleBrew: "Jungle Brew"
+            SkullPendant: "Skull Pendant"
+            DeadManPendant: "Dead Man's Pendant"
+            ClericEmblem: "Cleric Emblem"  
+            HyperHeart: "Hyperion Heart"
+            StainedGlassCross: "Stained Glass Cross"                         
 				
-				NiflheimAcc: "Voluspa"
-				ChasmAcc: "Super Medicine"
+			NiflheimAcc: "Voluspa"
+			ChasmAcc: "Super Medicine"
 
-			}
-
-			HealingToolNames: {
-                                PixieWand: "Pixie Wand"               
-				WallofFleshDrop: "Calling of the Pheonix"
-				Acclepius: "Asclepius"
-				Caduceus: "Caduceus"
-                                RoseWand: "Rose Wand"                
-				WoodenCross: "Wooden Cross"
-                                GrandCross: "Grand Cross"
-                                BeatingHeart: "Beating Heart"
-                                GlacialGuardian: "Glacial Guardian Staff"
-                                Prophecy: "Prophecy" 
-                                ThrownHealthPot: "Throwable Health Potion"                             
-			}
-
-			MaterialNames: {
-			       SkylineOre: "Skyline Pebble"
-                               SkylineBar: "Skyline Bar"
-                               GlacialOre: "Glacial Ore"
-                               GlacialBar: "Glacial Bar"
-                               PurityOre: "Purified Rock"
-                               PurityBar: "Purity Bar"
-                               GraniteEnergy: "Energized Granite"
-                               ShatteredHeartbeat: "Shattered Heartbeat"
-                               StellarPlating: "Stellar Plating"
-                               WyvernScale: "Wyvern Scale"   
-                               AncientFossil: "Ancient Fossil"    
-                               BlackholeFragment: "Blackhole Fragment"
-                               Gladiolus: "Gladiolus"           
-			}
-
-			WeaponNames: {
-                                Melee: {
-                                        Swords: {
-                                                ShroomSword: "Shroom Sword"
-                                                EnergySword: "Energy Sword"
-                                                BerserkerBlade: "Berserker Blade"
-                                                StellarSword: "Stellar Sword"
-                                                CrystallineSword: "Crystalline Sword"
-                                                FossilizedBlade: "Fossilized Blade"
-                                                ScarletScythe: "Scarlet Scythe"
-                                                HyperionSword: "Hyperion Longsword"
-                                                Skewer: "Skewer"
-                                        }    
-                                        Yoyos: {
-                                                Arial: "Arial"
-                                                DarkEye: "Dark Eye"
-                                        }                
-                                        Spears: {
-                                                Froslance: "Froslance"
-                                        } 
-                                        Boomerangs: {
-                                                Glaive: "Glaive"
-                                        } 
-                                        Flails: {
-                                                Birdie: "Birdie"
-                                        }
-                                        Others: {
-                                                FrostChainblade: "Frost Chainblade"
-                                                MidnightBlaze: "Mid-Night Blaze"
-                                        }                                                                         
-                                }                                
-	                        Ranged: {
-                                        Guns: {
-                                                GraniteGlock: "Grock"
-                                                GlacialGun: "Glacial Gun"
-                                                FossilizedShotgun: "Fossilized Chomper"  
-                                                ThompsonSubMachine: "Tommy Gun" 
-                                                DeadlyKiss: "Deadly Kiss"
-                                                HyperionRifle: "Hyperion Shock Rifle"
-                                                MeanGreens: "Mean Greens"
-                                                V90: "Vindicator"
-                                                ShroomiteGun: "Shroomite Shredder"
-                                        }
-                                        Bows: {
-                                                SkylineBow: "Drizzlebow"
-                                                JungleBow: "Jungle Bow"
-                                                HunterBow: "Hunter's Longbow"
-                                                StellarBow: "Stellar Bow"
-                                                StalkerBow: "Stalker's Longbow"
-                                                CrystallineBow: "Crystalline Bow"
-                                                ShroomiteBow: "Shroomite Bow"
-                                        }
-                                        Launchers: {
-                                                ShroomiteLauncher: "Shroomite Lobber"
-                                        }               
-                                        Flamethrowers: {                             
-                                                SparkSpitter: "Spark Spitter"
-                                                Flashlight: "Overcharged Flashlight"
-                                                BoltTorch: "Wielder"
-                                                Hellslinger: "Hellslinger"
-                                                Roaster: "Roaster"
-                                                Hypothermia: "Hypothermia"
-                                                PurpleHaze: "Purple Haze"
-                                                AfterBurner: "After Burner"
-                                                InfernalBubbleGun: "Infernal Bubbler"
-                                                ShroomiteFlame: "Shroomite Flamethrower"
-                                                GolemFlashlight: "Solar Reverie"
-                                                Trailblazer: "Trailblazer"
-                                        }         
-                                        Others: {
-                                                HyperionThrowingAxe: "Hyperion Throwing Axe"
-                                                FlurryCannon: "Flurry Hand-Cannon"
-                                        }                                               
-                                }  
-                                Magic: {
-                                        Staves: {
-                                                ShroomStaff: "Shroom Staff"
-                                                SkylineStaff: "Plumage Staff"
-                                                JungleStaff: "Spore Staff"
-                                                SingeStaff: "Singe Staff"
-                                                BladeBaton: "Blade Baton"
-                                                GlacialStaff: "Snowdance"
-                                                Nastrond: "Nastrond"
-                                                IceFireStaff: "Dance of Ice and Fire"
-                                                ElementalEnvoy: "Elemental Envoy"
-                                                FrozenScarf: "Frozen Scarf"
-                                        } 
-                                        MagicGuns: {
-                                                ThunderLord: "Thunder Lord"
-                                                StellarSidearm: "Stellar Sidearm"
-                                                StormCaller: "Storm Caller"
-                                                Zeus: "Zeus"
-                                        }       
-                                        SpellTomes: {
-                                                SeekingDischarge: "Seeking Discharge"
-                                                AncientDebris: "Ancient Debris"
-                                        }                                       
-                                }      
-                                Summoner: {
-                                        Minions: {
-                                                SkylineCane: "Skyline Cane"
-                                                Mushroomling: "Strange Shroom"
-                                        }   
-                                        Spirits: {
-                                                DripplingStick: "Drippling Stick"
-                                                MagmaRod: "Magma Rod"
-                                                StarshipCommadRod: "Starship Command Rod"
-                                        }
-                                        Whips: {
-                                                SkylineWhip: "Feather Duster"
-                                                PerennialWhip: "Perennial Bloom"
-                                        }                                          
-                                }   
-                                Cleric: {
-                                        Radiant: {
-                                                NatureBombWand: "Nature Bomb Wand"
-                                                CoralScepter: "Coral Scepter"
-                                                PearlStaff: "Staff of Pearls"
-                                                LunarReflection: "Lunar Reflection"
-                                                TideClamp: "Tide Clamp"
-                                                StarbornStaff: "Starborn Staff"
-                                                CrystallineStaff: "Crystalline Staff"
-                                                PowerDrain: "Power Drain"
-                                        }       
-                                        Necrotic: {
-                                                GraniteSurge: "Granite Surge"
-                                                BloodyZombieHand: "Bloody Zombie Hand"
-                                                UmbraCross: "Umbra Cross"
-                                                DevouringRod: "Devouring Rod"
-                                                BloodlettingStaff: "Bloodletting Staff"
-                                                DevilPitchfork: "Devilish Pitchfork"
-                                                SpinalCrucifix: "Spinal Crucifix"
-                                                FangpireStaff: "Fangpire Staff"
-                                                Harbinger: "Harbinger"
-                                                Hemorrhage: "Hemorrhage"
-                                                WitchsCauldron: "Witch's Cauldron"
-                                                Apotheosis: "Apotheosis"
-                                        }                       
-                                }                                                                                                                              
-			}
-
-			VanityNames: {
-				DevCoat: "nightlight's Coat"
-				AceMask: "The Eternal Ace's Gold Fox Mask"
-				SnowmanGangsterHat: "Mafioso Hat"
-
-				BossMasks: {
-					ChasmMask: "Chasm Mask"
-					StarshipMask: "Stellar Starship Mask"
-				}
-			}
 		}
 
-		ItemDescriptions: {	
-			MaterialDescriptions: {
-			        SkylineBar: "An incredibly light metal"
-			        GlacialBar: "'Don't freeze your fingers off!'"
-			        PurityOre: "A stone cleasend of all evil"
-			        PurityBar: "Purity refined into a forge-able ingot"
-			        GraniteEnergy: "A chunk of granite overflowing with energy"
-			        ShatteredHeartbeat: "Somehow it's still beating"
-			        StellarPlating: "Armor taken from an interstellar warship"
-			        WyvernScale: "The scales of a mystical flying creature"
-			        AncientFossil: "Prehistoric bones from beneath the sands"
-			        BlackholeFragment: "'The depth of the universe is bring crushed by this fragment'"
-       			}
-        
-		        Weapons: {				
-			        Melee: {
-                                        Swords: {
-                                                ShroomSword: "Spreads a fungal disease""
-                                                EnergySword: "Energy Sword"
-                                                BerserkerBlade: "Berserker Blade"
-                                                StellarSword: "Stellar Sword"
-                                                CrystallineSword: "Crystalline Sword"
-                                                FossilizedBlade: "Killing foes causes an eruption of fossils"
-                                                ScarletScythe: "Releases life-draining slashes"
-                                                HyperionSword: "Hyperion Longsword"
-                                                Skewer: "Striking foes creates infectious clouds"
-                                        }    
-                                        Yoyos: {
-                                                Arial: "Arial"
-                                                DarkEye: "Dark Eye"
-                                        }                
-                                        Spears: {
-                                                Froslance: "Froslance"
-                                        } 
-                                        Boomerangs: {
-                                                Glaive: "'Weapon so simple even a monkey could use it'"
-                                        } 
-                                        Flails: {
-                                                Birdie: "Birdie"
-                                        }
-                                        Others: {
-                                                FrostChainblade: "Frost Chainblade"
-                                                MidnightBlaze: "Mid-Night Blaze"
-                                        }                                                                         
-                                }                                
-	                        Ranged: {
-                                        Guns: {
-                                                GraniteGlock: "Grock"
-                                                GlacialGun: "Glacial Gun"
-                                                FossilizedShotgun: "Fossilized Chomper"  
-                                                ThompsonSubMachine: "Tommy Gun" 
-                                                DeadlyKiss: "Deadly Kiss"
-                                                HyperionRifle: "Hyperion Shock Rifle"
-                                                MeanGreens: "Mean Greens"
-                                                V90: "Vindicator"
-                                                ShroomiteGun: "Shroomite Shredder"
-                                        }
-                                        Bows: {
-                                                SkylineBow: "Drizzlebow"
-                                                JungleBow: "Coats wooden arrows with poisonous spores"
-                                                HunterBow: "Fires special arrows that guarantee critical hits after traveling far enough \n'A hunting bow made from the carcass of a grand hunt, fitting isn't it?'"
-                                                StellarBow: "Stellar Bow"
-                                                StalkerBow: "Fires a beam of darkness that 'marks' foes it hits\nMarked foes will be automatically hunted by arrows"
-                                                CrystallineBow: "Crystalline Bow"
-                                                ShroomiteBow: "Shroomite Bow"
-                                        }
-                                        Launchers: {
-                                                ShroomiteLauncher: "Shroomite Lobber"
-                                        }               
-                                        Flamethrowers: {                             
-                                                SparkSpitter: "'Who needs a wand when you got this!'"
-                                                Flashlight: "'Great for exploring, or burning faces off!'"
-                                                BoltTorch: "Wielder"
-                                                Hellslinger: "Hellslinger"
-                                                Roaster: "Special lava infused flames leave scorching marks"
-                                                Hypothermia: "Smothers gel with nitrogen and frostfire"
-                                                PurpleHaze: "Purple Haze"
-                                                AfterBurner: "'Isn't this a bit overkill?'"
-                                                InfernalBubbleGun: "Spews lava filled bubbles\nRight click to fire a stream of fire that can ignite the bubbles"
-                                                ShroomiteFlame: "Shroomite Flamethrower"
-                                                GolemFlashlight: "'TASTE THE SUN'"
-                                                Trailblazer: "Rapidly spews lasting flames"
-                                        }         
-                                        Others: {
-                                                HyperionThrowingAxe: "Hyperion Throwing Axe"
-                                                FlurryCannon: "Flurry Hand-Cannon"
-                                        }                                               
-                                }  
-                                Magic: {
-                                        Staves: {
-                                                ShroomStaff: "Spreads a fungal disease"
-                                                SkylineStaff: "Plumage Staff"
-                                                JungleStaff: "Spore Staff"
-                                                SingeStaff: "Singe Staff"
-                                                BladeBaton: "Blade Baton"
-                                                GlacialStaff: "Snowdance"
-                                                Nastrond: "Nastrond"
-                                                IceFireStaff: "Dance of Ice and Fire"
-                                                ElementalEnvoy: "Elemental Envoy"
-                                                FrozenScarf: "Frozen Scarf"
-                                        } 
-                                        MagicGuns: {
-                                                ThunderLord: "Thunder Lord"
-                                                StellarSidearm: "Stellar Sidearm"
-                                                StormCaller: "Storm Caller"
-                                                Zeus: "Zeus"
-                                        }       
-                                        SpellTomes: {
-                                                SeekingDischarge: "Seeking Discharge"
-                                                AncientDebris: "Conjures numerous fossilised chunks"
-                                        }                                       
-                                  }
-                                  Minions: {
-                                                SkylineCane: "Skyline Cane"
-                                                Mushroomling: "Grows sentient shrooms to fight for you"
-                                        }   
-                                        Spirits: {
-                                                DripplingStick: "Summons an itsy bitsy drippler for you to command"
-                                                MagmaRod: "Magma Rod"
-                                                StarshipCommadRod: "Starship Command Rod"
-                                        }
-                                        Whips: {
-                                                SkylineWhip: "Feather Duster"
-                                                PerennialWhip: "Perennial Bloom"
-                                        }                                          
-                                }   
-                                Cleric: {
-                                        Radiant: {
-                                                NatureBombWand: "Nature Bomb Wand"
-                                                CoralScepter: "Coral Scepter"
-                                                PearlStaff: "Staff of Pearls"
-                                                LunarReflection: "Lunar Reflection"
-                                                TideClamp: "Tide Clamp"
-                                                StarbornStaff: "Starborn Staff"
-                                                CrystallineStaff: "Crystalline Staff"
-                                                PowerDrain: "Power Drain"
-                                        }       
-                                        Necrotic: {
-                                                GraniteSurge: "Granite Surge"
-                                                UmbraCross: "Umbra Cross"
-                                                DevouringRod: "Devouring Rod"
-                                                BloodlettingStaff: "Bloodletting Staff"
-                                                DevilPitchfork: "Devilish Pitchfork"
-                                                SpinalCrucifix: "Spinal Crucifix"
-                                                FangpireStaff: "Fangpire Staff"
-                                                Harbinger: "Spawns a controllable infection"
-                                                Hemorrhage: "Conjures sanguine rings that expand into blood clots \nBlood clots can be collected for health, or left alone to spill damaging blood drops"
-                                                WitchsCauldron: "Witch's Cauldron"
-                                                Apotheosis: "'Conducts the final dance of twilight before oblivion'"
-                                        }                       
-                                }
-      			  }
+		HealingToolNames: {
+            PixieWand: "Pixie Wand"               
+			WallofFleshDrop: "Calling of the Pheonix"
+			Acclepius: "Asclepius"
+			Caduceus: "Caduceus"
+            RoseWand: "Rose Wand"                
+			WoodenCross: "Wooden Cross"
+            GrandCross: "Grand Cross"
+            BeatingHeart: "Beating Heart"
+            GlacialGuardian: "Glacial Guardian Staff"
+            Prophecy: "Prophecy" 
+            ThrownHealthPot: "Throwable Health Potion"                             
 		}
 
-		Bestiary: {
-			Priestess: "Although quite young, she does her best to help others achieve peace, though no one really pays her any attention."
-			Geologist: "Now purified, the Geologist is able to follow her passion: Learning about the rocks and minerals beneath ourselves."
+		MaterialNames: {
+			SkylineOre: "Skyline Pebble"
+            SkylineBar: "Skyline Bar"
+            GlacialOre: "Glacial Ore"
+            GlacialBar: "Glacial Bar"
+            PurityOre: "Purified Rock"
+            PurityBar: "Purity Bar"
+            GraniteEnergy: "Energized Granite"
+            ShatteredHeartbeat: "Shattered Heartbeat"
+            StellarPlating: "Stellar Plating"
+            WyvernScale: "Wyvern Scale"   
+            AncientFossil: "Ancient Fossil"    
+            BlackholeFragment: "Blackhole Fragment"
+            Gladiolus: "Gladiolus"           
 		}
 
-		TownNPCMood: {
-			Priestess: {
-				Content: "I'm doing quite fine right now."
-				NoHome: "I'd prefer if I had somewhere to live."
-				LoveSpace: "I enjoy the fresh air here."
-				FarFromHome: "I seem to have taken the path less traveled."
-
-				DislikeCrowded: "There is to many people here.  I can't concentrate."
-				HateCrowded: "This is hell."
-
-				LoveBiome: "I love it here, the snow has a mysterious feel to it!"
-				LikeBiome: "It's quite beautiful here, but those unicorns are a bit of an issue."
-				DislikeBiome: "It's very strange here, I can't properly concentrate."
-				HateBiome: "It's horrible here!  Death is walking right outside my door!"
-
-				LoveNPC: "I simply adore {NPCName}'s mysterious aura!  I'd love to learn more about her past!"
-				LikeNPC: "I enjoy {NPCName}'s company, they're quite nice!"
-				DislikeNPC: "I don't really like {NPCName}, they just are not very nice."
-				HateNPC: "I despise {NPCName}, their greed knows no bounds."
-			}
-			Geologist: {
-				NoHome: "Though roaming around is great for finding ores, I need somewhere to store them all."
-				FarFromHome: "I should probably get going back soon, there's nothing here."
-
-				LoveBiome: "Rocks galore down here!"
-				DislikeBiome: "It's too cold here, my hands keep shaking!"
-			}
+		WeaponNames: {
+            Melee: {
+                Swords: {
+                        ShroomSword: "Shroom Sword"
+                        EnergySword: "Energy Sword"
+                        BerserkerBlade: "Berserker Blade"
+                        StellarSword: "Stellar Sword"
+                        CrystallineSword: "Crystalline Sword"
+                        FossilizedBlade: "Fossilized Blade"
+                        ScarletScythe: "Scarlet Scythe"
+                        HyperionSword: "Hyperion Longsword"
+                        Skewer: "Skewer"
+                }    
+                Yoyos: {
+                        Arial: "Arial"
+                        DarkEye: "Dark Eye"
+                }                
+                Spears: {
+                        Froslance: "Froslance"
+                } 
+                Boomerangs: {
+                        Glaive: "Glaive"
+                } 
+                Flails: {
+                        Birdie: "Birdie"
+                }
+                Others: {
+                        FrostChainblade: "Frost Chainblade"
+                        MidnightBlaze: "Mid-Night Blaze"
+                }                                                                         
+            }                                
+	        Ranged: {
+                Guns: {
+                        GraniteGlock: "Grock"
+                        GlacialGun: "Glacial Gun"
+                        FossilizedShotgun: "Fossilized Chomper"  
+                        ThompsonSubMachine: "Tommy Gun" 
+                        DeadlyKiss: "Deadly Kiss"
+                        HyperionRifle: "Hyperion Shock Rifle"
+                        MeanGreens: "Mean Greens"
+                        V90: "Vindicator"
+                        ShroomiteGun: "Shroomite Shredder"
+                }
+                Bows: {
+                        SkylineBow: "Drizzlebow"
+                        JungleBow: "Jungle Bow"
+                        HunterBow: "Hunter's Longbow"
+                        StellarBow: "Stellar Bow"
+                        StalkerBow: "Stalker's Longbow"
+                        CrystallineBow: "Crystalline Bow"
+                        ShroomiteBow: "Shroomite Bow"
+                }
+                Launchers: {
+                        ShroomiteLauncher: "Shroomite Lobber"
+                }               
+                Flamethrowers: {                             
+                        SparkSpitter: "Spark Spitter"
+                        Flashlight: "Overcharged Flashlight"
+                        BoltTorch: "Wielder"
+                        Hellslinger: "Hellslinger"
+                        Roaster: "Roaster"
+                        Hypothermia: "Hypothermia"
+                        PurpleHaze: "Purple Haze"
+                        AfterBurner: "After Burner"
+                        InfernalBubbleGun: "Infernal Bubbler"
+                        ShroomiteFlame: "Shroomite Flamethrower"
+                        GolemFlashlight: "Solar Reverie"
+                        Trailblazer: "Trailblazer"
+                }         
+                Others: {
+                        HyperionThrowingAxe: "Hyperion Throwing Axe"
+                        FlurryCannon: "Flurry Hand-Cannon"
+                }                                               
+            }  
+            Magic: {
+                Staves: {
+                        ShroomStaff: "Shroom Staff"
+                        SkylineStaff: "Plumage Staff"
+                        JungleStaff: "Spore Staff"
+                        SingeStaff: "Singe Staff"
+                        BladeBaton: "Blade Baton"
+                        GlacialStaff: "Snowdance"
+                        Nastrond: "Nastrond"
+                        IceFireStaff: "Dance of Ice and Fire"
+                        ElementalEnvoy: "Elemental Envoy"
+                        FrozenScarf: "Frozen Scarf"
+                } 
+                MagicGuns: {
+                        ThunderLord: "Thunder Lord"
+                        StellarSidearm: "Stellar Sidearm"
+                        StormCaller: "Storm Caller"
+                        Zeus: "Zeus"
+                }       
+                SpellTomes: {
+                        SeekingDischarge: "Seeking Discharge"
+                        AncientDebris: "Ancient Debris"
+                }                                       
+            }      
+            Summoner: {
+                Minions: {
+                        SkylineCane: "Skyline Cane"
+                        Mushroomling: "Strange Shroom"
+                }   
+                Spirits: {
+                        DripplingStick: "Drippling Stick"
+                        MagmaRod: "Magma Rod"
+                        StarshipCommadRod: "Starship Command Rod"
+                }
+                Whips: {
+                        SkylineWhip: "Feather Duster"
+                        PerennialWhip: "Perennial Bloom"
+                }                                          
+            }   
+            Cleric: {
+                Radiant: {
+                        NatureBombWand: "Nature Bomb Wand"
+                        CoralScepter: "Coral Scepter"
+                        PearlStaff: "Staff of Pearls"
+                        LunarReflection: "Lunar Reflection"
+                        TideClamp: "Tide Clamp"
+                        StarbornStaff: "Starborn Staff"
+                        CrystallineStaff: "Crystalline Staff"
+                        PowerDrain: "Power Drain"
+                }       
+                Necrotic: {
+                        GraniteSurge: "Granite Surge"
+                        BloodyZombieHand: "Bloody Zombie Hand"
+                        UmbraCross: "Umbra Cross"
+                        DevouringRod: "Devouring Rod"
+                        BloodlettingStaff: "Bloodletting Staff"
+                        DevilPitchfork: "Devilish Pitchfork"
+                        SpinalCrucifix: "Spinal Crucifix"
+                        FangpireStaff: "Fangpire Staff"
+                        Harbinger: "Harbinger"
+                        Hemorrhage: "Hemorrhage"
+                        WitchsCauldron: "Witch's Cauldron"
+                        Apotheosis: "Apotheosis"
+                }                       
+            }                                                                                                                              
 		}
 
-		Dialogue:{
-			Priestess: {
-				Standard1: "How are you doing today?"
-				Standard2: "It's dangerous to pray here.  All god-like beings here only want to kill us all!"
-				Standard3: "I'm intrigued by Niflheim's creation.  How is it possible to have been born from prayers alone?  Strange."
-				Standard4: "A always carry an extra pair of robes, just in case.  Would you like it?"
-				Hardmode1: "The Hallow is a mystical place, I'd love to visit it someday!  But the killer unicorns that live there are an issue."
+		VanityNames: {
+			DevCoat: "nightlight's Coat"
+			AceMask: "The Eternal Ace's Gold Fox Mask"
+			SnowmanGangsterHat: "Mafioso Hat"
 
-				PriestArmorEquipped: "I see you've donned my garments!  Sorry, but it was difficult for me to replicate the entire dress..."
-
-				Demolitionist: "I'm not to fond of {0}'s love for explosions.  Those things are dangerous!"
-				ArmsDealer: "I wish {0} would stop using innocent critters for target practice."
-				Nurse: "This is unacceptable!  How can {0} overcharge injured people so much and still sleep at night?  You're better off just waiting for the wound to heal naturally!"
-				Painter: "{0} has been giving me painting lessons recently!  You should try it too!"
-
-				Raining: "I love the soothing sound of rain hitting the ground.  It helps me focus."
-				NoBadWeather: "It's a beautiful day today!"
-				Windy: "Don't you love the soft breeze of the wind?  Just be on the lookout for dandilions!"
-
-				DownedCultist: "Interesting.  I've never though about praying to the moon itself.  However I that it would lead us all to our doom."
-			
-				BlessingAlreadyRecieved: "You currently have my blessing, come back when it runs out."
-				BlessingRadiant: "You have my blessing!  I hope it helps save others!"
-				BlessingNecrotic: "We seem to walk different paths.  Still, I'll see what I can do!"
-			}
-
-			Geologist: {
-				DonationCompletePreHard: "Great job, that's about all the ores my teacher's have told me!  However, I have the feeling there's more to discover..."
-				DonationCompleteHard: "Holy!  You've managed to complete all my demands!  I think I have a gold star sticker somewhere in my backpack...   Give me a minute, ok?"
-			
-				Standard1: "Isn't strange that some ores can be used in alchemy?"
-				Standard2: "My teacher has taught me all that I know.  I hope one day I'll make him proud with my accomplishments!"
-				Standard3: "Thanks again for helping me out back there!  Now I can focus on the important things in life: Rocks!"
-				Standard4: "Hurry up and get digging!  Those rocks won't mine themselves!"
-				Hardmode1: "See?  I was right!  There is more ores to discover!"
-
-				TaxMan: "I sympathize with {0}, our path's are not so different.  Howver, he gets points deducted for taking my money."
-
-				PostQueenSlime: "Strange that the Queen of Slimes was drawn here by a crystal.  I might need to get a closer look at it."
-
-				NoMeteor: "Personally, I have no interest in Meteorite.  Just ain't my style."
-				LanternOnly: "I've managed to replicate Life Crystals, however they're only strong enough to work in lanterns."
-
-				HellstoneDelivered: "Hot hot hot!  Quick, go get me an Obsidian Skull!  Don't worry it was just a joke."
+			BossMasks: {
+				ChasmMask: "Chasm Mask"
+				StarshipMask: "Stellar Starship Mask"
 			}
 		}
 	}
+
+	ItemDescriptions: {	
+		MaterialDescriptions: {
+			SkylineBar: "An incredibly light metal"
+			GlacialBar: "'Don't freeze your fingers off!'"
+			PurityOre: "A stone cleasend of all evil"
+			PurityBar: "Purity refined into a forge-able ingot"
+			GraniteEnergy: "A chunk of granite overflowing with energy"
+			ShatteredHeartbeat: "Somehow it's still beating"
+			StellarPlating: "Armor taken from an interstellar warship"
+			WyvernScale: "The scales of a mystical flying creature"
+			AncientFossil: "Prehistoric bones from beneath the sands"
+			BlackholeFragment: "'The depth of the universe is bring crushed by this fragment'"
+       	}
+        
+		Weapons: {				
+			Melee: {
+                Swords: {
+                    ShroomSword: "Spreads a fungal disease"
+                    EnergySword: "Energy Sword"
+                    BerserkerBlade: "Berserker Blade"
+                    StellarSword: "Stellar Sword"
+                    CrystallineSword: "Crystalline Sword"
+                    FossilizedBlade: "Killing foes causes an eruption of fossils"
+                    ScarletScythe: "Releases life-draining slashes"
+                    HyperionSword: "Hyperion Longsword"
+                    Skewer: "Striking foes creates infectious clouds"
+                }    
+                Yoyos: {
+                    Arial: "Arial"
+                    DarkEye: "Dark Eye"
+                }                
+                Spears: {
+                    Froslance: "Froslance"
+                } 
+                Boomerangs: {
+                    Glaive: "'Weapon so simple even a monkey could use it'"
+                } 
+                Flails: {
+                    Birdie: "Birdie"
+                }
+                Others: {
+                    FrostChainblade: "Frost Chainblade"
+                    MidnightBlaze: "Mid-Night Blaze"
+                }                                                                         
+            }                                
+	        Ranged: {
+                Guns: {
+                    GraniteGlock: "Grock"
+                    GlacialGun: "Glacial Gun"
+                    FossilizedShotgun: "Fossilized Chomper"  
+                    ThompsonSubMachine: "Tommy Gun" 
+                    DeadlyKiss: "Deadly Kiss"
+                    HyperionRifle: "Hyperion Shock Rifle"
+                    MeanGreens: "Mean Greens"
+                    V90: "Vindicator"
+                    ShroomiteGun: "Shroomite Shredder"
+                }
+                Bows: {
+                    SkylineBow: "Drizzlebow"
+                    JungleBow: "Coats wooden arrows with poisonous spores"
+                    HunterBow: "Fires special arrows that guarantee critical hits after traveling far enough \n'A hunting bow made from the carcass of a grand hunt, fitting isn't it?'"
+                    StellarBow: "Stellar Bow"
+                    StalkerBow: "Fires a beam of darkness that 'marks' foes it hits\nMarked foes will be automatically hunted by arrows"
+                    CrystallineBow: "Crystalline Bow"
+                    ShroomiteBow: "Shroomite Bow"
+                }
+                Launchers: {
+                    ShroomiteLauncher: "Shroomite Lobber"
+                }               
+                Flamethrowers: {                             
+                    SparkSpitter: "'Who needs a wand when you got this!'"
+                    Flashlight: "'Great for exploring, or burning faces off!'"
+                    BoltTorch: "Wielder"
+                    Hellslinger: "Hellslinger"
+                    Roaster: "Special lava infused flames leave scorching marks"
+                    Hypothermia: "Smothers gel with nitrogen and frostfire"
+                    PurpleHaze: "Purple Haze"
+                    AfterBurner: "'Isn't this a bit overkill?'"
+                    InfernalBubbleGun: "Spews lava filled bubbles\nRight click to fire a stream of fire that can ignite the bubbles"
+                    ShroomiteFlame: "Shroomite Flamethrower"
+                    GolemFlashlight: "'TASTE THE SUN'"
+                    Trailblazer: "Rapidly spews lasting flames"
+                }         
+                Others: {
+                    HyperionThrowingAxe: "Hyperion Throwing Axe"
+                    FlurryCannon: "Flurry Hand-Cannon"
+                }                                               
+            }  
+            Magic: {
+                Staves: {
+                    ShroomStaff: "Spreads a fungal disease"
+                    SkylineStaff: "Plumage Staff"
+                    JungleStaff: "Spore Staff"
+                    SingeStaff: "Singe Staff"
+                    BladeBaton: "Blade Baton"
+                    GlacialStaff: "Snowdance"
+                    Nastrond: "Nastrond"
+                    IceFireStaff: "Dance of Ice and Fire"
+                    ElementalEnvoy: "Elemental Envoy"
+                    FrozenScarf: "Frozen Scarf"
+                } 
+                MagicGuns: {
+                    ThunderLord: "Thunder Lord"
+                    StellarSidearm: "Stellar Sidearm"
+                    StormCaller: "Storm Caller"
+                    Zeus: "Zeus"
+                }       
+                SpellTomes: {
+                    SeekingDischarge: "Seeking Discharge"
+                    AncientDebris: "Conjures numerous fossilised chunks"
+                }                                       
+            }
+            Summoner: {
+                Minions: {
+                    SkylineCane: "Skyline Cane"
+                    Mushroomling: "Grows sentient shrooms to fight for you"
+                }   
+                Spirits: {
+                    DripplingStick: "Summons an itsy bitsy drippler for you to command"
+                    MagmaRod: "Magma Rod"
+                    StarshipCommadRod: "Starship Command Rod"
+                }
+                Whips: {
+                    SkylineWhip: "Feather Duster"
+                    PerennialWhip: "Perennial Bloom"
+                }                                          
+            }   
+            Cleric: {
+                Radiant: {
+                    NatureBombWand: "Nature Bomb Wand"
+                    CoralScepter: "Coral Scepter"
+                    PearlStaff: "Staff of Pearls"
+                    LunarReflection: "Lunar Reflection"
+                    TideClamp: "Tide Clamp"
+                    StarbornStaff: "Starborn Staff"
+                    CrystallineStaff: "Crystalline Staff"
+                    PowerDrain: "Power Drain"
+                }       
+                Necrotic: {
+                    GraniteSurge: "Granite Surge"
+                    UmbraCross: "Umbra Cross"
+                    DevouringRod: "Devouring Rod"
+                    BloodlettingStaff: "Bloodletting Staff"
+                    DevilPitchfork: "Devilish Pitchfork"
+                    SpinalCrucifix: "Spinal Crucifix"
+                    FangpireStaff: "Fangpire Staff"
+                    Harbinger: "Spawns a controllable infection"
+                    Hemorrhage: "Conjures sanguine rings that expand into blood clots \nBlood clots can be collected for health, or left alone to spill damaging blood drops"
+                    WitchsCauldron: "Witch's Cauldron"
+                    Apotheosis: "'Conducts the final dance of twilight before oblivion'"
+                }                       
+            }
+      	}
+	}
+
+	Bestiary: {
+		Priestess: "Although quite young, she does her best to help others achieve peace, though no one really pays her any attention."
+		Geologist: "Now purified, the Geologist is able to follow her passion: Learning about the rocks and minerals beneath ourselves."
+	}
+
+	TownNPCMood: {
+		Priestess: {
+			Content: "I'm doing quite fine right now."
+			NoHome: "I'd prefer if I had somewhere to live."
+			LoveSpace: "I enjoy the fresh air here."
+			FarFromHome: "I seem to have taken the path less traveled."
+
+			DislikeCrowded: "There is to many people here.  I can't concentrate."
+			HateCrowded: "This is hell."
+
+			LoveBiome: "I love it here, the snow has a mysterious feel to it!"
+			LikeBiome: "It's quite beautiful here, but those unicorns are a bit of an issue."
+			DislikeBiome: "It's very strange here, I can't properly concentrate."
+			HateBiome: "It's horrible here!  Death is walking right outside my door!"
+
+			LoveNPC: "I simply adore {NPCName}'s mysterious aura!  I'd love to learn more about her past!"
+			LikeNPC: "I enjoy {NPCName}'s company, they're quite nice!"
+			DislikeNPC: "I don't really like {NPCName}, they just are not very nice."
+			HateNPC: "I despise {NPCName}, their greed knows no bounds."
+		}
+		Geologist: {
+			NoHome: "Though roaming around is great for finding ores, I need somewhere to store them all."
+			FarFromHome: "I should probably get going back soon, there's nothing here."
+
+			LoveBiome: "Rocks galore down here!"
+			DislikeBiome: "It's too cold here, my hands keep shaking!"
+		}
+	}
+
+	Dialogue:{
+		Priestess: {
+			Standard1: "How are you doing today?"
+			Standard2: "It's dangerous to pray here.  All god-like beings here only want to kill us all!"
+			Standard3: "I'm intrigued by Niflheim's creation.  How is it possible to have been born from prayers alone?  Strange."
+			Standard4: "A always carry an extra pair of robes, just in case.  Would you like it?"
+			Hardmode1: "The Hallow is a mystical place, I'd love to visit it someday!  But the killer unicorns that live there are an issue."
+
+			PriestArmorEquipped: "I see you've donned my garments!  Sorry, but it was difficult for me to replicate the entire dress..."
+
+			Demolitionist: "I'm not to fond of {0}'s love for explosions.  Those things are dangerous!"
+			ArmsDealer: "I wish {0} would stop using innocent critters for target practice."
+			Nurse: "This is unacceptable!  How can {0} overcharge injured people so much and still sleep at night?  You're better off just waiting for the wound to heal naturally!"
+			Painter: "{0} has been giving me painting lessons recently!  You should try it too!"
+
+			Raining: "I love the soothing sound of rain hitting the ground.  It helps me focus."
+			NoBadWeather: "It's a beautiful day today!"
+			Windy: "Don't you love the soft breeze of the wind?  Just be on the lookout for dandilions!"
+
+			DownedCultist: "Interesting.  I've never though about praying to the moon itself.  However I that it would lead us all to our doom."
+			
+			BlessingAlreadyRecieved: "You currently have my blessing, come back when it runs out."
+			BlessingRadiant: "You have my blessing!  I hope it helps save others!"
+			BlessingNecrotic: "We seem to walk different paths.  Still, I'll see what I can do!"
+		}
+
+		Geologist: {
+			DonationCompletePreHard: "Great job, that's about all the ores my teacher's have told me!  However, I have the feeling there's more to discover..."
+			DonationCompleteHard: "Holy!  You've managed to complete all my demands!  I think I have a gold star sticker somewhere in my backpack...   Give me a minute, ok?"
+			
+			Standard1: "Isn't strange that some ores can be used in alchemy?"
+			Standard2: "My teacher has taught me all that I know.  I hope one day I'll make him proud with my accomplishments!"
+			Standard3: "Thanks again for helping me out back there!  Now I can focus on the important things in life: Rocks!"
+			Standard4: "Hurry up and get digging!  Those rocks won't mine themselves!"
+			Hardmode1: "See?  I was right!  There is more ores to discover!"
+
+			TaxMan: "I sympathize with {0}, our path's are not so different.  Howver, he gets points deducted for taking my money."
+
+			PostQueenSlime: "Strange that the Queen of Slimes was drawn here by a crystal.  I might need to get a closer look at it."
+
+			NoMeteor: "Personally, I have no interest in Meteorite.  Just ain't my style."
+			LanternOnly: "I've managed to replicate Life Crystals, however they're only strong enough to work in lanterns."
+
+			HellstoneDelivered: "Hot hot hot!  Quick, go get me an Obsidian Skull!  Don't worry it was just a joke."
+		}
+	}
+	
 }

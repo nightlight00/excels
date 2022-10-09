@@ -65,6 +65,25 @@ namespace excels.Dusts
         }
     }
 
+    internal class FloralDust : ModDust
+    {
+        public override void OnSpawn(Dust dust)
+        {
+            dust.noLight = true;
+        }
+
+        public override Color? GetAlpha(Dust dust, Color lightColor)
+        {
+            if (!dust.noLight)
+            {
+                dust.color = Color.White * 0.8f;
+                Lighting.AddLight(dust.position, Color.LightBlue.ToVector3() * 0.18f);
+                return Color.White;
+            }
+            return base.GetAlpha(dust, lightColor);
+        }
+    }
+
     internal class ShadowFire2 : ModDust
     {
         public override void OnSpawn(Dust dust)

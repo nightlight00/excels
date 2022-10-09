@@ -143,4 +143,49 @@ namespace excels.Items.Accessories.Cleric.Healing
             player.statLifeMax2 += 20;
         }
     }
+
+    #region Book of List Kin
+    internal class BookOfLostKin : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Book of Lost Kin");
+            Tooltip.SetDefault("Healing allies generates dark bolts to attack enemies\nHealing gives an additional 1 health");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+
+        public override void SetDefaults()
+        {
+            Item.accessory = true;
+            Item.width = 20;
+            Item.height = 28;
+            Item.rare = 1;
+        }
+
+        public override void UpdateEquip(Player player)
+        {
+            player.GetModPlayer<excelPlayer>().healBonus += 1;
+        }
+    }
+
+    public class LostEnergy : clericHealProj
+    {
+        public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.Fireball}";
+        public override void SafeSetDefaults()
+        {
+            Projectile.width = Projectile.height = 8;
+            Projectile.penetrate = 3;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 20;
+
+
+            canDealDamage = true;
+        }
+
+        public override void AI()
+        {
+            base.AI();
+        }
+    }
+    #endregion
 }

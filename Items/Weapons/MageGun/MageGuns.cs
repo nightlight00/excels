@@ -58,36 +58,70 @@ namespace excels.Items.Weapons.MageGun
 			Projectile.friendly = true;
 			Projectile.DamageType = DamageClass.Magic;
 			Projectile.alpha = 255;
+			Projectile.usesLocalNPCImmunity = true;
+			Projectile.localNPCHitCooldown = 140;
 		}
 
 		Vector2 initialVel = Vector2.Zero;
+		int initialDmg = 0;
 		int DustTimer = 0;
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             if (Projectile.ai[1] == 1)
             {
-				CallStorm();
+				CallStorm(3);
             }
-        }
+			else if (Projectile.ai[1] == 2 && target.CanBeChasedBy())
+            {
+				bool newTarget = false;
+				Vector2 targetPos = Vector2.Zero;
+				float distance = 2000;
+				for (var i = 0; i < Main.maxNPCs; i++)
+                {
+					NPC n = Main.npc[i];
+					if (n.active)
+                    {
+						float dist = Vector2.Distance(Projectile.Center, n.Center);
+						if (dist > 80 && dist < distance && n.CanBeChasedBy())
+                        {
+							newTarget = true;
+							targetPos = n.Center;
+							distance = dist;
+                        }
+                    }
+                }
+				if (newTarget) 
+				{
+					Projectile.timeLeft += 200;
+					Projectile.velocity = (targetPos - Projectile.Center).SafeNormalize(Vector2.Zero) * Projectile.velocity.Length();
+					initialVel = Projectile.velocity;
+				}
+
+				if (crit)
+					CallStorm(1, 5);
+            }
+			Projectile.damage = (int)(Projectile.damage * 0.9f);
+		}
 
         public override void OnHitPvp(Player target, int damage, bool crit)
         {
 			if (Projectile.ai[1] == 1)
 			{
-				CallStorm();
+				CallStorm(3);
 			}
 		}
 
-		private void CallStorm()
+		private void CallStorm(int amount, int pierce = 1)
         {
 			SoundEngine.PlaySound(SoundID.NPCDeath56, Projectile.Center);
-			for (var i = 0; i < 3; i++)
+			for (var i = 0; i < amount; i++)
             {
-				Projectile.NewProjectile(Projectile.GetSource_FromThis(),
-					new Vector2(Projectile.Center.X + Main.rand.Next(-200, 201), Projectile.Center.Y - 600), new Vector2(0, 5),
+				Projectile p = Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(),
+					new Vector2(Projectile.Center.X + Main.rand.Next(-60*amount, 60*amount), Projectile.Center.Y - 600), new Vector2(0, 5),
 					ModContent.ProjectileType<Thunder>(), (int)(Projectile.damage * 0.66f), Projectile.knockBack, Main.player[Projectile.owner].whoAmI);
-            }
+				p.penetrate = pierce;
+			}
         }
 
         public override void AI()
@@ -95,6 +129,7 @@ namespace excels.Items.Weapons.MageGun
 			if (initialVel == Vector2.Zero)
 			{
 				initialVel = Projectile.velocity;
+				initialDmg = Projectile.damage;
 			}
 			if (++Projectile.ai[0] > 4)
 			{
@@ -173,11 +208,12 @@ namespace excels.Items.Weapons.MageGun
 	#region Zeus
 	public class Zeus : ModItem
 	{
-		//public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.GolfBallDyedViolet}";
+		public override string Texture => "excels/Items/Weapons/MageGun/Thunderlord2";
 
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("The wrath of the heavens within your palms");
+			DisplayName.SetDefault("Thunderlord MK.7");
+			Tooltip.SetDefault("Lightning rebounds off of foes\nCritical strikes generate additional bolts from the sky");
 			//Item.staff[Item.type] = true;
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
@@ -186,18 +222,19 @@ namespace excels.Items.Weapons.MageGun
 		{
 			Item.width = 54;
 			Item.height = 28;
-			Item.knockBack = 5.2f;
+			Item.knockBack = 6.5f;
 			Item.DamageType = DamageClass.Magic;
-			Item.useTime = Item.useAnimation = 42;
-			Item.mana = 12;
+			Item.useTime = Item.useAnimation = 11;
+			Item.mana = 9;
 			Item.autoReuse = true;
 			Item.useStyle = ItemUseStyleID.Shoot;
-			Item.shoot = ModContent.ProjectileType<ZeusOrb>();
+			Item.shoot = ModContent.ProjectileType<Thunder>();
 			Item.shootSpeed = 2.5f;
 			Item.damage = 82;
 			Item.rare = 8;
 			Item.UseSound = SoundID.NPCHit53;
 			Item.noMelee = true;
+			Item.scale = 0.8f;
 			Item.sellPrice(0, 5);
 		}
 		public override Vector2? HoldoutOffset()
@@ -209,14 +246,16 @@ namespace excels.Items.Weapons.MageGun
 		{
 			// do this to assign ai[1]
 			Projectile p = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, player.whoAmI);
+			p.penetrate = 5;
+			p.ai[1] = 2;
 			return false;
 		}
 
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-				.AddIngredient(ModContent.ItemType<StormCaller>())
-				.AddIngredient(ItemID.MagnetSphere)
+				.AddIngredient(ModContent.ItemType<ThunderLord>())
+				.AddIngredient(ItemID.LaserRifle)
 				.AddIngredient(ItemID.SpectreBar, 8)
 				.AddIngredient(ItemID.SoulofMight, 5)
 				.AddTile(TileID.Anvils)

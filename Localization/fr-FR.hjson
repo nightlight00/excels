@@ -1,0 +1,36 @@
+﻿
+Mods.excels: {
+
+	Common: {
+		Tooltips: {
+			IncreasesRadiantDamage: Augemente les dégâts radieux
+			IncreasesNecroticDamage: Augemente les dégâts nécrotique
+			IncreasedClericCritChance: Augmente les chances de coup critique du Clerc
+			IncreasesRadiance: Augmente la maximum point d'éclat
+			HealAmount: Guérir {0} point de santé
+            RadianceCost: Utilise {0} points d'éclat
+            BloodCost: S'écouler {0} points de santé
+            SingleBloodCost: S'écouler 1 point de santé
+		}
+
+		DamageClass: {
+			ClericClass: Classe du Clerc
+			RadiantDamage: dégâts radieux
+			NecroticDamage: dégâts nécrotique
+		}
+
+		Radiant: radieux
+        Necrotic: nécrotique
+	}
+
+	Config: {
+		ClericTooltip: {
+			Header: "Infobulles Clérical avancer",
+			Label: "Info d'Armes du Clerc",
+			Tip: "Demontre les sources des boni pour des dégâts clérical",
+
+			HealLabel: "Cleric Healing Tool info",
+			HealTip: "Displays how much healing tools benefit from heal bonuses"
+		}
+	}
+}

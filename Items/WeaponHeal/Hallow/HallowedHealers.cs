@@ -221,6 +221,8 @@ namespace excels.Items.WeaponHeal.Hallow
 
         public override void AI()
         {
+			HealDistance(Main.LocalPlayer, Main.player[Projectile.owner], 25, false);
+
 			Projectile.direction = Projectile.spriteDirection = (Projectile.velocity.X > 0f) ? 1 : -1;
 
 			Projectile.rotation = Projectile.velocity.ToRotation();
@@ -339,6 +341,8 @@ namespace excels.Items.WeaponHeal.Hallow
 
 		public override void AI()
 		{
+			HealDistance(Main.LocalPlayer, Main.player[Projectile.owner], 30, false);
+
 			Projectile.direction = Projectile.spriteDirection = (Projectile.velocity.X > 0f) ? 1 : -1;
 
 			Projectile.rotation = Projectile.velocity.ToRotation();

@@ -8,6 +8,7 @@ using System.Linq;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.DataStructures;
 using Terraria.ModLoader.IO;
+using Terraria.Localization;
 
 namespace excels
 {
@@ -196,8 +197,9 @@ namespace excels
 
 			// cool colour switching
 
+			
 		//	string s = $"{MathHelper.Lerp(Max.R, Min.R, timer).ToString("X2") + MathHelper.Lerp(Max.G, Min.G, timer).ToString("X2") + MathHelper.Lerp(Max.B, Min.B, timer).ToString("X2")}";
-			string ClassText = $"[c/9b5ed4:~Cleric Class~]\n";
+			string ClassText = $"[c/9b5ed4:~{Language.GetTextValue("Mods.excels.Common.DamageClass.ClericClass")}~]\n";
 			// 9b5ed4
 
 			//tooltips.Add(new TooltipLine(Mod, "Damage", "This weapon benefits from necrotic bonuses"));
@@ -216,24 +218,23 @@ namespace excels
 							wDmg += ClericClassPlayer.ModPlayer(Main.player[Item.whoAmI]).clericNecroticAdd;
 							wDmg = (int)(wDmg * (ClericClassPlayer.ModPlayer(Main.player[Item.whoAmI]).clericNecroticMult + ((ClericClassPlayer.ModPlayer(Main.player[Item.whoAmI]).clericRadiantMult - 1) * 0.25f)));
 
-							string tip = $"{ClassText}{wDmg} necrotic damage";
+							string tip = $"{ClassText}{wDmg} {Language.GetTextValue("Mods.excels.Common.DamageClass.NecroticDamage")}";
 
 							if (ModContent.GetInstance<excelConfig>().ClericAdvancedTooltip)
 							{
-								tip = $"{ClassText}{wDmg} necrotic damage ({dmg}% necrotic + {dmgOp}% radiant)";
+								tip = $"{tip} ({dmg}% {Language.GetTextValue("Mods.excels.Common.Necrotic")} + {dmgOp}% {Language.GetTextValue("Mods.excels.Common.Radiant")})";
 							}
 
 							line2.Text = tip;
 						}
 						else if (line2.Name == "Knockback")
                         {
-							string cost = "drops";
+							string line = Language.GetTextValue("Mods.excels.Common.Tooltips.BloodCost", clericBloodCostTrue); 
 							if (clericBloodCostTrue <= 1)
 							{
-								cost = "drop";
+								line = Language.GetTextValue("Mods.excels.Common.Tooltips.SingleBloodCost");
 								clericBloodCostTrue = 1;
 							}
-							string line = $"Drains {clericBloodCostTrue} blood {cost}";
 							string orig = line2.Text;
 
 							line2.Text = $"{orig}\n{line}";
@@ -255,10 +256,10 @@ namespace excels
 						wDmg += ClericClassPlayer.ModPlayer(Main.player[Item.whoAmI]).clericRadiantAdd;
 						wDmg = (int)(wDmg * (ClericClassPlayer.ModPlayer(Main.player[Item.whoAmI]).clericRadiantMult + ((ClericClassPlayer.ModPlayer(Main.player[Item.whoAmI]).clericNecroticMult - 1) * 0.25f)));
 
-						string tip = $"{ClassText}{wDmg} radiant damage";
+						string tip = $"{ClassText}{wDmg} {Language.GetTextValue("Mods.excels.Common.DamageClass.RadiantDamage")}";
 						if (ModContent.GetInstance<excelConfig>().ClericAdvancedTooltip)
                         {
-							tip = $"{ClassText}{wDmg} radiant damage ({dmg}% radiant + {dmgOp}% necrotic)";
+							tip = $"{tip} ({dmg}% {Language.GetTextValue("Mods.excels.Common.Radiant")} + {dmgOp}% {Language.GetTextValue("Mods.excels.Common.Necrotic")})";
 						}
 
 						line2.Text = tip;
@@ -277,19 +278,30 @@ namespace excels
 							int healExtra = Main.player[Item.whoAmI].GetModPlayer<excelPlayer>().healBonus;
 							int trueHeal = (int)(healAmount + (healExtra * healRate));
 
-							string tip = $"Restores {healAmount + trueHeal} health";
+							string tip = Language.GetTextValue("Mods.excels.Common.Tooltips.HealAmount", trueHeal);
 							if (ModContent.GetInstance<excelConfig>().ClericHealTooltip)
-							{
-								tip = $"Restores {trueHeal} health ({healAmount} + {healExtra} x {healRate * 100}%)";
-							}
+								tip = $"{tip} ({healAmount} + {healExtra} x {healRate * 100}%)";
+
 							line2.Text = $"{l}{line2.Text}\n{tip}";
 						}
 					}
 					else if (line2.Name == "Knockback")
 					{
 						if (clericRadianceCost > 0)
-                        {
-							line2.Text = $"{line2.Text}\nUses {clericRadianceCost} radiance";
+						{
+							line2.Text = $"{line2.Text}\n{Language.GetTextValue("Mods.excels.Common.Tooltips.RadianceCost", clericRadianceCost)}";
+						}
+
+						if (healAmount > 0)
+						{
+							int healExtra = Main.player[Item.whoAmI].GetModPlayer<excelPlayer>().healBonus;
+							int trueHeal = (int)(healAmount + (healExtra * healRate));
+
+							string tip = Language.GetTextValue("Mods.excels.Common.Tooltips.HealAmount", trueHeal);
+							if (ModContent.GetInstance<excelConfig>().ClericHealTooltip)
+								tip = $"{tip} ({healAmount} + {healExtra} x {healRate * 100}%)";
+
+							line2.Text = $"{line2.Text}\n{tip}";
 						}
 					}
 				}
@@ -300,13 +312,15 @@ namespace excels
 			
 		}
 
-		public virtual void CreateHealProjectile(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, float ai0 = 0, float ai1 = 0)
+		public virtual Projectile CreateHealProjectile(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, float ai0 = 0, float ai1 = 0)
         {
 			Projectile p = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, player.whoAmI);
 			p.GetGlobalProjectile<excelProjectile>().healStrength = healAmount;
 			p.GetGlobalProjectile<excelProjectile>().healRate = healRate;
 			p.ai[0] = ai0;
 			p.ai[1] = ai1;
+
+			return Main.projectile[p.whoAmI];
 		}
 
 		public virtual int CalculateHeal()

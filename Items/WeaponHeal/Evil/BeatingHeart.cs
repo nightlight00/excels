@@ -89,7 +89,7 @@ namespace excels.Items.WeaponHeal.Evil
 			{
 				Player player = Main.player[k];
 				float health = player.statLife;
-				if (health < targetHealth && health < player.statLifeMax2 && player != Main.player[Projectile.owner])
+				if (health < targetHealth && health < player.statLifeMax2 && player != Main.player[Projectile.owner] && !heallist.Contains(player.whoAmI))
 				{
 					targetHealth = health;
 					targetPos = player.Center;

@@ -83,6 +83,7 @@ namespace excels.Items.Weapons.ThrowPotions
 			{
 				Gore g = Gore.NewGoreDirect(Projectile.GetSource_Death(), Projectile.Center, new Vector2(2, 2).RotatedBy(MathHelper.ToRadians(90 * i)), GoreID.Smoke1);
 				g.velocity = new Vector2(0, Main.rand.NextFloat(1.1f, 2.6f)).RotatedBy(MathHelper.ToRadians((360/5) * i + Main.rand.Next(-30, 31)));
+				g.rotation = MathHelper.ToRadians(Main.rand.Next(360));
 				for (var e = 0; e < 4; e++)
 				{
 					Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 13);

@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 namespace excels
 {
@@ -97,6 +98,18 @@ namespace excels
 
         public int timeBetweenHeal = 30;
         public bool canDealDamage = false;
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(healPenetrate);
+            writer.Write(timeBetweenHeal);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            healPenetrate = reader.ReadInt32(); 
+            timeBetweenHeal = reader.ReadInt32();
+        }
 
         public override void PreDefaults()
         {
@@ -330,17 +343,19 @@ namespace excels
             }
 
             var GetClassPlayer = healer.GetModPlayer<ClericClassPlayer>();
-            GetClassPlayer.radianceStatCurrent += (target.statLife - lifeBeforeHeal);
+            if (target != healer)
+                GetClassPlayer.radianceStatCurrent += (target.statLife - lifeBeforeHeal);
 
             if (target.statLife > target.statLifeMax2)
             {
                 target.statLife = target.statLifeMax2;
             }
-            Projectile.netUpdate = true;
             NetMessage.SendData(66, -1, -1, null, target.whoAmI, target.statLife - lifeBeforeHeal, 0f, 0f, 0, 0, 0);
 
             // still want this to happen to heals with special properties
             healPenetrate--;
+            Projectile.netUpdate = true;
+
             if (healPenetrate == 0)
             {
                 Projectile.Kill();

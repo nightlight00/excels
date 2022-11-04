@@ -56,7 +56,38 @@ namespace excels.Items.Accessories.Random
             player.GetModPlayer<excelPlayer>().SnowflakeAura = true;
         }
     }
-    
+
+    public class YetiToothNecklace : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            Tooltip.SetDefault("Getting hit surrounds you in a blizzard");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+
+        public override void SetDefaults()
+        {
+            Item.rare = 3;
+            Item.width = Item.height = 28;
+            Item.accessory = true;
+            Item.value = 500;
+        }
+
+        public override void UpdateEquip(Player player)
+        {
+            player.GetModPlayer<excelPlayer>().BlizzardAura = true;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<SnowflakeAmulet>())
+                .AddIngredient(ModContent.ItemType<MimicToothNecklace>())
+                .AddTile(TileID.TinkerersWorkbench)
+                .Register();
+        }
+    }
+
     public class FireBadge : ModItem
     {
         public override void SetStaticDefaults()
@@ -87,6 +118,8 @@ namespace excels.Items.Accessories.Random
             player.GetModPlayer<excelPlayer>().FireBadge = true;
         }
     }
+
+
     /*
     [AutoloadEquip(EquipType.Face)]
     public class FrozenSkull : ModItem

@@ -207,13 +207,16 @@ namespace excels
             {
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    if (npc.boss)
-                        for (var i = 0; i < 5; i++)
-                        {
+                    if (npc.active && npc.lifeMax > 5 && !npc.friendly && npc.type != NPCID.TargetDummy)
+                    {
+                        if (npc.boss)
+                            for (var i = 0; i < 5; i++)
+                            {
+                                Item.NewItem(npc.GetSource_FromThis(), npc.getRect(), ModContent.ItemType<Items.Misc.MinorBlessing>());
+                            }
+                        else if (Main.rand.NextBool(7))
                             Item.NewItem(npc.GetSource_FromThis(), npc.getRect(), ModContent.ItemType<Items.Misc.MinorBlessing>());
-                        }
-                    else if (Main.rand.NextBool(7))
-                        Item.NewItem(npc.GetSource_FromThis(), npc.getRect(), ModContent.ItemType<Items.Misc.MinorBlessing>());
+                    }
                 }
 
                 switch (npc.type)

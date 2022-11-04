@@ -46,6 +46,12 @@ namespace excels.Items.Weapons.Chasm
             Vector2 newSpeed = velocity * Main.rand.NextFloat(0.95f, 1.06f);
             newSpeed = newSpeed.RotatedByRandom(MathHelper.ToRadians(Main.rand.Next(6)));
             Projectile.NewProjectile(source, position, newSpeed, type, damage, knockback, player.whoAmI);
+
+			if (Main.rand.NextBool(3))
+            {
+				Projectile.NewProjectile(source, position, velocity.RotatedByRandom(MathHelper.ToRadians(20)) * Main.rand.NextFloat(0.8f, 1.1f), ModContent.ProjectileType<Items.Ammo.Bullets.ShroomBullet>(), (int)(damage * 0.8f), knockback, player.whoAmI);
+            }
+
             return false;
         }
 

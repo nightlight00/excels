@@ -33,6 +33,7 @@ namespace excels
         public bool FireBadge = false;
         public bool ArtemisSigil = false;
         public bool VirtualShades = false;
+        public bool BlizzardAura = false;
         // expert
         public bool NiflheimAcc = false;
         public bool ChasmAcc = false;
@@ -98,6 +99,7 @@ namespace excels
             SnowflakeAura = false;
             FireBadge = false;
             ArtemisSigil = false;
+            BlizzardAura = false;
             // expert
             NiflheimAcc = false;
             ChasmAcc = false;
@@ -222,7 +224,7 @@ namespace excels
         public override void PreUpdate()
         {
             // using this for variable timers
-            if (SnowflakeAura || skullPendantFrost)
+            if (SnowflakeAura || skullPendantFrost || BlizzardAura)
             {
                 SnowflakeCooldown--;
                 if (skullPendantFrost)
@@ -395,10 +397,10 @@ namespace excels
 
         public override void OnHitByNPC(NPC npc, int damage, bool crit)
         {
-            if (SnowflakeAura)
-            {
+            if (BlizzardAura)
+                BlizzardNecklace();
+            else if (SnowflakeAura)
                 SnowflakeAmulet();
-            }
 
             // if returning a hit to an npc, a some basic checks need to be done first
             if (npc.lifeMax > 5 && damage >= 1) // prevents from working with spell enemies and if attack was dodged
@@ -421,10 +423,10 @@ namespace excels
 
         public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
         {
-            if (SnowflakeAura)
-            {
+            if (BlizzardAura)
+                BlizzardNecklace();
+            else if (SnowflakeAura)
                 SnowflakeAmulet();
-            }
         }
 
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)
@@ -533,6 +535,23 @@ namespace excels
                 for (var i = 0; i < 6; i++) {
                     Projectile p = Projectile.NewProjectileDirect(Player.GetSource_FromThis(), Player.Center, Vector2.Zero, ModContent.ProjectileType<Items.Armor.Glacial.GlacialShard>(), 20, 1, Player.whoAmI);
                     p.ai[0] = (3.6f / 3.5f) * (i + 1);
+                    p.ai[1] = 100;
+                }
+
+                SnowflakeCooldown = 300;
+            }
+        }
+
+        public void BlizzardNecklace()
+        {
+            if (SnowflakeCooldown < 0)
+            {
+                // creates a blizzard
+                for (var i = 0; i < 12; i++)
+                {
+                    Projectile p = Projectile.NewProjectileDirect(Player.GetSource_FromThis(), Player.Center, Vector2.Zero, ModContent.ProjectileType<Items.Armor.Glacial.GlacialShard>(), 25, 1, Player.whoAmI);
+                    p.ai[0] = (3.6f / 3.5f) * (i + 1) + Main.rand.NextFloat(-0.3f, 0.3f);
+                    p.ai[1] = 60+Main.rand.Next(60);
                 }
 
                 SnowflakeCooldown = 300;

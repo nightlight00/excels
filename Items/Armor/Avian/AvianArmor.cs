@@ -18,8 +18,8 @@ namespace excels.Items.Armor.Avian
     {
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.ArmorNames.AvianHeadPiece"));
-			Tooltip.SetDefault("Increases your max number of minions by 1");
+			DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.AvianHeadPiece"));
+			Tooltip.SetDefault(Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.MinionIncrease", 1));
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
@@ -46,7 +46,7 @@ namespace excels.Items.Armor.Avian
 		public override void UpdateArmorSet(Player player)
 		{
 			// taking damage temporarily surrounds player with ice shards
-			player.setBonus = "Minions have a chance to summon feathers from the sky on attack \nIncreases minion knockback by 30%";
+			player.setBonus = Language.GetTextValue("Mods.excels.ItemDescriptions.ArmorSetBonus.AvianSet"); // "Minions have a chance to summon feathers from the sky on attack \nIncreases minion knockback by 30%";
 			player.GetModPlayer<excelPlayer>().AvianSet = true;
 			player.GetKnockback(DamageClass.Summon) *= 1.3f;
 		}
@@ -67,8 +67,8 @@ namespace excels.Items.Armor.Avian
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.ArmorNames.AvianChestPiece"));
-			Tooltip.SetDefault("Increases minion damage by 7%");
+			DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.AvianChestPiece"));
+			Tooltip.SetDefault(Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.SummonDamage", 7));
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
@@ -101,8 +101,8 @@ namespace excels.Items.Armor.Avian
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.ArmorNames.AvianLegPiece"));
-			Tooltip.SetDefault("Increases minion damage by 4%");
+			DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.AvianLegPiece"));
+			Tooltip.SetDefault(Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.SummonDamage", 4));
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

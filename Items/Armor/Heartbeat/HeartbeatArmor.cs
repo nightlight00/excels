@@ -6,6 +6,7 @@ using Terraria.GameContent.Creative;
 using System;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
+using Terraria.Localization;
 
 namespace excels.Items.Armor.Heartbeat
 {
@@ -14,8 +15,8 @@ namespace excels.Items.Armor.Heartbeat
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Flamesilk Hat");
-            Tooltip.SetDefault("5% increased cleric critical strike chance");
+            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.HeartbeatHeadPiece"));
+            Tooltip.SetDefault(Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.ClericCritChance", 5));
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -46,32 +47,29 @@ namespace excels.Items.Armor.Heartbeat
             switch (Main.rand.Next(4))
             {
                 default:
-                    return "Is your heart broken?";
+                    return Language.GetTextValue("Mods.excels.DeathMessages.HeartBreak.1", Main.player[Item.whoAmI].name); // "Is your heart broken?";
                 case 1:
-                    return Main.player[Item.whoAmI].name + " experienced 'Heartbreak'";
+                    return Language.GetTextValue("Mods.excels.DeathMessages.HeartBreak.2", Main.player[Item.whoAmI].name);
                 case 2:
-                    return "The true power of 'Heartbreak'";
+                    return Language.GetTextValue("Mods.excels.DeathMessages.HeartBreak.3", Main.player[Item.whoAmI].name);
                 case 3:
-                    return Main.player[Item.whoAmI].name + " died of heart not work";
+                    return Language.GetTextValue("Mods.excels.DeathMessages.HeartBreak.4", Main.player[Item.whoAmI].name);
             }
         }
 
         public override void UpdateArmorSet(Player player)
         {
             var modPlayer = ClericClassPlayer.ModPlayer(player);
-            player.setBonus = "Double tap down to activate / deactivate 'Heartbreak'" +
-                            "\nWhile in 'Heartbreak', necrotic damage is greatly increased while your life force suffers" +
-                            "\nIf under 25% health while 'Heartbreak' is active, gain Panic!" +
-                            "\nWhile 'Heartbreak' isn't active, life regen is increased";
+            player.setBonus = Language.GetTextValue("Mods.excels.ItemDescriptions.ArmorSetBonus.HeartbeatSet");
 
-           player.GetModPlayer<excelPlayer>().HeartbeatSet = true;
+            player.GetModPlayer<excelPlayer>().HeartbeatSet = true;
             if (player.controlDown && player.releaseDown && player.doubleTapCardinalTimer[0] < 15)
             {
                 heartStrength = 0;
                 heartbreak = !heartbreak;
                 if (heartbreak)
                 {
-                    CombatText.NewText(player.getRect(), Color.Crimson, "「HEARTBREAK」");
+                    CombatText.NewText(player.getRect(), Color.Crimson, Language.GetTextValue("Mods.excels.Common.Heartbreak"));
                 }
             }
             if (heartbreak)
@@ -130,8 +128,8 @@ namespace excels.Items.Armor.Heartbeat
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Heartbeat Coat");
-            Tooltip.SetDefault("5% increased necrotic damage");
+            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.HeartbeatChestPiece"));
+            Tooltip.SetDefault(Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.NecroticDamage", 5));
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -162,8 +160,8 @@ namespace excels.Items.Armor.Heartbeat
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Priest's Boots");
-            Tooltip.SetDefault("4% increased necrotic damage");
+            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.HearbeatLegPiece"));
+            Tooltip.SetDefault(Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.NecroticDamage", 4));
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

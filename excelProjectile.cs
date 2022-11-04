@@ -14,6 +14,7 @@ using Terraria.Localization;
 using System.Collections.Generic;
 using Terraria.Chat;
 using System.IO;
+using Terraria.ModLoader.IO;
 
 namespace excels
 {
@@ -23,6 +24,19 @@ namespace excels
 
         public int healStrength = -1;
         public float healRate = 1;
+
+
+        public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
+        {
+            binaryWriter.Write(healStrength);
+            binaryWriter.Write(healRate);
+        }
+
+        public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader)
+        {
+            healStrength = binaryReader.ReadUInt16();
+            healRate = binaryReader.ReadSingle();
+        }
 
         public override void SetDefaults(Projectile projectile)
         {

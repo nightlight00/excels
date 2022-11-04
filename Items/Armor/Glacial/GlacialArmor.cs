@@ -6,6 +6,7 @@ using Terraria.GameContent.Creative;
 using System;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
+using Terraria.Localization;
 
 namespace excels.Items.Armor.Glacial
 {
@@ -14,8 +15,8 @@ namespace excels.Items.Armor.Glacial
     {
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Glacial Mask");
-			Tooltip.SetDefault("6% increased ranged critical strike chance");
+			DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.GlacialHeadPiece"));
+			Tooltip.SetDefault(Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.RangedCritChance", 6));
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
@@ -42,7 +43,7 @@ namespace excels.Items.Armor.Glacial
 		public override void UpdateArmorSet(Player player)
         {
 			// taking damage temporarily surrounds player with ice shards
-			player.setBonus = "Ranged critical strikes generate blasts of frostfire\nFurther increases ranged critical strike chance by 6%";
+			player.setBonus = Language.GetTextValue("Mods.excels.ItemDescriptions.ArmorSetBonus.GlacialSet");
 			player.GetCritChance(DamageClass.Ranged) += 6;
 			player.GetModPlayer<excelPlayer>().GlacialSet = true;
 		}
@@ -61,8 +62,8 @@ namespace excels.Items.Armor.Glacial
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Glacial Breastplate");
-			Tooltip.SetDefault("8% increased ranged damage");
+			DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.GlacialChestPiece"));
+			Tooltip.SetDefault(Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.RangedDamage", 8));
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
@@ -95,8 +96,8 @@ namespace excels.Items.Armor.Glacial
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Glacial Leggings");
-			Tooltip.SetDefault("7% increased ranged critical strike chance");
+			DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.GlacialLegPiece"));
+			Tooltip.SetDefault(Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.RangedCritChance", 7));
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
@@ -197,6 +198,8 @@ namespace excels.Items.Armor.Glacial
 		}
 
 		int Dist = 10;
+		int DistInc = 3;
+		int MaxDist = 100;
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
@@ -219,18 +222,20 @@ namespace excels.Items.Armor.Glacial
         public override void AI()
         {
 			Player player = Main.player[Projectile.owner];
+			MaxDist = (int)Projectile.ai[1];
+			DistInc = (int)Math.Floor(MaxDist / 33f);
 
 			if (Projectile.timeLeft < 40) // 220 - 180{
 			{
-				Dist -= 3;
+				Dist -= DistInc;
 				if (Dist < 5)
                 {
 					Projectile.Kill();
                 }
 			}
-            else if (Dist < 100)
+            else if (Dist < MaxDist)
             {
-				Dist += 3;
+				Dist += DistInc;
             }
 			Projectile.ai[0] += 0.07f;
 			Projectile.position.X = player.Center.X - (Projectile.width / 2) + (int)(Math.Cos(Projectile.ai[0]) * Dist);

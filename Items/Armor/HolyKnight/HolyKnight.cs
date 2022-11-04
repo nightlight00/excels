@@ -6,6 +6,7 @@ using Terraria.GameContent.Creative;
 using System;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
+using Terraria.Localization;
 
 namespace excels.Items.Armor.HolyKnight
 {
@@ -17,8 +18,8 @@ namespace excels.Items.Armor.HolyKnight
         // for every 35 points of health you restore, restores 3 health of your own
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Flamesilk Hat");
-            Tooltip.SetDefault("6% increased radiant damage");
+            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.HolyknightHeadPiece"));
+            Tooltip.SetDefault(Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.RadiantDamage", 6));
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -43,7 +44,7 @@ namespace excels.Items.Armor.HolyKnight
         public override void UpdateArmorSet(Player player)
         {
             var modPlayer = ClericClassPlayer.ModPlayer(player);
-            player.setBonus = "Every 35 health you heal restores 5 of your own health";
+            player.setBonus = Language.GetTextValue("Mods.excels.ItemDescriptions.ArmorSetBonus.HolyknightSet");
 
            // player.GetModPlayer<excelPlayer>().healBonus += 1;
             player.GetModPlayer<excelPlayer>().HolyKnightSet = true;
@@ -72,8 +73,8 @@ namespace excels.Items.Armor.HolyKnight
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Holy Knight Chestplate");
-            Tooltip.SetDefault("Increases max radiance by 20\n3% increased radiant damage");
+            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.HolyknightChestPiece"));
+            Tooltip.SetDefault($"{Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.MaxRadianceUp")} 20\n{Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.RadiantDamage", 3)}");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -105,8 +106,8 @@ namespace excels.Items.Armor.HolyKnight
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Priest's Boots");
-            Tooltip.SetDefault("4% increased cleric critical strike chance");
+            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.HolyknightLegPiece"));
+            Tooltip.SetDefault(Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.ClericCritChance", 4));
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

@@ -18,8 +18,8 @@ namespace excels.Items.Armor.Fossil
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.ArmorNames.FossilHeadPiece"));
-			Tooltip.SetDefault("12% increased ranged critical strike chance");
+			DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.FossilHeadPiece"));
+			Tooltip.SetDefault(Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.RangedCritChance", 12));
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
@@ -53,7 +53,7 @@ namespace excels.Items.Armor.Fossil
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "Shooting has a chance to additionaly fire a fossilised shard \nAdditional 8% increase to ranged damage";
+			player.setBonus = Language.GetTextValue("Mods.excels.ItemDescriptions.ArmorSetBonus.PrehistoricSet");
 			player.GetDamage(DamageClass.Ranged) += 0.08f;
 			player.GetModPlayer<excelPlayer>().FossilSet = true;
 
@@ -83,7 +83,7 @@ namespace excels.Items.Armor.Fossil
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.ArmorNames.FossilChestPiece"));
-			Tooltip.SetDefault("10% increased ranged damage");
+			Tooltip.SetDefault(Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.RangedDamage", 10));
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
@@ -115,7 +115,7 @@ namespace excels.Items.Armor.Fossil
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.ArmorNames.FossilLegPiece"));
-			Tooltip.SetDefault("12% increased ranged critical strike chance \n10% increased movement speed");
+			Tooltip.SetDefault($"{Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.RangedCritChance", 12)}\n{Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.MovementSpeed", 10)}");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

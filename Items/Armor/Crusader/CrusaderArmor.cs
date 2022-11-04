@@ -17,8 +17,8 @@ namespace excels.Items.Armor.Crusader
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.ArmorNames.CrusaderHeadPiece"));
-            Tooltip.SetDefault("7% increased radiant damage\n4% increased cleric critical strike chance");
+            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.CrusaderHeadPiece"));
+            Tooltip.SetDefault($"{Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.RadiantDamage", 7)}\n{Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.ClericCritChance", 4)}");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -45,7 +45,7 @@ namespace excels.Items.Armor.Crusader
         public override void UpdateArmorSet(Player player)
         {
             var modPlayer = ClericClassPlayer.ModPlayer(player);
-            player.setBonus = "Prevents death once\nThis effect has a 3 minute cooldown and temporarily decreases all damage for 1 minute\nIncreases max radiance by 40";
+            player.setBonus = Language.GetTextValue("Mods.excels.ItemDescriptions.ArmorSetBonus.CrusaderSet"); // "Prevents death once\nThis effect has a 3 minute cooldown and temporarily decreases all damage for 1 minute\nIncreases max radiance by 40";
 
             // player.GetModPlayer<excelPlayer>().healBonus += 1;
             player.GetModPlayer<excelPlayer>().CrusaderSet = true;
@@ -76,8 +76,8 @@ namespace excels.Items.Armor.Crusader
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.ArmorNames.CrusaderChestPiece"));
-            Tooltip.SetDefault("8% increased radiant damage\nHealing gives an extra 1 health\nSlightly increases radiance regeneration rate");
+            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.CrusaderChestPiece"));
+            Tooltip.SetDefault($"{Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.RadiantDamage", 8)}\n{Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.HealingPower", 1)}\n{Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.RadianceRegenSlight")}");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -112,8 +112,8 @@ namespace excels.Items.Armor.Crusader
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.ArmorNames.CrusaderLegPiece"));
-            Tooltip.SetDefault("6% increased radiant damage\n5% increased cleric critical strike chance");
+            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.CrusaderLegPiece"));
+            Tooltip.SetDefault($"{Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.RadiantDamage", 6)}\n{Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.ClericCritChance", 5)}");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

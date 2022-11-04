@@ -15,8 +15,8 @@ namespace excels.Items.Armor.Floral
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.ArmorNames.FloralHeadPiece"));
-            Tooltip.SetDefault("Healing gives an extra 1 health");
+            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.FloralHeadPiece"));
+            Tooltip.SetDefault(Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.HealingPower", 1));
             ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true;
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -64,8 +64,8 @@ namespace excels.Items.Armor.Floral
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.ArmorNames.FloralChestPiece"));
-            Tooltip.SetDefault("3% increased radiant damage");
+            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.FloralChestPiece"));
+            Tooltip.SetDefault(Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.RadiantDamage", 3));
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -96,8 +96,8 @@ namespace excels.Items.Armor.Floral
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.ArmorNames.FloralLegPiece"));
-            Tooltip.SetDefault("3% increased radiant damage \n10% increased movement speed");
+            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.FloralLegPiece"));
+            Tooltip.SetDefault($"{Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.HealingPower", 1)}\n{Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.MovementSpeed", 10)}");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

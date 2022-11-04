@@ -554,4 +554,250 @@ namespace excels.Items.Weapons.Hyperion
     }
     #endregion
 
+    #region Lamp Sentry
+    internal class HyperionLampPost : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            Tooltip.SetDefault("Summons a sentry\nSummons hovering lamps that fires bursts of brilliant bouncing bolts");
+
+            ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
+            ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+
+        public override void SetDefaults()
+        {
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.mana = 10;
+            Item.useTime = Item.useAnimation = 30;
+            Item.shoot = ModContent.ProjectileType<HyperionLamp>();
+            Item.rare = 4;
+            Item.damage = 33;
+            Item.knockBack = 3;
+            Item.sentry = true;
+            Item.DamageType = DamageClass.Summon;
+            Item.UseSound = SoundID.Item46;
+        }
+
+        public override bool CanUseItem(Player player)
+        {
+            return !Collision.SolidTiles(Main.MouseWorld - new Vector2(16), 32, 32) && Collision.CanHitLine(player.position, player.width, player.height, Main.MouseWorld, 1, 1); ; 
+        }
+
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            player.FindSentryRestingSpot(type, out int worldX, out int worldY, out int pushYUp);
+            Projectile.NewProjectile(source, Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, type, damage, 0, Main.myPlayer);
+
+            player.UpdateMaxTurrets();
+
+            return false;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<Items.Materials.HyperionCrystal>(), 22)
+                .AddTile(TileID.MythrilAnvil)
+                .Register();
+        }
+    }
+
+    internal class HyperionLamp : ModProjectile
+    {
+        public override void SetDefaults()
+        {
+            Projectile.netImportant = true;
+            Projectile.width = 26;
+            Projectile.height = 42;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.penetrate = -1;
+            Projectile.localNPCHitCooldown = 8;
+            Projectile.timeLeft = Projectile.SentryLifeTime;
+            Projectile.sentry = true;
+            Projectile.friendly = true;
+            Projectile.DamageType = DamageClass.Summon;
+            Projectile.tileCollide = false;
+        }
+
+        public override bool? CanHitNPC(NPC target) => false;
+
+        bool target;
+        Vector2 targetPos;
+        int burstFire = 0;
+
+        public override void OnSpawn(IEntitySource source)
+        {
+            for (var ii = 0; ii < 26; ii++)
+            {
+                Dust d = Dust.NewDustDirect(Projectile.Center - new Vector2(8, 4), 16, 8, ModContent.DustType<Dusts.HyperionEnergyDust>());
+                d.noGravity = true;
+                d.noLight = true;
+                d.velocity = new Vector2(Main.rand.NextFloat(2.2f, 2.8f) * ((ii % 2 == 0) ? -1 : 1), Main.rand.NextFloat(1, -1));
+                d.scale = Main.rand.NextFloat(1.4f, 1.7f);
+            }
+        }
+
+        public override void AI()
+        {
+            Lighting.AddLight(Projectile.Center, new Vector3(255 / 124, 255 / 255, 255 / 234) * 1.25f);
+
+            Projectile.ai[1]++;
+            burstFire--;
+
+            // Main projectile attack
+            if (!target)
+            {
+                if (++Projectile.ai[0] > 60)
+                {
+                    target = false;
+                    targetPos = Vector2.Zero;
+                    float distance = 700;
+                    if (Main.player[Projectile.owner].HasMinionAttackTargetNPC)
+                    {
+                        NPC npc = Main.npc[Main.player[Projectile.owner].MinionAttackTargetNPC];
+                        if (npc.CanBeChasedBy() && Vector2.Distance(Projectile.Center, npc.Center) < distance && Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height))
+                        {
+                            target = true;
+                            targetPos = npc.Center;
+                            distance = Vector2.Distance(Projectile.Center, npc.Center);
+                            burstFire = 21;
+                        }
+                    }
+                    else
+                    {
+                        for (var i = 0; i < Main.maxNPCs; i++)
+                        {
+                            if (Main.npc[i].CanBeChasedBy())
+                            {
+                                if (Vector2.Distance(Projectile.Center, Main.npc[i].Center) < distance && Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, Main.npc[i].position, Main.npc[i].width, Main.npc[i].height))
+                                {
+                                    target = true;
+                                    targetPos = Main.npc[i].Center;
+                                    distance = Vector2.Distance(Projectile.Center, Main.npc[i].Center);
+                                    burstFire = 21;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (burstFire % 7 == 0)
+                {
+                    if (Main.myPlayer == Projectile.owner)
+                    {
+                        Vector2 shootVel = (targetPos - Projectile.Center).SafeNormalize(Vector2.Zero) * 4.3f;
+                        Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, shootVel.RotatedByRandom(MathHelper.ToRadians(7)), ModContent.ProjectileType<HyperLampBolt>(), Projectile.damage, Projectile.knockBack, Main.player[Projectile.owner].whoAmI);
+                    }
+                    for (var i = 0; i < 15; i++)
+                    {
+                        Dust d = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<Dusts.HyperionEnergyDust>());
+                        d.velocity = Main.rand.NextVector2Unit((float)MathHelper.Pi / 2, (float)MathHelper.Pi / 4).RotatedBy((targetPos-Projectile.Center).SafeNormalize(Vector2.Zero).ToRotation() - MathHelper.ToRadians(112.5f)) * Main.rand.NextFloat(4.2f, 5.3f);
+                        d.noGravity = true;
+                        d.scale = Main.rand.NextFloat(1.4f, 1.7f);
+                    }
+                    for (var ii = 0; ii < 10; ii++)
+                    {
+                        Dust d = Dust.NewDustDirect(Projectile.Center - new Vector2(8, 4), 16, 8, ModContent.DustType<Dusts.HyperionEnergyDust>());
+                        d.noGravity = true;
+                        d.noLight = true;
+                        d.velocity = new Vector2(Main.rand.NextFloat(1.3f, 2.5f)*((ii % 2 == 0) ? -1:1), Main.rand.NextFloat(1, -1));
+                    }
+
+                    SoundEngine.PlaySound(SoundID.Item84, Projectile.Center);
+                    Projectile.netUpdate = true;
+                }
+                if (burstFire <= 0)
+                {
+                    target = false;
+                    Projectile.ai[0] = 0;
+                }
+            }
+
+            Projectile.rotation = MathHelper.ToRadians(MathF.Sin(Projectile.ai[1] / 7) * 5);
+            // Secondary attack that creates a light aura around the lantern
+            // Used primarily to hit 
+        }
+    }
+
+    internal class HyperLampBolt : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            ProjectileID.Sets.MinionShot[Projectile.type] = true;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 15;
+        }
+
+        public override void SetDefaults()
+        {
+            Projectile.width = Projectile.height = 32;
+            Projectile.DamageType = DamageClass.Summon;
+            Projectile.friendly = true;
+            Projectile.extraUpdates = 2;
+            Projectile.scale = 0.5f;
+            Projectile.penetrate = 3;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 30;
+            Projectile.extraUpdates = 2;
+            Projectile.timeLeft = 500;
+            Projectile.alpha = 100;
+        }
+
+        public override void AI()
+        {
+            Projectile.rotation = Projectile.velocity.ToRotation();
+            Lighting.AddLight(Projectile.Center, new Vector3(255 / 124, 255 / 255, 255 / 234) * 0.85f);
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            if (Main.rand.NextBool(4))
+                target.AddBuff(BuffID.Electrified, 240);
+        }
+
+        public override void Kill(int timeLeft)
+        {
+            for (var i = 0; i < 20; i++)
+            {
+                Dust d = Dust.NewDustDirect(Projectile.Center - new Vector2(6, 6), 12, 12, ModContent.DustType<Dusts.HyperionEnergyDust>());
+                d.noGravity = true;
+                d.velocity = Projectile.velocity * Main.rand.NextFloat(1.6f, 1.8f);
+                d.scale = Main.rand.NextFloat(1.6f, 1.9f);
+            }
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            if (oldVelocity.X != Projectile.velocity.X)
+                Projectile.velocity.X = (0f - oldVelocity.X);
+
+            if (oldVelocity.Y != Projectile.velocity.Y)
+                Projectile.velocity.Y = (0f - oldVelocity.Y);
+
+            Collision.HitTiles(Projectile.position, Projectile.oldVelocity, Projectile.width, Projectile.height);
+            SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
+            return false;
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Texture2D projectileTexture = TextureAssets.Projectile[Projectile.type].Value;
+            Vector2 drawOrigin = new Vector2(projectileTexture.Width * 0.5f, Projectile.height * 0.5f);
+            SpriteEffects spriteEffects = SpriteEffects.None;
+            for (int k = 0; k < Projectile.oldPos.Length; k++)
+            {
+                Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
+                Color color = Projectile.GetAlpha(lightColor) * ((float)(Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
+                Main.spriteBatch.Draw(projectileTexture, drawPos, null, color, Projectile.rotation, drawOrigin, Projectile.scale - k / (float)Projectile.oldPos.Length / 3, spriteEffects, 0f);
+            }
+
+            return false;
+        }
+    }
+    #endregion
+
 }

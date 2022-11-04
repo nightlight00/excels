@@ -80,7 +80,6 @@ namespace excels.Items.Ammo.Bullets
         {
             Projectile.CloneDefaults(ProjectileID.Bullet);
             AIType = ProjectileID.NanoBullet;
-            Projectile.penetrate = 2;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 20;
         }

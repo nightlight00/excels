@@ -6,6 +6,7 @@ using Terraria.GameContent.Creative;
 using System;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
+using Terraria.Localization;
 
 namespace excels.Items.Armor.Priest
 {
@@ -14,8 +15,8 @@ namespace excels.Items.Armor.Priest
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Priest's Hood");
-            Tooltip.SetDefault("5% increased radiant damage");
+            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.PriestHeadPiece"));
+            Tooltip.SetDefault(Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.RadiantDamage", 5));
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -41,7 +42,7 @@ namespace excels.Items.Armor.Priest
         public override void UpdateArmorSet(Player player)
         {
             var modPlayer = ClericClassPlayer.ModPlayer(player);
-            player.setBonus = "Creates a radiant aura around you that heals all nearby allies \nIncreases radiance regeneration";
+            player.setBonus = Language.GetTextValue("Mods.excels.ItemDescriptions.ArmorSetBonus.PriestSet");
 
             modPlayer.radianceRegenRate -= 0.2f;
             if (player.ownedProjectileCounts[ModContent.ProjectileType<PriestsAura>()] == 0)
@@ -59,8 +60,8 @@ namespace excels.Items.Armor.Priest
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Priest's Robes");
-            Tooltip.SetDefault("Healing gives an extra 1 health \nNecrotic blood cost reduced by 10%");
+            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.PriestChestPiece"));
+            Tooltip.SetDefault($"{Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.HealingPower", 1)}\n{Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.BloodCostReduce", 10)}");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -84,8 +85,8 @@ namespace excels.Items.Armor.Priest
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Priest's Boots");
-            Tooltip.SetDefault("5% increased necrotic damage");
+            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.PriestLegPiece"));
+            Tooltip.SetDefault(Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.NecroticDamage", 5));
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

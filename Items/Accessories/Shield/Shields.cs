@@ -101,4 +101,41 @@ namespace excels.Items.Accessories.Shield
             player.hasRaisableShield = true;
         }
     }
+
+    [AutoloadEquip(EquipType.Shield)]
+    internal class SnowShield : ModItem
+    {
+
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Snow Shield");
+            Tooltip.SetDefault("Grants immunity to knockback \nGetting hit surrounds you in a frigid aura");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+
+        public override void SetDefaults()
+        {
+            Item.accessory = true;
+            Item.defense = 3;
+            Item.rare = 4;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.CobaltShield)
+                .AddIngredient(ModContent.ItemType<Random.SnowflakeAmulet>())
+                .AddTile(TileID.TinkerersWorkbench)
+                .Register();
+        }
+
+        public override void UpdateEquip(Player player)
+        {
+            player.noKnockback = true;
+            player.GetModPlayer<excelPlayer>().SnowflakeAura = true;
+            player.GetModPlayer<excelPlayer>().ShieldReflect = true;
+
+            player.hasRaisableShield = true;
+        }
+    }
 }

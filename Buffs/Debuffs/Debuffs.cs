@@ -25,23 +25,29 @@ namespace excels.Buffs.Debuffs
         public override void Update(Player player, ref int buffIndex)
         {
 			player.GetModPlayer<excelPlayer>().DebuffMycosis = true;
-			int type = 176;
-			if (Main.rand.NextBool(4)) { type = 113; }
-			Dust d = Dust.NewDustDirect(player.position, player.width, player.height, type);
-			d.noGravity = true;
-			d.velocity = new Vector2(Main.rand.NextFloat(-1, 1), Main.rand.NextFloat(-3, -4.8f));
-			d.scale = Main.rand.NextFloat(0.9f, 1.4f);
+			if (Main.rand.NextBool(3))
+			{
+				int type = 176;
+				if (Main.rand.NextBool(4)) { type = 113; }
+				Dust d = Dust.NewDustDirect(player.position, player.width, player.height, type);
+				d.noGravity = true;
+				d.velocity = new Vector2(Main.rand.NextFloat(-0.4f, 0.4f), Main.rand.NextFloat(-0.8f, 0.8f));
+				d.scale = Main.rand.NextFloat(1.2f, 1.6f);
+			}
 		}
 
         public override void Update(NPC npc, ref int buffIndex)
         {
 			npc.GetGlobalNPC<excelNPC>().DebuffMycosis = true;
-			int type = 176;
-			if (Main.rand.NextBool(4)) { type = 113; }
-			Dust d = Dust.NewDustDirect(npc.position, npc.width, npc.height, type);
-			d.noGravity = true;
-			d.velocity = new Vector2(Main.rand.NextFloat(-1, 1), Main.rand.NextFloat(-3, -4.8f));
-			d.scale = Main.rand.NextFloat(0.9f, 1.4f);
+			if (Main.rand.NextBool(3))
+			{
+				int type = 176;
+				if (Main.rand.NextBool(4)) { type = 113; }
+				Dust d = Dust.NewDustDirect(npc.position, npc.width, npc.height, type);
+				d.noGravity = true;
+				d.velocity = new Vector2(Main.rand.NextFloat(-0.4f, 0.4f), Main.rand.NextFloat(-0.8f, 0.8f));
+				d.scale = Main.rand.NextFloat(1.2f, 1.6f);
+			}
 		}
     }
 

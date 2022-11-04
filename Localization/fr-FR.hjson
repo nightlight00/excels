@@ -21,16 +21,127 @@ Mods.excels: {
 
 		Radiant: radieux
         Necrotic: nécrotique
+
+        Heartbreak: <<CHAGRIN>>
 	}
 
 	Config: {
 		ClericTooltip: {
-			Header: "Infobulles Clérical avancer",
-			Label: "Info d'Armes du Clerc",
-			Tip: "Demontre les sources des boni pour des dégâts clérical",
+			Header: Infobulles Clérical avancer
+			Label: Info d'Armes du Clerc
+			Tip: Demontre les sources des boni pour des dégâts clérical
 
-			HealLabel: "Cleric Healing Tool info",
-			HealTip: "Displays how much healing tools benefit from heal bonuses"
+			HealLabel: Cleric Healing Tool info
+			HealTip: Displays how much healing tools benefit from heal bonuses
 		}
 	}
+
+    DeathMessages: {
+        Heartbreak: {
+            1: "La coeur du {0} avais brisé"
+            2: "{0} experienced the dread of 'Heartbreak'"
+            3: "La coeur du {0} avais exploser"
+            4: "{0} a mourir du coeur ne fonctienne pas"
+        }
+    }
+
+    ItemDescriptions: {
+        Generic: {
+            MovementSpeed: "{0}  % de vitesse de déplacement"
+            LessLikelyToBeTargeted: Les ennemies sont moins susceptibles de vous prendre pour cible
+
+            RangedCritChance: "+{0}  % de chance de coup critique à distance"
+            RangedDamage: "+{0}  % de dégâts à distance"
+
+            MinionIncrease: Augmente le nombre de sbires max de {0}
+            SummonDamage: +{0}  % de dégâts d'invocation 
+
+            ClericCritChance: "+{0}  % de chance de coup critique du clerc"
+            RadiantDamage: +{0}  % de dégâts radieux 
+            NecroticDamage: +{0}  % de dégâts nécrotique
+            HealingPower: Augmente la pouvoir curatif par {0}
+            BloodCostReduce: "Reduire la points de santé utilsé par des armes necrotique par {0}%"
+            MaxRadianceUp: Augmente la maximum point d'éclat par
+            RadianceRegenSlight: Augmente la régénération d'éclat par un peu
+        }
+
+        ArmorSetBonus: {
+            AvianSet: 
+                '''
+                Votre sbires ont une chance d'invoque des plumes du ciel pour attaquer
+                Augmente le recul des sbires par 30%
+                '''
+            CrusaderSet:
+                '''
+                Empêcher toi de faire mort 
+                Cette effet on un temps de récup de 3 minutes et temporairement diminuer votre dégâts pour 1 minute
+                {$Mods.excels.ItemDescriptions.Generic.MaxRadianceUp} 40
+                '''
+            FloralSet:
+                '''
+                Géurir des alliés augemente votre et leur régénération de santé
+                {$Mods.excels.ItemDescriptions.Generic.LessLikelyToBeTargeted}
+                '''
+            PrehistoricSet:
+                '''
+                Quand vous tirez, il y a un chance de tirer un éclat fossilisé
+                Augmente votre dégâts à distance par un autre 8  %
+                '''
+            GlacialSet:
+                '''
+                Des coups critique à distance produire explosion de brûledegivre
+                Augmente votre chance de coup critique à distance par un autre 6  %
+                '''
+            HeartbeatSet:
+                '''
+                Effectuez un double clic sur Bas pour activer / désactiver 'Chagrin'
+                Pendant que tu est sous les effets du 'Chagrin', votre dégâts nécrotique augmente et votre santé souffrir
+                Si tu est sous 25% du santé maximum et 'Chargin' est active, recevoir 'Panique !'
+                Augmente votre régénération de santé quand 'Chagrin' n'est pas actif
+                '''
+            HolyknightSet: Chaque 35 santé que vous guérissez redonner 5 santé au toi-même
+            PriestSet:
+                '''
+                Créer un aura radieux qui guérir votre alliés qui sont proches
+                Augmente la régénération d'éclat
+                '''
+        }
+    }
+
+	ItemNames: {
+
+      AvianHeadPiece: Chapeux d'aviaire
+      AvianChestPiece: Châle d'aviaire
+      AvianLegPiece: Jupe d'aviaire
+      CrusaderHeadPiece: Heaume du Croisé
+      CrusaderChestPiece: Vêtements du Croisé
+      CrusaderLegPiece: Grèves du Croisé
+      FloralHeadPiece: Stéthoscope floral
+      FloralChestPiece: Veste floral
+      FloralLegPiece: Bottes floral
+      FossilHeadPiece: Masque préhistorique
+      FossilChestPiece: Plastron préhistorique
+      FossilLegPiece: Grèves préhistorique
+      GlacialHeadPiece: Masque glacial
+      GlacialChestPiece: Plastron glacial
+      GlacialLegPiece: Jambière glacial
+      HeartbeatHeadPiece: Masque des battements du Coeur
+      HeartbeatChestPiece: Manteau des battements du Coeur
+      HeartbeatLegPiece: Grèves des battements du Coeur
+      HolyknightHeadPiece: Casque du chevalier sacré
+      HolyknightChestPiece: Plastron du chevalier sacré
+      HolyknightLegPiece: Bottes du chevalier sacré
+      PriestHeadPiece: Capuche du Prêtre
+      PriestChestPiece: Robe du Prêtre
+      PriestLegPiece: Bottes du Prêtre
+      SkylineHeadPiece: Bandeau d'horizon
+      SkylineChestPiece: Plastron d'horizon
+      SkylineLegPiece: Bottes d'horizon
+      StellarHeadPiece: Masque en stellaire
+      StellarChestPiece: Plastron en stellaire
+      StellarLegPiece: Bottes en stellaire
+      WyvernscaleHeadPiece: Capuche en écaille du vouivre
+      WyvernscaleChestPiece: Plastron en écaille du vouivre
+      WyvernscaleLegPiece: Bottes en écaille du vouivre
+    }
 }

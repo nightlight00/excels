@@ -77,6 +77,9 @@ namespace excels
         public bool skullPendant2 = false;
         public bool skullPendantFrost = false;
         public bool hyperionHeart = false;
+        public bool lostKin = false;
+        public bool soothingCream = false;
+        public bool medicBag = false;
 
         public override void ResetEffects()
         {
@@ -140,6 +143,9 @@ namespace excels
             skullPendant2 = false;
             skullPendantFrost = false;
             hyperionHeart = false;
+            lostKin = false;
+            soothingCream = false;
+            medicBag = false;
         }
 
         public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)
@@ -175,7 +181,7 @@ namespace excels
             }
             return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
         }
-
+       
         public override void UpdateBadLifeRegen()
         {
             if (DebuffMycosis)
@@ -257,9 +263,17 @@ namespace excels
             return base.CanAutoReuseItem(item);
         }
 
+        public override bool CanConsumeAmmo(Item weapon, Item ammo)
+        {
+            if (Player.HasBuff(ModContent.BuffType<Buffs.ClericBonus.Supplied>()) && Main.rand.NextBool(10))
+                return false;
+
+            return base.CanConsumeAmmo(weapon, ammo);
+        }
+
         public override void PostUpdate()
         {
-            if (Main.tile[Player.tileTargetX, Player.tileTargetY].TileType == ModContent.TileType<Tiles.Misc.OilKit>())
+            if (Main.tile[Player.tileTargetX, Player.tileTargetY].TileType == ModContent.TileType<Tiles.Stations.OilKit>())
             {
                 if (Player.position.X / 16f - (float)Player.tileRangeX - (float)Player.inventory[Player.selectedItem].tileBoost - (float)Player.blockRange <= (float)Player.tileTargetX && (Player.position.X + (float)Player.width) / 16f + (float)Player.tileRangeX + (float)Player.inventory[Player.selectedItem].tileBoost - 1f + (float)Player.blockRange >= (float)Player.tileTargetX && Player.position.Y / 16f - (float)Player.tileRangeY - (float)Player.inventory[Player.selectedItem].tileBoost - (float)Player.blockRange <= (float)Player.tileTargetY && (Player.position.Y + (float)Player.height) / 16f + (float)Player.tileRangeY + (float)Player.inventory[Player.selectedItem].tileBoost - 2f + (float)Player.blockRange >= (float)Player.tileTargetY && Player.itemTime == 0 && Player.itemAnimation > 0 && Player.controlUseItem)
                 {

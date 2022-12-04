@@ -734,7 +734,7 @@ namespace excels.Items.Weapons.Staff1
 				.AddIngredient(ModContent.ItemType<SingeStaff>())
 				.AddIngredient(ItemID.AquaScepter)
 				.AddIngredient(ModContent.ItemType<Skyline.SkylineStaff>())
-				.AddTile(ModContent.TileType<Tiles.Misc.StarlightAnvilTile>())
+				.AddTile(ModContent.TileType<Tiles.Stations.StarlightAnvilTile>())
 				.Register();
 		}
 	}

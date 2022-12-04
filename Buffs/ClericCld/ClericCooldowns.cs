@@ -75,6 +75,7 @@ namespace excels.Buffs.ClericCld
         public override void Update(Player player, ref int buffIndex)
 		{
 			player.GetModPlayer<excelPlayer>().AnguishSoul = true;
+			player.GetModPlayer<ClericClassPlayer>().radianceRegenRate += 1;
 		}
 	}
 }

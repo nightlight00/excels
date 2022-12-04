@@ -5,15 +5,19 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using System;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria.GameContent;
 
 namespace excels.Items.Weapons.Radiant1
 {
     internal class NatureBombWand : ClericDamageItem
     {
+        public override string Texture => "excels/Items/Weapons/Radiant1/AcornStaff";
+
         public override void SetStaticDefaults()
         {
-          //  DisplayName.SetDefault("Staff of Pearls");
-            Tooltip.SetDefault("Conjures a nature bomb\nThe nature bomb deals increased damage if left to rest for a while");
+            DisplayName.SetDefault("Acorn Staff");
+            Tooltip.SetDefault("Critical strikes grant healing over time to nearby allies");
             Item.staff[Item.type] = true;
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -28,13 +32,13 @@ namespace excels.Items.Weapons.Radiant1
             Item.rare = 0;
             Item.UseSound = SoundID.Item43;
             Item.autoReuse = true;
-            Item.shoot = ModContent.ProjectileType<NatureBomb>();
+            Item.shoot = ModContent.ProjectileType<NatureWave>();
             Item.shootSpeed = 9.44f;
             Item.noMelee = true;
             Item.knockBack = 4.3f;
 
-            Item.damage = 15;
-            clericRadianceCost = 4;
+            Item.damage = 13;
+            clericRadianceCost = 6;
             Item.sellPrice(0, 0, 0, 15);
         }
 
@@ -48,124 +52,104 @@ namespace excels.Items.Weapons.Radiant1
         }
     }
 
-    public class NatureBomb : clericHealProj
+    public class NatureWave : clericHealProj
     {
-        public override string Texture => $"Terraria/Images/Item_{ItemID.Acorn}";
+        public override void SetStaticDefaults()
+        {
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 13;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
+        }
+
 
         public override void SafeSetDefaults()
         {
-            Projectile.width = Projectile.height = 20;
-            Projectile.penetrate = -1;
+            Projectile.width = Projectile.height = 14;
+            Projectile.penetrate = 2;
             Projectile.tileCollide = true;
-            Projectile.timeLeft = 2000;
+            Projectile.timeLeft = 80;
 
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 20;
 
             clericEvil = false;
             canDealDamage = true;
-        }
 
-        int explosionTimer = 1400;
-        int damageMax = 3;
-
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        {
-            if (Projectile.ai[0] < explosionTimer)
-            {
-                Projectile.ai[0] = explosionTimer;
-                Boom();
-            }
-        }
-
-        private void Boom()
-        {
-
-            for (var i = 0; i < 20; i++)
-            {
-                Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 3);
-                d.noGravity = true;
-                d.velocity *= Main.rand.NextFloat(0.8f, 1.3f);
-                d.scale *= Main.rand.NextFloat(1.2f, 1.4f);
-            }
-
-            Projectile.position = Projectile.Center;
-            Projectile.width = Projectile.height = 60;
-            Projectile.Center = Projectile.position;
-
-            for (var i = 0; i < 30; i++)
-            {
-                Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 3);
-                d.noGravity = true;
-                d.velocity *= Main.rand.NextFloat(0.8f, 1.3f);
-                d.scale *= Main.rand.NextFloat(0.8f, 1f);
-            }
-
-
-            Projectile.alpha = 255;
-
-            Projectile.timeLeft = 12;
-        }
-
-        public override bool OnTileCollide(Vector2 oldVelocity)
-        {
-            return false;
-        }
-
-        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
-        {
-            fallThrough = false;
-            return true;
+            canHealOwner = true;
+            healPenetrate = -1;
         }
 
         public override void AI()
         {
-            Projectile.rotation += MathHelper.ToRadians(Projectile.velocity.X * 6);
-            if (Projectile.ai[0] == 0)
+            Projectile.rotation = Projectile.velocity.ToRotation();
+            if (Main.rand.NextBool())
             {
-                damageMax = Projectile.damage * 4;
-            }
-
-            if (Projectile.ai[0] < explosionTimer)
-            {
-                Dust d = Dust.NewDustPerfect(Projectile.Center + new Vector2(8).RotatedBy(Projectile.rotation - MathHelper.ToRadians(90)), 3);
+                Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 2);
+                d.velocity = Projectile.velocity * 0.9f;
                 d.noGravity = true;
-                d.velocity = Vector2.Zero;
+                d.scale = Main.rand.NextFloat(0.9f, 1.1f);
             }
 
-            if (++Projectile.ai[0] == explosionTimer)
+            if (Main.rand.NextBool(5))
             {
-                Boom();
+                Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 2);
+                d.velocity = Projectile.velocity * 0.4f;
+                d.scale = Main.rand.NextFloat(0.75f, 0.9f);
             }
+        }
 
-            if (Math.Abs(Projectile.velocity.Length()) < 0.3f)
+        public override void Kill(int timeLeft)
+        {
+            for (var i = 0; i < 20; i++)
             {
-                if (Projectile.alpha < 150)
-                    Projectile.alpha += 4;
-                if (Projectile.damage < damageMax)
-                    Projectile.damage += 1;
+                Dust d = Dust.NewDustPerfect(Projectile.Center, 2);
+                d.noGravity = true;
+                d.scale = Main.rand.NextFloat(1.2f, 1.4f);
+                d.velocity = Main.rand.NextVector2Circular(0.2f, 0.2f) * 20 + (Projectile.velocity / 3);
             }
+        }
 
-            Projectile.velocity.Y += 0.2f;
-            Projectile.velocity *= 0.98f;
-
-            if (Collision.SolidTiles(Projectile.position + new Vector2(4, -2), Projectile.width - 8, Projectile.height + 4))
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            if (crit)
             {
-                if (Projectile.velocity.Y > 0)
+                BuffDistance(Main.LocalPlayer, Main.player[Projectile.owner], 140, 1);
+                for (var i = 0; i < 30; i++)
                 {
-                    Projectile.position.Y -= 0.15f;
+                    Vector2 vel = new Vector2(0, -2).RotatedBy(MathHelper.ToRadians(360 / 20) * i);
+                    Dust d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + vel * 70, 2);
+                    d.velocity = -vel;
+                    d.noGravity = true;
+                    d.scale = 1.6f;
                 }
-                else
-                {
-                    Projectile.position.Y += 0.1f;
-                }
-                Projectile.velocity.Y = -Projectile.velocity.Y * 0.8f;
             }
+        }
 
-            if (Collision.SolidTiles(Projectile.position + new Vector2(-4, 4), Projectile.width + 8, Projectile.height - 8))
+        public override void BuffEffects(Player target, Player healer)
+        {
+            target.AddBuff(ModContent.BuffType<Buffs.ClericBonus.NaturesHeart>(), GetBuffTime(healer, 4));
+        }
+
+
+        public override bool PreDraw(ref Color lightColor) // thumbs up!!!!
+        {
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, null, null, null, null, Main.GameViewMatrix.ZoomMatrix);
+
+            Main.instance.LoadProjectile(Projectile.type);
+            Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
+            for (int k = 0; k < Projectile.oldPos.Length; k++)
             {
-                Projectile.velocity.X = -Projectile.velocity.X;
+                var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
+                var frame = texture.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame);
+                Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + offset;
+                float sizec = Projectile.scale * (Projectile.oldPos.Length - k) / (Projectile.oldPos.Length * 0.8f);
+                Color color = new Color(220, 126, 255, 255) * (1f - Projectile.alpha) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
+                Main.EntitySpriteDraw(texture, drawPos, frame, color, Projectile.oldRot[k], frame.Size() / 2, sizec, SpriteEffects.None, 0);
             }
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, Main.GameViewMatrix.ZoomMatrix);
+
+            return true;
         }
     }
 }

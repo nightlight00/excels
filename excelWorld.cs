@@ -118,7 +118,7 @@ namespace excels
 				3.7f,
 				() => excelWorld.downedNiflheim,
 				true,
-				null,//new List<int>() { ItemType<Items.Furniture.Relics.StellarStarshipRelic>(), ItemType<Items.Furniture.Trophy.StellarTrophy>(), ItemType<Items.Vanity.StellarStarshipMask>() },
+				new List<int>() { ItemType<Items.Placeable.Decorations.Relics.NiflheimRelic>() },
 				ItemType<Items.Misc.Summons.ReflectiveIceShard>(),
 				$"Use a [i:{ItemType<Items.Misc.Summons.ReflectiveIceShard>()}] in a snowy landscape",
 				null,
@@ -137,7 +137,7 @@ namespace excels
 				5.1f,
 				() => excelWorld.downedStarship,
 				true,
-				new List<int>() { ItemType<Items.Furniture.Relics.StellarStarshipRelic>(), ItemType<Items.Furniture.Trophy.StellarTrophy>(), ItemType<Items.Vanity.StellarStarshipMask>() },
+				new List<int>() { ItemType<Items.Placeable.Decorations.Relics.StellarStarshipRelic>(), ItemType<Items.Placeable.Decorations.Trophies.StellarTrophy>(), ItemType<Items.Vanity.StellarStarshipMask>() },
 				ItemType<Items.Misc.Summons.PlanetaryTrackingDevice>(),
 				$"Use a [i:{ItemType<Items.Misc.Summons.PlanetaryTrackingDevice>()}]",
 				null,
@@ -156,7 +156,7 @@ namespace excels
 				12.8f,
 				() => excelWorld.downedChasm,
 				true,
-				new List<int>() { ItemType<Items.Vanity.ChasmMask>() },
+				new List<int>() { ItemType<Items.Placeable.Decorations.Relics.ChasmRelic>(), ItemType<Items.Vanity.ChasmMask>() },
 				ItemType<Items.Misc.Summons.InfectionRadar>(),
 				$"Use a [i:{ItemType<Items.Misc.Summons.InfectionRadar>()}] in a mushroom biome",
 				null,
@@ -337,7 +337,7 @@ namespace excels
 				if (recipe.TryGetResult(ItemID.NightsEdge, out Item _))
 				{
 					recipe.RemoveTile(TileID.DemonAltar);
-					recipe.AddTile(ModContent.TileType<Tiles.Misc.StarlightAnvilTile>());
+					recipe.AddTile(ModContent.TileType<Tiles.Stations.StarlightAnvilTile>());
 				}
 			}
 		}

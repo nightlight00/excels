@@ -93,7 +93,7 @@ namespace excels.Items.Armor.Crusader
         {
             var modPlayer = ClericClassPlayer.ModPlayer(player);
             modPlayer.clericRadiantMult += 0.08f;
-            modPlayer.radianceRegenRate -= 0.1f;
+            modPlayer.radianceRegenRate += 1;
             player.GetModPlayer<excelPlayer>().healBonus += 1;
         }
         public override void AddRecipes()

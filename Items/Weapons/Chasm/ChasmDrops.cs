@@ -7,7 +7,8 @@ using System;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Terraria.Enums;
-
+using Terraria.GameContent;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace excels.Items.Weapons.Chasm
 {
@@ -67,8 +68,6 @@ namespace excels.Items.Weapons.Chasm
 	}
     #endregion
 
-
-
     #region Skewer
     public class Skewer : ModItem
     {
@@ -81,7 +80,7 @@ namespace excels.Items.Weapons.Chasm
 
         public override void SetDefaults()
         {
-            Item.damage = 50;
+            Item.damage = 66;
             Item.DamageType = DamageClass.Melee;
             Item.useTime = Item.useAnimation = 9;
             Item.useStyle = ItemUseStyleID.Rapier;
@@ -261,6 +260,7 @@ namespace excels.Items.Weapons.Chasm
 			Projectile.alpha = 60;
 			Projectile.penetrate = -1;
 			Projectile.tileCollide = false;
+			Projectile.ArmorPenetration = 15;
 
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = 20;
@@ -296,5 +296,124 @@ namespace excels.Items.Weapons.Chasm
 			}
 		}
 	}
+	#endregion
+
+	#region Grasp of Disease
+	public class GraspofDisease : ModItem
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Grasp of Disease");
+			Tooltip.SetDefault("Conjures Shroom Heads that blast infection on enemy hits");
+			Item.staff[Item.type] = true;
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+		}
+
+		public override void SetDefaults()
+		{
+			Item.width = Item.height = 52;
+			Item.DamageType = DamageClass.Magic;
+			Item.useTime = Item.useAnimation = 32;
+			Item.mana = 20;
+			Item.autoReuse = true;
+			Item.useStyle = ItemUseStyleID.Shoot;
+			Item.shoot = ModContent.ProjectileType<ShroomBall>();
+			Item.shootSpeed = 12f;
+			Item.damage = 55;
+			Item.rare = 7;
+			Item.UseSound = SoundID.Item20;
+			Item.noMelee = true;
+			Item.knockBack = 5.7f;
+			Item.sellPrice(0, 5);
+		}
+	}
+
+	public class ShroomBall : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 12;
+			ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
+		}
+
+        public override void SetDefaults()
+		{
+			Projectile.DamageType = DamageClass.Magic;
+			Projectile.friendly = true;
+			Projectile.width = Projectile.height = 22;
+			Projectile.timeLeft = 1200;
+			Projectile.penetrate = 3;
+			Projectile.usesLocalNPCImmunity = true;
+			Projectile.localNPCHitCooldown = 40;
+		}
+
+        public override void AI()
+        {
+			Projectile.rotation += MathHelper.ToRadians(Math.Abs(Projectile.velocity.Length()) * 2);
+			if (++Projectile.ai[1] > 20)
+            {
+				Projectile.velocity.Y += 0.2f;
+            }
+        }
+
+		public override bool PreDraw(ref Color lightColor)
+		{
+			Main.instance.LoadProjectile(Projectile.type);
+			Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
+
+			// Redraw the projectile with the color not influenced by light
+			float scale = 0.9f;
+			for (int k = 0; k < Projectile.oldPos.Length; k++)
+			{
+				Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
+				Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
+				Color color = (Color.White * 0.66f) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
+				Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.rotation, drawOrigin, scale, SpriteEffects.None, 0);
+				scale -= 0.3f / 16;
+			}
+
+			return true;
+		}
+
+		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+			int dir = Main.rand.Next(360);
+            for (var i = 0; i < 6; i++)
+            {
+				Projectile p = Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(), Projectile.Center,
+					new Vector2((i%2==1)?5:3.5f).RotatedBy(MathHelper.ToRadians((360 / 6) * i + dir)), ModContent.ProjectileType<MushroomSkewer>(), Projectile.damage / 3, 4, Main.player[Projectile.owner].whoAmI);
+				p.DamageType = DamageClass.Magic;
+            }
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+		{
+			if (++Projectile.ai[0] > 4)
+				Projectile.Kill();
+
+			if (oldVelocity.X != Projectile.velocity.X)
+			{
+				Projectile.velocity.X = (0f - oldVelocity.X) * 0.9f;
+			}
+			if (oldVelocity.Y != Projectile.velocity.Y)
+			{
+				Projectile.velocity.Y = (0f - oldVelocity.Y) * 0.9f;
+			}
+
+			return false;
+        }
+
+        public override void Kill(int timeLeft)
+        {
+            for (var i = 0; i < 30; i++)
+            {
+				Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 41);
+				if (!Main.rand.NextBool(4))
+					d.noGravity = true;
+				d.velocity = Projectile.velocity * Main.rand.NextFloat(0.8f, 1.1f);
+				d.scale = Main.rand.NextFloat(1.2f, 1.5f);
+            }
+        }
+    }
 	#endregion
 }

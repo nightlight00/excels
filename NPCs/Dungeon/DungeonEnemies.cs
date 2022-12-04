@@ -52,7 +52,7 @@ namespace excels.NPCs.Dungeon
             NPC.value = 10000;
 
             Banner = NPC.type;
-            BannerItem = ModContent.ItemType<Tiles.Banners.BItems.BannerDungeonMimic>();
+            BannerItem = ModContent.ItemType<Tiles.Decorations.Banners.BItems.BannerDungeonMimic>();
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
@@ -64,7 +64,13 @@ namespace excels.NPCs.Dungeon
                 ModContent.ItemType<Items.Accessories.Cleric.Necrotic.SkullPendant>()
             };
             npcLoot.Add(ItemDropRule.OneFromOptions(1, MimicDrops));
-            npcLoot.Add(ItemDropRule.Common(ItemID.GoldenKey, 6));
+            int[] SpecialLoot = {
+                ItemID.GoldenKey,
+                ItemID.LockBox
+            };
+            npcLoot.Add(ItemDropRule.OneFromOptions(6, SpecialLoot));
+            //npcLoot.Add(ItemDropRule.Common(ItemID.GoldenKey, 6));
+            
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

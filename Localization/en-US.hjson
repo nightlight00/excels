@@ -35,6 +35,11 @@ Mods.excels: {
     }
 
 	Config: {
+        ScreenShake: {
+            Label: Screen Shake Intensity
+            Tip: Alters the intensity of all screen shake effects
+        }
+
 		ClericTooltip: {
 			Header: Advanced Cleric Tooltips
 			Label: Cleric Weapon info
@@ -420,11 +425,22 @@ Mods.excels: {
 			NoBadWeather: It's a beautiful day today!
 			Windy: Don't you love the soft breeze of the wind?  Just be on the lookout for dandilions!
 
-			DownedCultist: Interesting.  I've never though about praying to the moon itself.  However I that it would lead us all to our doom.
+			DownedCultist: Interesting.  I've never heard of praying to the Old Moon until you've defeated that cultist.  Disaster is surely to follow, however.
 			
 			BlessingAlreadyRecieved: You currently have my blessing, come back when it runs out.
 			BlessingRadiant: You have my blessing!  I hope it helps save others!
 			BlessingNecrotic: We seem to walk different paths.  Still, I'll see what I can do!
+
+            ShopSelect: I have a variety of wares to help you on your journey.  Stop by anytime!
+            BlessingSelect: If you're in need of some aid, I can give you one of my blessings!
+            GuidanceSelect: There is much to learn about this world, stop by whenever and I can share some of my knowledge!
+
+            Guidance1: If you ever noticed that you run out of Radiance quickly, give healing your allies a go!
+            Guidance2: Purified Stones and Bars aren't natural rocks, they are simply purified versions of an evil ore!
+            Guidance3: Though it sounds counter inuitive, while your soul is anguished your Radiance generates faster!
+            Guidance4: Niflheim is hiding something deep under the snow.  Slay her and perhaps you'll see.
+            Guidance5: Spell Potions are extremely useful to boost your power, but they do come at a small life cost.
+            Guidance6: Other worlds exist.  Be careful when using alien tech, as you might just alert them!
 		}
 
 		Geologist: {

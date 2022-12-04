@@ -48,7 +48,7 @@ namespace excels.NPCs.Meteorite
             NPC.DeathSound = SoundID.NPCDeath3;
 
             Banner = NPC.type;
-            BannerItem = ModContent.ItemType<Tiles.Banners.BItems.BannerMeteorSlime>();
+            BannerItem = ModContent.ItemType<Tiles.Decorations.Banners.BItems.BannerMeteorSlime>();
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
@@ -160,7 +160,7 @@ namespace excels.NPCs.Meteorite
 
 
             Banner = NPC.type;
-            BannerItem = ModContent.ItemType<Tiles.Banners.BItems.BannerMeteorSpirit>();
+            BannerItem = ModContent.ItemType<Tiles.Decorations.Banners.BItems.BannerMeteorSpirit>();
         }
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
@@ -289,7 +289,7 @@ namespace excels.NPCs.Meteorite
             NPC.DeathSound = SoundID.NPCDeath3;
 
             Banner = NPC.type;
-            BannerItem = ModContent.ItemType<Tiles.Banners.BItems.BannerMeteorGolem>();
+            BannerItem = ModContent.ItemType<Tiles.Decorations.Banners.BItems.BannerMeteorGolem>();
         }
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {

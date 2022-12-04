@@ -48,6 +48,24 @@ namespace excels
            // base.ModifyHitNPC(target, ref damage, ref knockback, ref crit, ref hitDirection);
         }
 
+
+        public virtual Projectile CreateHealProjectile(Player player, Vector2 position, Vector2 velocity, int type, int damage, float knockback, int healAmount = 1, float healRate = 1, float ai0 = 0, float ai1 = 0)
+        {
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                Projectile p = Projectile.NewProjectileDirect(player.GetSource_FromThis(), position, velocity, type, damage, knockback, player.whoAmI);
+                p.GetGlobalProjectile<excelProjectile>().healStrength = healAmount;
+                p.GetGlobalProjectile<excelProjectile>().healRate = healRate;
+                p.ai[0] = ai0;
+                p.ai[1] = ai1;
+                //p.netUpdate = true;
+
+                return Main.projectile[p.whoAmI];
+            }
+
+            return Main.projectile[-1];
+        }
+
         public void CheckSkullPendant(Player player, int increase)
         {
             if (!player.GetModPlayer<excelPlayer>().skullPendant)
@@ -170,13 +188,17 @@ namespace excels
             }
         }
 
-        public void BuffDistance(Player target, Player healer, int distance)
+        public void BuffDistance(Player target, Player healer, int distance, int locationStyle = 0)
         {
+            Vector2 pos = Projectile.Center;
+            if (locationStyle == 1)
+                pos = healer.Center;
+
             if (!canHealOwner && (target == healer))
             {
                 return;
             }
-            if (Vector2.Distance(target.Center, Projectile.Center) < distance)
+            if (Vector2.Distance(target.Center, pos) < distance)
             {
                 BuffEffects(target, healer);
                 Projectile.netUpdate = true;
@@ -212,16 +234,8 @@ namespace excels
 
         public void HealCollision(Player target, Player healer)
         {
-            // find whichever is closest for most accurate 'collision'
-            Vector2 pos = target.Center;
-            float dist = Vector2.Distance(pos, Projectile.Center);
-            if (Vector2.Distance(target.TopLeft, Projectile.Center) < dist) { pos = target.TopLeft; }
-            if (Vector2.Distance(target.TopRight, Projectile.Center) < dist) { pos = target.TopRight; }
-            if (Vector2.Distance(target.BottomLeft, Projectile.Center) < dist) { pos = target.BottomLeft; }
-            if (Vector2.Distance(target.BottomRight, Projectile.Center) < dist) { pos = target.BottomRight; }
             // check if can heal and if yes, heal player
-            if (((pos.X > (Projectile.Center.X - Projectile.width / 2)) && (pos.X < (Projectile.Center.X + Projectile.width / 2))
-                && (pos.Y > (Projectile.Center.Y - Projectile.height / 2)) && (pos.Y < (Projectile.Center.Y + Projectile.height / 2))))
+            if (Collision.CheckAABBvAABBCollision(Projectile.position, new Vector2(Projectile.width, Projectile.height), target.position, new Vector2(target.height, target.width)))
             {
                 HealEffects(target, healer);
                 if (healUsesBuffs)
@@ -261,6 +275,9 @@ namespace excels
 
         public virtual void HealEffects(Player target, Player healer)
         {
+            if (Main.myPlayer != Projectile.owner)
+                return;
+
             if (heallist.Contains(target.whoAmI)) {
                 return;
             }
@@ -269,91 +286,112 @@ namespace excels
                 return;
             }
 
-            int healAmount = Projectile.GetGlobalProjectile<excelProjectile>().healStrength;
-            float healRate = Projectile.GetGlobalProjectile<excelProjectile>().healRate;
-
-            var lifeBeforeHeal = target.statLife;
             heallist.Add(target.whoAmI);
             healTimer.Add(timeBetweenHeal);
 
-            // put post heal here so percentage heals still have this option
-            PostHealEffects(target, healer);
+            var priorHealth = target.statLife;
+            int healAmount = Projectile.GetGlobalProjectile<excelProjectile>().healStrength;
+            float healRate = Projectile.GetGlobalProjectile<excelProjectile>().healRate;
 
-            if (healRate != -1)
+            healAmount += (int)(healer.GetModPlayer<excelPlayer>().healBonus * healRate);
+
+            #region Armor Effects
+            // Holy Knight : Charges up self-heal effect
+            if (healer.GetModPlayer<excelPlayer>().HolyKnightSet)
+                healer.GetModPlayer<excelPlayer>().HolyKnightSetBonus += (target.statLife - priorHealth);
+
+            // Floral : Applies health regeneration to both players
+            if (healer.GetModPlayer<excelPlayer>().FloralSet && target != healer)
             {
-                if (healAmount < 1)
-                {
-                    healAmount = 1;
-                }
-                int trueHeal = healAmount;
-
-                trueHeal += (int)(healer.GetModPlayer<excelPlayer>().healBonus * healRate);
-
-                if (healer.GetModPlayer<excelPlayer>().PrismiteSet && Main.rand.NextBool(20))
-                {
-                    trueHeal += healAmount / 2;
-                    target.AddBuff(ModContent.BuffType<Buffs.ClericBonus.PrismiteHeart>(), GetBuffTime(healer, trueHeal * 0.7f));
-                }
-
-
-                target.HealEffect(trueHeal, true);
-                target.statLife += trueHeal;             
+                target.AddBuff(ModContent.BuffType<Buffs.ClericBonus.FloralBeauty>(), GetBuffTime(healer, 8));
+                healer.AddBuff(ModContent.BuffType<Buffs.ClericBonus.FloralBeauty>(), GetBuffTime(healer, 4));
             }
 
+            // Crystalline : Critical heal chance & Increases max health
+            if (healer.GetModPlayer<excelPlayer>().PrismiteSet && Main.rand.NextBool(20))
+            {
+                healAmount += healAmount / 2;
+                target.AddBuff(ModContent.BuffType<Buffs.ClericBonus.PrismiteHeart>(), GetBuffTime(healer, healAmount * 0.7f));
+            }
+            #endregion
+
             #region Accessory Bonuses
-            
-            // Antitoxin Bottle - If target is poisoned : remove poison and heal 7 health
+
+            // Medic Bag : Applies health over time buff
+            if (healer.GetModPlayer<excelPlayer>().medicBag && target != healer)
+                target.AddBuff(ModContent.BuffType<Buffs.ClericBonus.SoothingSoul>(), GetBuffTime(healer, 6));
+
+            // Antitoxin Bottle : If target is poisoned, remove it and heal 7 health
             if (healer.GetModPlayer<excelPlayer>().antitoxinBottle && target.HasBuff(BuffID.Poisoned))
             {
                 target.ClearBuff(BuffID.Poisoned);
-                target.HealEffect(7, true);
-                target.statLife += 7;
+                healAmount += 7;
             }
+
+            // Nectar Bottle : Apply Honey buff
             if (healer.GetModPlayer<excelPlayer>().nectarBottle)
-            {
                 target.AddBuff(BuffID.Honey, GetBuffTime(healer, 10));
-            }
-
-            #endregion
-
-            #region Armor Bonuses 
-
-            if (healer.GetModPlayer<excelPlayer>().HolyKnightSet)
+            
+            // Lost Kin : Summon damaging projectiles proportionate to healing done
+            if (healer.GetModPlayer<excelPlayer>().lostKin && target != healer)
             {
-                healer.GetModPlayer<excelPlayer>().HolyKnightSetBonus += (target.statLife - lifeBeforeHeal);
-            }
-            if (healer.GetModPlayer<excelPlayer>().FloralSet)
-            {
-                // doesnt work if healer healed themself
-                if (target != healer)
+                if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    target.AddBuff(ModContent.BuffType<Buffs.ClericBonus.FloralBeauty>(), GetBuffTime(healer, 8));
-                    healer.AddBuff(ModContent.BuffType<Buffs.ClericBonus.FloralBeauty>(), GetBuffTime(healer, 4));
+                    for (var i = 0; i < Math.Floor((double)(healAmount / 6 + 1)); i++)
+                    {
+                        Projectile.NewProjectile(healer.GetSource_FromThis(), target.Center, new Vector2(1.4f).RotateRandom(MathHelper.ToRadians(360)), ModContent.ProjectileType<Items.Accessories.Cleric.Healing.DarkEnergy>(), 20, 0, healer.whoAmI);
+                    }
+                }
+            }
+
+            // Soothing Cream : Removes time from On Fire!
+            if (healer.GetModPlayer<excelPlayer>().soothingCream)
+            {
+                for (var i = 0; i < target.CountBuffs(); i++)
+                {
+                    if (target.buffType[i] == BuffID.OnFire)
+                    {
+                        target.buffTime[i] -= 30;
+                    }
                 }
             }
 
             #endregion
 
+            // Prevents from not healing/reverse healing
+            if (healAmount < 1)
+                healAmount = 1;
 
+            // this is done to allow unique healing calculations to be done without this been taken into consideration
+            if (healRate != -1)
+            {
+                target.HealEffect(healAmount, true);
+                target.statLife += healAmount;
+
+                if (target.statLife > target.statLifeMax2)
+                {
+                    target.statLife = target.statLifeMax2;
+                }
+                NetMessage.SendData(66, -1, -1, null, target.whoAmI, healAmount, 0f, 0f, 0, 0, 0);
+            }
+
+            PostHealEffects(target, healer);
+        
             // Decreases anguished soul time when healing allies
             if (healer.HasBuff(ModContent.BuffType<Buffs.ClericCld.AnguishedSoul>()))
             {
                 var soul = healer.FindBuffIndex(ModContent.BuffType<Buffs.ClericCld.AnguishedSoul>());
-                healer.buffTime[soul] -= (target.statLife - lifeBeforeHeal) * 30;
+                healer.buffTime[soul] -= (target.statLife - priorHealth) * 30;
             }
 
             var GetClassPlayer = healer.GetModPlayer<ClericClassPlayer>();
             if (target != healer)
-                GetClassPlayer.radianceStatCurrent += (target.statLife - lifeBeforeHeal);
-
-            if (target.statLife > target.statLifeMax2)
-            {
-                target.statLife = target.statLifeMax2;
-            }
-            NetMessage.SendData(66, -1, -1, null, target.whoAmI, target.statLife - lifeBeforeHeal, 0f, 0f, 0, 0, 0);
+                GetClassPlayer.radianceStatCurrent += (target.statLife - priorHealth);
 
             // still want this to happen to heals with special properties
             healPenetrate--;
+            Projectile.netUpdate = true;
+
             Projectile.netUpdate = true;
 
             if (healPenetrate == 0)

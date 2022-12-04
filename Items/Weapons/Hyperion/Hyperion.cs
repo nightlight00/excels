@@ -277,7 +277,7 @@ namespace excels.Items.Weapons.Hyperion
             Item.noMelee = true;
             Item.rare = 4;
             Item.shoot = ModContent.ProjectileType<HyperionDrainWave>();
-            Item.shootSpeed = 8.4f;
+            Item.shootSpeed = 4.2f;
             Item.UseSound = SoundID.Item43;
             Item.autoReuse = true;
 
@@ -334,12 +334,13 @@ namespace excels.Items.Weapons.Hyperion
         {
             Projectile.width = Projectile.height = 30;
             Projectile.ignoreWater = true;
-            Projectile.timeLeft = 100;
+            Projectile.timeLeft = 200;
             Projectile.penetrate = 3;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 50;
+            Projectile.localNPCHitCooldown = 100;
             Projectile.alpha = 70;
             Projectile.friendly = true;
+            Projectile.extraUpdates = 2;
 
             canDealDamage = true;
         }
@@ -393,15 +394,14 @@ namespace excels.Items.Weapons.Hyperion
             Texture2D texture = Mod.Assets.Request<Texture2D>("Items/Weapons/Hyperion/HyperionDrainWave").Value;
 
             // Redraw the projectile with the color not influenced by light
+            float scale = 0.9f;
             for (int k = 0; k < Projectile.oldPos.Length; k++)
             {
-                if (k % 2 == 0)
-                {
-                    Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
-                    Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
-                    Color color = (Color.White * 0.66f) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
-                    Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.rotation, drawOrigin, 1, SpriteEffects.None, 0);
-                }
+                Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
+                Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
+                Color color = (Color.White * 0.66f) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
+                Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.rotation, drawOrigin, scale, SpriteEffects.None, 0);
+                scale -= 0.3f / 16;
             }
 
             return true;

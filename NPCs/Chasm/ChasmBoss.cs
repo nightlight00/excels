@@ -119,16 +119,23 @@ namespace excels.NPCs.Chasm
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Placeable.Decorations.Trophies.ChasmTrophy>(), 10));
 			npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<Items.Bags.BagChasm>()));
 
 			LeadingConditionRule leadingConditionRule = new LeadingConditionRule(new Conditions.NotExpert());
+			leadingConditionRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Vanity.ChasmMask>(), 7));
 			int[] WeapDrops = {
 				ModContent.ItemType<Items.Weapons.Chasm.Skewer>(),
-				ModContent.ItemType<Items.Weapons.Chasm.V90>()
+				ModContent.ItemType<Items.Weapons.Chasm.V90>(),
+				ModContent.ItemType<Items.Weapons.Chasm.GraspofDisease>()
 			};
 			leadingConditionRule.OnSuccess(ItemDropRule.OneFromOptions(1, WeapDrops));
-			leadingConditionRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Vanity.ChasmMask>(), 7));
 			npcLoot.Add(leadingConditionRule);
+
+			// rule that checks if in master mode
+			LeadingConditionRule leadingConditionRule2 = new LeadingConditionRule(new Conditions.IsMasterMode());
+			leadingConditionRule2.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Placeable.Decorations.Relics.ChasmRelic>(), 1));
+			npcLoot.Add(leadingConditionRule2);
 		}
 
 		public override void HitEffect(int hitDirection, double damage)

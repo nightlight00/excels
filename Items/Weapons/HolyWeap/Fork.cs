@@ -62,7 +62,12 @@ namespace excels.Items.Weapons.HolyWeap
 			return true;
         }
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+		public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+		{
+			if (target.GetGlobalNPC<excelNPC>().BlessedSpell < 180)
+				target.GetGlobalNPC<excelNPC>().BlessedSpell = 180;
+		}
+		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
 			if (player.altFunctionUse == 2)
             {
@@ -100,6 +105,7 @@ namespace excels.Items.Weapons.HolyWeap
 			healRate = 0;
 			healPower = 6;
 		}
+
 
 		public override void AI()
 		{
@@ -140,7 +146,11 @@ namespace excels.Items.Weapons.HolyWeap
 
 			clericEvil = false;
 		}
-
+		public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+		{
+			if (target.GetGlobalNPC<excelNPC>().BlessedSpell < 420)
+				target.GetGlobalNPC<excelNPC>().BlessedSpell = 420;
+		}
 		public override bool CanUseItem(Player player)
 		{
 			if (player.altFunctionUse == 2)

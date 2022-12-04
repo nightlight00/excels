@@ -36,7 +36,7 @@ namespace excels.Items.WeaponHeal.Hallow
 			Item.sellPrice(0, 1, 50);
 
 			Item.mana = 10;
-			healAmount = 7;
+			healAmount = 11;
 		}
 
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -182,7 +182,7 @@ namespace excels.Items.WeaponHeal.Hallow
 			Item.sellPrice(0, 3);
 
 			Item.mana = 15;
-			healAmount = 10;
+			healAmount = 16;
 		}
 
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -295,7 +295,7 @@ namespace excels.Items.WeaponHeal.Hallow
 			Item.sellPrice(0, 5);
 
 			Item.mana = 18;
-			healAmount = 9;
+			healAmount = 13;
 		}
 
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

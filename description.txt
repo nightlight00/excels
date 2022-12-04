@@ -10,9 +10,9 @@ List of Major content in the mod :
 - 3 new bosses 
 - 2 new town npcs
 - 100+ new weapons
-- 15+ healing tools
+- 20+ healing tools
 - 12 new armor sets
-- 20+ new accessories
+- 25+ new accessories
 - 8 new ammunitions
 - new worldgen
 - 1 custom music track
@@ -33,6 +33,7 @@ And we have a wiki!  It is missing mostly weapon pages, but most of the importan
 
 ~ version log ~
 
+1.2.8 - added several new weapons, rewards for geologist quests, few accessories, and new paint job for spell potions
 1.2.7 - added Geologist, along with several weapons, a healing tool, and reworks to the wooden cross and its upgrades
 1.2.6 - added 8 flamethrowers, 5 flamethrower ammunitions, 2 support tools, lots of balance changes and fixes
 1.2.5 - added radiance bar, 2 weapons, and an accessory

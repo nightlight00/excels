@@ -72,7 +72,7 @@ namespace excels.NPCs.Fossil
             NPC.npcSlots = 1;
 
             Banner = NPC.type;
-            BannerItem = ModContent.ItemType<Tiles.Banners.BItems.BannerRexxie>();
+            BannerItem = ModContent.ItemType<Tiles.Decorations.Banners.BItems.BannerRexxie>();
         }
 
         public override void AI()
@@ -210,7 +210,7 @@ namespace excels.NPCs.Fossil
             NPC.npcSlots = 1;
 
             Banner = NPC.type;
-            BannerItem = ModContent.ItemType<Tiles.Banners.BItems.BannerFossiliraptor>();
+            BannerItem = ModContent.ItemType<Tiles.Decorations.Banners.BItems.BannerFossiliraptor>();
         }
 
         public override void HitEffect(int hitDirection, double damage)

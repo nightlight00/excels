@@ -36,6 +36,11 @@ namespace excels.Items.Weapons.HolyWeap
 			clericEvil = true;
 		}
 
+		public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+		{
+			if (target.GetGlobalNPC<excelNPC>().BlessedSpell < 300)
+				target.GetGlobalNPC<excelNPC>().BlessedSpell = 300;
+		}
 		public override bool CanUseItem(Player player)
 		{
 			if (player.altFunctionUse == 2)

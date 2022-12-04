@@ -50,7 +50,7 @@ namespace excels.Items.Weapons.Midnight
                 // add starlight sword later
                 .AddIngredient(ItemID.MeteoriteBar, 9)
                 .AddIngredient(ItemID.HellstoneBar, 9)
-                .AddTile(ModContent.TileType<Tiles.Misc.StarlightAnvilTile>())
+                .AddTile(ModContent.TileType<Tiles.Stations.StarlightAnvilTile>())
                 .Register();
         }
 

@@ -22,7 +22,7 @@ namespace excels.Items.Bags
 					case 0:
 						player.QuickSpawnItem(player.GetSource_FromThis(), ModContent.ItemType<Weapons.Sword1.CatsClaw>());
 						player.QuickSpawnItem(player.GetSource_FromThis(), ModContent.ItemType<Vanity.DevCoat>());
-						player.QuickSpawnItem(player.GetSource_FromThis(), ModContent.ItemType<Items.Furniture.Random.NightLightLamp>());
+						player.QuickSpawnItem(player.GetSource_FromThis(), ModContent.ItemType<Items.Placeable.Decorations.Misc.NightLightLamp>());
 						break;
 					case 1:
 						player.QuickSpawnItem(player.GetSource_FromThis(), ModContent.ItemType<Vanity.AcesGoldFoxMask>());
@@ -158,7 +158,7 @@ namespace excels.Items.Bags
 			player.QuickSpawnItem(player.GetSource_FromThis(), ModContent.ItemType<Accessories.Expert.NiflheimExpertAcc>());
 			
 			player.QuickSpawnItem(player.GetSource_FromThis(), ModContent.ItemType<Items.Materials.GlacialOre>(), Main.rand.Next(66, 100));
-			switch (Main.rand.Next(3))
+			switch (Main.rand.Next(4))
 			{
 				case 0:
 					player.QuickSpawnItem(player.GetSource_FromThis(), ModContent.ItemType<Weapons.Glacial.Boss.DarkEye > ());
@@ -168,11 +168,16 @@ namespace excels.Items.Bags
 					break;
 				case 2:
 					player.QuickSpawnItem(player.GetSource_FromThis(), ModContent.ItemType<Weapons.Glacial.Boss.FrozenChainblade>());
-					break; 
+					break;
+				case 3:
+					player.QuickSpawnItem(player.GetSource_FromThis(), ModContent.ItemType<Weapons.ThrowPotions.SnowSpellPot>());
+					break;
 			}
 
-			if (Main.rand.NextBool(4))
+			if (Main.rand.NextBool())
 				player.QuickSpawnItem(player.GetSource_FromThis(), ModContent.ItemType<Items.Accessories.Random.SnowflakeAmulet>());
+
+			player.QuickSpawnItem(player.GetSource_FromThis(), ModContent.ItemType<Misc.SnowFlower>());
 
 			//player.QuickSpawnItem(player.GetItemSource_OpenItem(ModContent.ItemType<BagNiflheim>()), ModContent.ItemType<Items.Weapons.Glacial.Boss.DarkEye>());
 			////player.QuickSpawnItem(ItemType<PurityTotem>());
@@ -215,13 +220,16 @@ namespace excels.Items.Bags
 			ModdedDevItems(player);
 
 			player.QuickSpawnItem(player.GetSource_FromThis(), ModContent.ItemType<Accessories.Expert.ChasmExpertAcc>());
-			switch (Main.rand.Next(2)) 
+			switch (Main.rand.Next(3)) 
 			{
 				case 0:
 					player.QuickSpawnItem(player.GetSource_FromThis(), ModContent.ItemType<Weapons.Chasm.Skewer>());
 					break;
 				case 1:
 					player.QuickSpawnItem(player.GetSource_FromThis(), ModContent.ItemType<Weapons.Chasm.V90>());
+					break;
+				case 2:
+					player.QuickSpawnItem(player.GetSource_FromThis(), ModContent.ItemType<Weapons.Chasm.GraspofDisease>());
 					break;
 			}
 			if (Main.rand.NextBool(7))

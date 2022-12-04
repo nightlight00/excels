@@ -12,6 +12,7 @@ using System;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using ReLogic.Graphics;
+using excels.Items.Misc;
 
 namespace excels.UI
 {
@@ -34,16 +35,15 @@ namespace excels.UI
 			area = new UIElement();
 			area.Left.Set((Main.screenWidth / 5) * 2 - (area.Width.Pixels / 2), 0f); // Place the resource bar to the left of the hearts.
 			//area.Top.Set((Main.screenHeight / 2) - (barFrame.Height.Pixels) + 80, 0f); // Placing it just a bit below the top of the screen.
-			area.Width.Set(182, 0f); // We will be placing the following 2 UIElements within this 182x60 area.
-			area.Height.Set(60, 0f);
-			
-			barFrame = new UIImage(Request<Texture2D>("excels/UI/RadianceBar"));
-			barFrame.Left.Set(22, 0f);
-			barFrame.Top.Set(0, 0f);
-			barFrame.Width.Set(138, 0f);
-			barFrame.Height.Set(34, 0f);
-
+			area.Width.Set(138, 0f); // We will be placing the following 2 UIElements within this 182x60 area.
+			area.Height.Set(44, 0f);
 			area.Top.Set(80, 0f);
+
+			//barFrame = new UIImage(Request<Texture2D>("excels/UI/RadianceBarFrame"));
+			//barFrame.Left.Set(22, 0f);
+			//barFrame.Top.Set(0, 0f);
+			//barFrame.Width.Set(138, 0f);
+			//barFrame.Height.Set(44, 0f);
 
 	//		text = new UIText("0/0", 0.8f); // text to show stat
 	//		text.Width.Set(138, 0f);
@@ -55,24 +55,25 @@ namespace excels.UI
 			gradientB = new Color(255, 242, 0); // lighter
 
 		//	area.Append(text);
-			area.Append(barFrame);
+			//area.Append(barFrame);
 			Append(area);
 		}
 
 		public override void Draw(SpriteBatch spriteBatch)
 		{
 			// This prevents drawing unless we are using an ExampleDamageItem
-			if (!(Main.LocalPlayer.HeldItem.ModItem is ClericDamageItem))
-				return;
+			//if (!(Main.LocalPlayer.HeldItem.ModItem is ClericDamageItem))
+			//	return;
 
 			base.Draw(spriteBatch);
+			//area.
 
 			// draw the text when hovered over
 			float posX = Main.MouseWorld.X - Main.screenPosition.X;
 			float posY = Main.MouseWorld.Y - Main.screenPosition.Y;
 
 			Vector2 drawPos = (Main.MouseWorld - Main.screenPosition);
-			Rectangle hitbox = barFrame.GetInnerDimensions().ToRectangle();
+			Rectangle hitbox = area.GetInnerDimensions().ToRectangle();
 			var modPlayer = Main.LocalPlayer.GetModPlayer<ClericClassPlayer>();
 
 			drawPos.X += 20;
@@ -93,7 +94,7 @@ namespace excels.UI
 			quotient = Utils.Clamp(quotient, 0f, 1f); // Clamping it to 0-1f so it doesn't go over that.
 
 			// Here we get the screen dimensions of the barFrame element, then tweak the resulting rectangle to arrive at a rectangle within the barFrame texture that we will draw the gradient. These values were measured in a drawing program.
-			Rectangle hitbox = barFrame.GetInnerDimensions().ToRectangle();
+			Rectangle hitbox = area.GetInnerDimensions().ToRectangle();
 			hitbox.X += 10; // 12
 			hitbox.Width -= 26; // 24
 			hitbox.Y += 4; // 8
@@ -111,16 +112,22 @@ namespace excels.UI
 			}
 
 			Texture2D inside = ModContent.Request<Texture2D>("excels/UI/RadianceBarInside").Value;
-			Color grad1 = new Color(255, 187, 140);
+			Color grad1 = new Color(255, 187, 140, 100);
+			if (Main.LocalPlayer.GetModPlayer<SnowFlowerPlayer>().SnowFlowerConsumed)
+			{
+				inside = ModContent.Request<Texture2D>("excels/UI/RadianceBarInsideSnow").Value;
+				grad1 = new Color(142, 183, 242, 100);
+			}
+
 			if (Main.LocalPlayer.GetModPlayer<excelPlayer>().hyperionHeart)
 			{
 				inside = ModContent.Request<Texture2D>("excels/UI/RadianceBarInsideHyper").Value;
-				grad1 = new Color(130, 145, 238);
+				grad1 = new Color(130, 145, 238, 100);
 			}
 			if (Main.LocalPlayer.HasBuff(ModContent.BuffType<Buffs.ClericCld.AnguishedSoul>()))
             {
 				inside = ModContent.Request<Texture2D>("excels/UI/RadianceBarInsideAnguish").Value;
-				grad1 = new Color(216, 34, 106);
+				grad1 = new Color(216, 34, 106, 100);
 			}
 
 			// draws the current amount
@@ -128,16 +135,24 @@ namespace excels.UI
 			{
 				//float percent = (float)i / steps; // Alternate Gradient Approach
 				float percent = (float)i / (right - left);
-				spriteBatch.Draw(inside, new Rectangle(left + i, hitbox.Y, 1, hitbox.Height), Color.Lerp(grad1, Color.White, percent)); // Color.Lerp(c1, c2, percent));
+				spriteBatch.Draw(inside, new Rectangle(left + i, hitbox.Y, 1, hitbox.Height), Color.Lerp(grad1, new Color(255, 255, 255, 100), percent)); // Color.Lerp(c1, c2, percent));
 			}
+
+			Texture2D texture = ModContent.Request<Texture2D>("excels/UI/RadianceBarFrame").Value;
+			int frameHeight = 44;
+			var frame = texture.Frame(1, 2, 0, (Main.LocalPlayer.GetModPlayer<SnowFlowerPlayer>().SnowFlowerConsumed)?1:0);
+			Main.EntitySpriteDraw(texture,
+				new Vector2(hitbox.X+(hitbox.Width/2), hitbox.Y+(hitbox.Height/2)),
+				frame, Color.White, 0, frame.Size() / 2, 1, SpriteEffects.None, 0);
+
 		}
 
 		public override void Update(GameTime gameTime)
 		{
 			base.Update(gameTime);
 
-			if (!(Main.LocalPlayer.HeldItem.ModItem is ClericDamageItem))
-				return;
+			//if (!(Main.LocalPlayer.HeldItem.ModItem is ClericDamageItem))
+			//	return;
 
 			//if (ContainsPoint(Main.MouseScreen))
 			//	Main.LocalPlayer.mouseInterface = true;

@@ -94,27 +94,32 @@ namespace excels.Items.WeaponHeal.Generic
 			d.scale *= 1.25f;
         }
 
-        public override void Kill(int timeLeft)
-        {
-            for (var i = 0; i < 20; i++)
-            {
+		public override void Kill(int timeLeft)
+		{
+			for (var i = 0; i < 20; i++)
+			{
 				Vector2 vel = new Vector2(Main.rand.NextFloat(0.25f, 2.25f)).RotatedByRandom(MathHelper.ToRadians(180));
 				Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 204);
 				d.scale = Main.rand.NextFloat(1.15f, 1.35f);
 				d.fadeIn = d.scale * 1.15f;
 				d.velocity = vel;
-            }
+			}
 			for (var p = 0; p < Main.maxProjectiles; p++)
-            {
+			{
 				Projectile proj = Main.projectile[p];
 				if (proj.active)
-                {
+				{
 					if (proj.type == Projectile.ai[1] && proj.owner == Main.player[Projectile.owner].whoAmI)
 						proj.Kill();
-                }
-            }
-			Projectile proj2 = Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Zero, (int)Projectile.ai[1], 0, 0, Main.player[Projectile.owner].whoAmI);
-			proj2.GetGlobalProjectile<excelProjectile>().healStrength = Projectile.GetGlobalProjectile<excelProjectile>().healStrength;
+				}
+			}
+			if (Main.netMode != NetmodeID.MultiplayerClient)
+			{
+				Projectile proj2 = Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Zero, (int)Projectile.ai[1], 0, 0, Main.player[Projectile.owner].whoAmI);
+				proj2.GetGlobalProjectile<excelProjectile>().healStrength = Projectile.GetGlobalProjectile<excelProjectile>().healStrength;
+				proj2.GetGlobalProjectile<excelProjectile>().healRate = Projectile.GetGlobalProjectile<excelProjectile>().healRate;
+				proj2.netUpdate = true;
+			}
 		}
 
         public override bool PreDraw(ref Color lightColor)

@@ -34,9 +34,6 @@ namespace excels.NPCs.Town
             NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 Velocity = 1f, // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
-                Direction = 1 // -1 is left and 1 is right. NPCs are drawn facing the left by default but ExamplePerson will be drawn facing the right
-                              // Rotation = MathHelper.ToRadians(180) // You can also change the rotation of an NPC. Rotation is measured in radians
-                              // If you want to see an example of manually modifying these when the NPC is drawn, see PreDraw
             };
 
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
@@ -157,9 +154,14 @@ namespace excels.NPCs.Town
             return false;
         }
 
-        private void DeliveredItem()
+        private void DeliveredItem(int rewardAmount = 1, int reward = -1)
         {
-            SoundEngine.PlaySound(SoundID.Item37);
+            if (rewardAmount > 0)
+                if (reward == -1)
+                    Main.LocalPlayer.QuickSpawnItem(NPC.GetSource_FromAI(), ModContent.ItemType<Items.Misc.GeoSac>(), rewardAmount);
+                else
+                    Main.LocalPlayer.QuickSpawnItem(NPC.GetSource_FromAI(), reward, rewardAmount);
+            SoundEngine.PlaySound(SoundID.CoinPickup);
             Main.npcChatText = "Thank you!  Come again for your next task!";
             Main.npcChatCornerItem = ItemID.None;
             currentFetchQuest++;
@@ -236,7 +238,7 @@ namespace excels.NPCs.Town
 
                     case 4:
                         if (HasProperItemCount(ItemID.Marble, 25))
-                            DeliveredItem();
+                            DeliveredItem(0);
                         else
                             Main.npcChatText = "Would you mind fetching me 25 pieces of Marble, please?";
                         Main.npcChatCornerItem = ItemID.Marble;
@@ -244,7 +246,7 @@ namespace excels.NPCs.Town
 
                     case 5:
                         if (HasProperItemCount(ItemID.Granite, 8))
-                            DeliveredItem();
+                            DeliveredItem(0);
                         else
                             Main.npcChatText = "Would you mind fetching me 25 pieces of Granite, please?";
                         Main.npcChatCornerItem = ItemID.Granite;
@@ -322,7 +324,7 @@ namespace excels.NPCs.Town
 
                     case 12:
                         if (HasProperItemCount(ModContent.ItemType<SkylineOre>(), 15))
-                            DeliveredItem();
+                            DeliveredItem(2);
                         else
                             Main.npcChatText = "Would you mind fetching me 15 chunks of Skyline Ore, please?";
                         Main.npcChatCornerItem = ModContent.ItemType<SkylineOre>();
@@ -346,7 +348,7 @@ namespace excels.NPCs.Town
 
                     case 15:
                         if (HasProperItemCount(ItemID.LifeCrystal, 2))
-                            DeliveredItem();
+                            DeliveredItem(2);
                         else
                             Main.npcChatText = "Would you mind fetching me 2 Life Crystals, please?";
                         Main.npcChatCornerItem = ItemID.LifeCrystal;
@@ -381,7 +383,7 @@ namespace excels.NPCs.Town
 
                     case 18:
                         if (HasProperItemCount(ItemID.Hellstone, 25))
-                            DeliveredItem();
+                            DeliveredItem(2);
                         else
                             Main.npcChatText = "Would you mind fetching me 25 pieces of Hellstone, please?";
                         Main.npcChatCornerItem = ItemID.Hellstone;
@@ -389,7 +391,7 @@ namespace excels.NPCs.Town
 
                     case 19:
                         if (HasProperItemCount(ModContent.ItemType<GlacialOre>(), 25))
-                            DeliveredItem();
+                            DeliveredItem(reward: ModContent.ItemType<Items.Accessories.Random.ApprenticesMedallion>());
                         else
                             Main.npcChatText = "Would you mind fetching me 25 chunks of Glacial Ore, please?";
                         Main.npcChatCornerItem = ModContent.ItemType<GlacialOre>();
@@ -402,7 +404,7 @@ namespace excels.NPCs.Town
                         if (WorldGen.SavedOreTiers.Cobalt == TileID.Cobalt)
                         {
                             if (HasProperItemCount(ItemID.CobaltOre, 30))
-                                DeliveredItem();
+                                DeliveredItem(2);
                             else
                                 Main.npcChatText = "Would you mind fetching me 30 chunks of Cobalt Ore, please?";
                             Main.npcChatCornerItem = ItemID.CobaltOre;
@@ -410,7 +412,7 @@ namespace excels.NPCs.Town
                         else
                         {
                             if (HasProperItemCount(ItemID.PalladiumOre, 30))
-                                DeliveredItem();
+                                DeliveredItem(2);
                             else
                                 Main.npcChatText = "Would you mind fetching me 30 chunks of Palladium Ore, please?";
                             Main.npcChatCornerItem = ItemID.PalladiumOre;
@@ -421,7 +423,7 @@ namespace excels.NPCs.Town
                         if (!Main.hardMode)
                             break;
                         if (HasProperItemCount(ItemID.CrystalShard, 15))
-                            DeliveredItem();
+                            DeliveredItem(2);
                         else
                             Main.npcChatText = "Would you mind fetching me 15 Crystal Shards, please?";
                         Main.npcChatCornerItem = ItemID.CrystalShard;
@@ -434,7 +436,7 @@ namespace excels.NPCs.Town
                         if (WorldGen.SavedOreTiers.Mythril == TileID.Mythril)
                         {
                             if (HasProperItemCount(ItemID.MythrilOre, 36))
-                                DeliveredItem();
+                                DeliveredItem(2);
                             else
                                 Main.npcChatText = "Would you mind fetching me 36 chunks of Mythril Ore, please?";
                             Main.npcChatCornerItem = ItemID.MythrilOre;
@@ -442,7 +444,7 @@ namespace excels.NPCs.Town
                         else
                         {
                             if (HasProperItemCount(ItemID.OrichalcumOre, 36))
-                                DeliveredItem();
+                                DeliveredItem(2);
                             else
                                 Main.npcChatText = "Would you mind fetching me 36 chunks of Orichalcum Ore, please?";
                             Main.npcChatCornerItem = ItemID.OrichalcumOre;
@@ -456,7 +458,7 @@ namespace excels.NPCs.Town
                         if (WorldGen.SavedOreTiers.Adamantite == TileID.Adamantite)
                         {
                             if (HasProperItemCount(ItemID.AdamantiteOre, 42))
-                                DeliveredItem();
+                                DeliveredItem(2);
                             else
                                 Main.npcChatText = "Would you mind fetching me 42 chunks of Adamantite Ore, please?";
                             Main.npcChatCornerItem = ItemID.AdamantiteOre;
@@ -464,7 +466,7 @@ namespace excels.NPCs.Town
                         else
                         {
                             if (HasProperItemCount(ItemID.TitaniumOre, 42))
-                                DeliveredItem();
+                                DeliveredItem(2);
                             else
                                 Main.npcChatText = "Would you mind fetching me 42 chunks of Titanium Ore, please?";
                             Main.npcChatCornerItem = ItemID.TitaniumOre;
@@ -473,7 +475,7 @@ namespace excels.NPCs.Town
 
                     case 24:
                         if (HasProperItemCount(ModContent.ItemType<HyperionCrystal>(), 20))
-                            DeliveredItem();
+                            DeliveredItem(3);
                         else
                             Main.npcChatText = "Would you mind fetching me 20 Hyperion Crystals, please?";
                         Main.npcChatCornerItem = ModContent.ItemType<HyperionCrystal>();
@@ -481,11 +483,22 @@ namespace excels.NPCs.Town
 
                     case 25:
                         if (!NPC.downedMechBoss1 || !NPC.downedMechBoss2 || !NPC.downedMechBoss3)
-                        if (HasProperItemCount(ItemID.ChlorophyteOre, 50))
-                            DeliveredItem();
-                        else
-                            Main.npcChatText = "Would you mind fetching me 50 chunks of Chlorophyte Ore, please?";
+                            if (HasProperItemCount(ItemID.ChlorophyteOre, 50))
+                                DeliveredItem(reward: ModContent.ItemType<Items.Accessories.Random.MastersMedallion>());
+                            else
+                                Main.npcChatText = "Would you mind fetching me 50 chunks of Chlorophyte Ore, please?";
                         Main.npcChatCornerItem = ItemID.ChlorophyteOre;
+                        break;
+
+                    case 26:
+                        if (!NPC.downedMoonlord)
+                        {
+                            if (HasProperItemCount(ItemID.LunarOre, 25))
+                                DeliveredItem(10, ItemID.LunarBar);
+                            else
+                                Main.npcChatText = "Would you mind fetching me 25 chunks of Luminite Ore, please?";
+                            Main.npcChatCornerItem = ItemID.LunarOre;
+                        }
                         break;
                 }
             }
@@ -504,12 +517,28 @@ namespace excels.NPCs.Town
                 nextSlot++;
             } // Fossil Battler Pickaxe
 
+            if (currentFetchQuest > 19)
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Accessories.Random.ApprenticesMedallion>());
+                shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 10, 0, 0);
+                nextSlot++;
+            } // Apprentice's Medallion
+            if (currentFetchQuest > 25)
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Accessories.Random.MastersMedallion>());
+                shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 25, 0, 0);
+                nextSlot++;
+            }// Master's Medallion
             if (currentFetchQuest > 15)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.HeartLantern);
                 shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 0, 50);
                 nextSlot++;
             } // Heart Lantern
+
+            shop.item[nextSlot].SetDefaults(ItemID.StoneBlock);
+            shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 0, 0, 5);
+            nextSlot++;
             if (currentFetchQuest > 4)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.Marble);
@@ -674,7 +703,13 @@ namespace excels.NPCs.Town
                 } // Chlorophyte
 
                 shop.item[nextSlot].SetDefaults(ItemID.Geode);
-                shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 0, 85);
+                shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 2); 
+                nextSlot++;
+            }
+            if (currentFetchQuest > 26 && NPC.downedMoonlord)
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.LunarOre);
+                shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 1); 
                 nextSlot++;
             }
 

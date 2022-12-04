@@ -41,7 +41,7 @@ namespace excels.NPCs.Space
             NPC.knockBackResist = 0.7f;
 
             Banner = NPC.type;
-            BannerItem = ModContent.ItemType<Tiles.Banners.BItems.BannerSkylineSentinal>();
+            BannerItem = ModContent.ItemType<Tiles.Decorations.Banners.BItems.BannerSkylineSentinal>();
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)

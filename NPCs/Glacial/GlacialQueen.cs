@@ -127,6 +127,7 @@ namespace excels.NPCs.Glacial
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Placeable.Decorations.Trophies.NiflheimTrophy>(), 10));
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<Items.Bags.BagNiflheim>()));
 
             // rule that checks if not expert mode
@@ -136,11 +137,18 @@ namespace excels.NPCs.Glacial
             int[] WeapDrops = {
                 ModContent.ItemType<Items.Weapons.Glacial.Boss.DarkEye>(),
                 ModContent.ItemType<Items.Weapons.Glacial.Boss.Nastrond>(),
-                ModContent.ItemType<Items.Weapons.Glacial.Boss.FrozenChainblade>()
+                ModContent.ItemType<Items.Weapons.Glacial.Boss.FrozenChainblade>(),
+                ModContent.ItemType<Items.Weapons.ThrowPotions.SnowSpellPot>()
             };
-            leadingConditionRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Accessories.Random.SnowflakeAmulet>(), 4));
-            leadingConditionRule.OnSuccess(ItemDropRule.OneFromOptions(1, WeapDrops)); 
+            leadingConditionRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Accessories.Random.SnowflakeAmulet>(), 2));
+            leadingConditionRule.OnSuccess(ItemDropRule.OneFromOptions(1, WeapDrops));
+            leadingConditionRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Misc.SnowFlower>()));
             npcLoot.Add(leadingConditionRule);
+
+            // rule that checks if in master mode
+            LeadingConditionRule leadingConditionRule2 = new LeadingConditionRule(new Conditions.IsMasterMode());
+            leadingConditionRule2.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Placeable.Decorations.Relics.NiflheimRelic>(), 1));
+            npcLoot.Add(leadingConditionRule2);
         }
 
         public override void OnKill()

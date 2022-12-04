@@ -150,10 +150,9 @@ namespace excels.NPCs.Stellar
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Placeable.Decorations.Trophies.StellarTrophy>(), 10));
+
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<Items.Bags.BagStarship>()));
-
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Furniture.Trophy.StellarTrophy>(), 10));
-
             // rule that checks if not expert mode
             LeadingConditionRule leadingConditionRule = new LeadingConditionRule(new Conditions.NotExpert());
             leadingConditionRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Vanity.StellarStarshipMask>(), 7));
@@ -162,7 +161,7 @@ namespace excels.NPCs.Stellar
 
             // rule that checks if in master mode
             LeadingConditionRule leadingConditionRule2 = new LeadingConditionRule(new Conditions.IsMasterMode());
-            leadingConditionRule2.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Furniture.Relics.StellarStarshipRelic>(), 1));
+            leadingConditionRule2.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Placeable.Decorations.Relics.StellarStarshipRelic>(), 1));
             npcLoot.Add(leadingConditionRule2);
         }
 

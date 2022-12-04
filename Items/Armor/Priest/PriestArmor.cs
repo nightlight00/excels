@@ -44,7 +44,7 @@ namespace excels.Items.Armor.Priest
             var modPlayer = ClericClassPlayer.ModPlayer(player);
             player.setBonus = Language.GetTextValue("Mods.excels.ItemDescriptions.ArmorSetBonus.PriestSet");
 
-            modPlayer.radianceRegenRate -= 0.2f;
+            modPlayer.radianceRegenRate += 1;
             if (player.ownedProjectileCounts[ModContent.ProjectileType<PriestsAura>()] == 0)
             {
                 Projectile.NewProjectile(player.GetSource_FromThis(), player.Center, Vector2.Zero, ModContent.ProjectileType<PriestsAura>(), 0, 0, player.whoAmI);

@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.DataStructures;
 using Terraria.ModLoader.IO;
 using Terraria.Localization;
+using Terraria.Utilities;
+using excels.Prefixes;
 
 namespace excels
 {
@@ -35,7 +37,15 @@ namespace excels
 			);
 		}
 
-		public override bool UseStandardCritCalcs => true;
+        public override bool ShowStatTooltipLine(Player player, string lineName)
+        {
+			if (lineName == "Speed")
+				return true;
+
+			return true;
+        }
+
+        public override bool UseStandardCritCalcs => true;
 
 	}
 
@@ -46,7 +56,6 @@ namespace excels
 			return player.GetModPlayer<ClericClassPlayer>();
 		}
 
-		// radiant is mispelled lol
 		public int clericRadiantAdd;
 		public float clericRadiantMult = 1f;
 		public int clericNecroticAdd;
@@ -56,16 +65,19 @@ namespace excels
 		public int clericCrit;
 
 		public int radianceStatCurrent;
-		int radianceStatDefaultMax = 70;
+		int radianceStatDefaultMax = 90;
 		public int radianceStatMax;
 		public int radianceStatMax2;
 		int radianceRegenTimer = 0;
-		public float radianceRegenRate = 1;
+		public int radianceRegenRate = 4;
 		public int radianceRegenTimeChange = 0;
+		int timeSinceUse = 0;
+		int lastRadianceCurrent;
 
 		public override void Initialize()
 		{
 			radianceStatMax = radianceStatDefaultMax;
+			lastRadianceCurrent = radianceStatCurrent;
 		}
 
 		public override void ResetEffects()
@@ -88,30 +100,34 @@ namespace excels
 			clericKnockback = 0f;
 			clericCrit = 0;
 
-			radianceRegenRate = 1;
+			radianceRegenRate = Math.Clamp((int)Math.Floor((double)timeSinceUse/40), 1, 4);
 			radianceRegenTimeChange = 0;
 			radianceStatMax2 = radianceStatMax;
+			if (Player.GetModPlayer<Items.Misc.SnowFlowerPlayer>().SnowFlowerConsumed)
+				radianceStatMax2 += 20;
 		}
 
         public override void UpdateLifeRegen()
         {
-			radianceRegenTimer++; //Increase it by 60 per second, or 1 per tick.
-			radianceRegenRate = Utils.Clamp(radianceRegenRate, 0.05f, 99);
+			if (radianceStatCurrent < lastRadianceCurrent)
+            {
+				timeSinceUse = 0;
+            }
 
-			int start = 50;
-			if (Player.HasBuff(ModContent.BuffType<Buffs.ClericCld.AnguishedSoul>()))
-				start = 35;
+			radianceRegenTimer += radianceRegenRate;
 
-			if (radianceRegenTimer > start * (radianceRegenRate - radianceRegenTimeChange))
-			{
-				radianceStatCurrent += 1;
-				radianceRegenTimer = 0;
-			}
+			while (radianceRegenTimer > 80)
+            {
+				radianceStatCurrent++;
+				radianceRegenTimer -= 20;
+            }
 
 			if (Player.creativeGodMode)
-				radianceStatCurrent += 10;
+				radianceStatCurrent += 33;
 
 			radianceStatCurrent = Utils.Clamp(radianceStatCurrent, 0, radianceStatMax2);
+			lastRadianceCurrent = radianceStatCurrent;
+			timeSinceUse++;
 		}
 
         public override void SaveData(TagCompound tag)
@@ -153,6 +169,64 @@ namespace excels
 			SafeSetDefaults();
 			//Item.DamageType = ModContent.GetInstance<ClericClass>();
 		}
+
+        public override bool AllowPrefix(int pre)
+        {
+			return (Item.damage > 0);
+        }
+
+        public override int ChoosePrefix(UnifiedRandom rand)
+        {	
+			switch (rand.Next(18))
+            {
+				case 0:
+				case 1:
+					return ModContent.PrefixType<AttunedPrefix>();
+				case 2:
+				case 3:
+					return ModContent.PrefixType<UnattunedPrefix>();
+				case 4:
+					return ModContent.PrefixType<BlessedPrefix>();
+				case 5:
+				case 6:
+				case 7:
+					if (clericEvil)
+						return ModContent.PrefixType<UnholyPrefix>();
+					else
+						return ModContent.PrefixType<HolyPrefix>();
+				case 8:
+					if (clericEvil)
+						return ModContent.PrefixType<DivineNoManaPrefix>();
+					else
+						return ModContent.PrefixType<DivinePrefix>();
+				case 9:
+				case 10:
+					if (Item.mana==0)
+						return ModContent.PrefixType<CrazedNoManaPrefix>();
+					else
+						return ModContent.PrefixType<CrazedPrefix>();
+				case 11:
+					if (Item.mana == 0)
+						return ModContent.PrefixType<ForgottenNoManaPrefix>();
+					else
+						return ModContent.PrefixType<ForgottenPrefix>();
+				case 12:
+					return PrefixID.Broken;
+				case 13:
+					return PrefixID.Damaged;
+				case 14:
+					return PrefixID.Zealous;
+				case 15:
+					return PrefixID.Keen;
+				case 16:
+					return PrefixID.Shoddy;
+				case 17:
+					return PrefixID.Godly;
+			}
+
+			return -1;
+        }
+
         public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
         {
 			// already gains these bonuses
@@ -313,12 +387,13 @@ namespace excels
 		}
 
 		public virtual Projectile CreateHealProjectile(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, float ai0 = 0, float ai1 = 0)
-        {
+		{
 			Projectile p = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, player.whoAmI);
 			p.GetGlobalProjectile<excelProjectile>().healStrength = healAmount;
 			p.GetGlobalProjectile<excelProjectile>().healRate = healRate;
 			p.ai[0] = ai0;
 			p.ai[1] = ai1;
+			p.netUpdate = true;
 
 			return Main.projectile[p.whoAmI];
 		}

@@ -248,6 +248,7 @@ namespace excels.Items.Materials
 
             Item.createTile = ModContent.TileType<Tiles.OresBars.ExcelBarTiles>();
             Item.placeStyle = 2;
+            Item.consumable = true;
 
             Item.useStyle = ItemUseStyleID.Swing;
             Item.useTime = 10;
@@ -281,6 +282,7 @@ namespace excels.Items.Materials
             Item.rare = 1;
             Item.maxStack = 999;
             Item.createTile = ModContent.TileType<Tiles.OresBars.PurityOre>();
+            Item.consumable = true;
 
             Item.useStyle = ItemUseStyleID.Swing;
             Item.useTime = 10;

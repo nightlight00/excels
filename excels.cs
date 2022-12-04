@@ -28,7 +28,7 @@ using System.Windows.Forms;
 
 namespace excels
 {
-	public class excels : Mod
+	public partial class excels : Mod
 	{
         public override void Load()
         {

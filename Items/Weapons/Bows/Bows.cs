@@ -150,7 +150,7 @@ namespace excels.Items.Weapons.Bows
                 .AddIngredient(ItemID.MoltenFury)
                 .AddIngredient(ItemID.BeesKnees)
                 .AddIngredient(ItemID.BloodRainBow)
-                .AddTile(ModContent.TileType<Tiles.Misc.StarlightAnvilTile>())
+                .AddTile(ModContent.TileType<Tiles.Stations.StarlightAnvilTile>())
                 .Register();
 
             CreateRecipe()
@@ -159,7 +159,7 @@ namespace excels.Items.Weapons.Bows
                   .AddIngredient(ItemID.MoltenFury)
                   .AddIngredient(ItemID.BeesKnees)
                   .AddIngredient(ItemID.BloodRainBow)
-                  .AddTile(ModContent.TileType<Tiles.Misc.StarlightAnvilTile>())
+                  .AddTile(ModContent.TileType<Tiles.Stations.StarlightAnvilTile>())
                   .Register();
         }
     }

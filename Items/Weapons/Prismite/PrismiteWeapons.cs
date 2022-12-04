@@ -475,8 +475,13 @@ namespace excels.Items.Weapons.Prismite
                         proj.Kill();
                 }
             }
-            Projectile proj2 = Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<CrystallineCrosses>(), 0, 0, Main.player[Projectile.owner].whoAmI);
-            proj2.GetGlobalProjectile<excelProjectile>().healStrength = Projectile.GetGlobalProjectile<excelProjectile>().healStrength;
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                Projectile proj2 = Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<CrystallineCrosses>(), 0, 0, Main.player[Projectile.owner].whoAmI);
+                proj2.GetGlobalProjectile<excelProjectile>().healStrength = Projectile.GetGlobalProjectile<excelProjectile>().healStrength;
+                proj2.GetGlobalProjectile<excelProjectile>().healRate = Projectile.GetGlobalProjectile<excelProjectile>().healRate;
+                proj2.netUpdate = true;
+            }
         }
     }
 

@@ -11,6 +11,7 @@ using Terraria.GameContent;
 
 namespace excels.Items.Weapons.Repeater
 {
+    /*
     internal class Marksman : ModItem
     {
         public override void SetStaticDefaults()
@@ -75,7 +76,7 @@ namespace excels.Items.Weapons.Repeater
             return new Vector2(-10, 0);
         }
     }
-
+    */
     public class StalkingArrow2 : ModProjectile
     {
         public override void SetStaticDefaults()

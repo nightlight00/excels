@@ -98,49 +98,99 @@ namespace excels.NPCs.Town
 
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
-            return excelWorld.downedNiflheim;
+            return numTownNPCs > 5; // excelWorld.downedNiflheim;
         }
+
+        int shopIndex = 0;
+        int guidanceIndex = 0;
 
         public override void SetChatButtons(ref string button, ref string button2)
         {
-            button = "Shop";
-            button2 = "Bless";
+            switch (shopIndex)
+            {
+                case 0:
+                    button = "Shop";
+                    Main.npcChatText = Language.GetTextValue("Mods.excels.Dialogue.Priestess.ShopSelect");
+                    break;
+                case 1:
+                    button = "Bless";
+                    Main.npcChatText = Language.GetTextValue("Mods.excels.Dialogue.Priestess.BlessingSelect");
+                    break;
+                case 2:
+                    button = "Guidance";
+                    Main.npcChatText = Language.GetTextValue("Mods.excels.Dialogue.Priestess.GuidanceSelect");
+                    break;
+            }
+            button2 = "Cycle Chat";
         }
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
             if (NPC.FindFirstNPC(NPCID.Painter) >= 0)
             {
-                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Furniture.Paintings.ReflectivePrayer>());
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Placeable.Decorations.Paintings.ReflectivePrayer>());
                 shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 0, 75);
                 nextSlot++;
             }
 
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.WeaponHeal.Holyiest.Prophecy>());
-            shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 35);
+            shop.item[nextSlot].SetDefaults(ItemID.PeaceCandle);
+            shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 1, 50);
             nextSlot++;
 
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Accessories.Cleric.Healing.MiniatureCross>());
-            shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 20);
-            nextSlot++;
+            if (NPC.downedBoss1 && NPC.FindFirstNPC(NPCID.Dryad) <= 0)
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.PurificationPowder);
+                shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 0, 0, 85);
+                nextSlot++;
+            }
 
-            // Priest armor
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Armor.Priest.PriestHelmet>());
-            shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 15);
-            nextSlot++;
+            if (excelWorld.downedNiflheim)
+            {
+                // Priest armor
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Armor.Priest.PriestHelmet>());
+                shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 15);
+                nextSlot++;
 
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Armor.Priest.PriestChest>());
-            shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 15);
-            nextSlot++;
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Armor.Priest.PriestChest>());
+                shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 15);
+                nextSlot++;
 
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Armor.Priest.PriestBoots>());
-            shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 15);
-            nextSlot++;
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Armor.Priest.PriestBoots>());
+                shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 15);
+                nextSlot++;
+            }
 
+            // weapons
+            if (NPC.downedMechBossAny)
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.ThrowPotions.BlessedSpellPot>());
+                shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 55);
+                nextSlot++;
+            }
+
+            // healing tools
+            if (excelWorld.downedNiflheim)
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.WeaponHeal.Holyiest.Prophecy>());
+                shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 35);
+                nextSlot++;
+            }
 
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.WeaponHeal.Generic.ThrowableHealthPotion>());
             shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 0, 70);
             nextSlot++;
+
+            // accessories
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Accessories.Cleric.Healing.MiniatureCross>());
+            shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 20);
+            nextSlot++;
+
+            if (!Main.dayTime && NPC.downedBoss3)
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Accessories.Cleric.Healing.BookOfLostKin>());
+                shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 20);
+                nextSlot++;
+            }
         }
 
         public override string GetChat()
@@ -222,39 +272,74 @@ namespace excels.NPCs.Town
         {
             if (firstButton)
             {
-                shop = true;
+                switch (shopIndex)
+                {
+                    case 0:
+                        shop = true;
+                        break;
+
+                    case 1:
+                        // if player has either of them
+                        if (Main.LocalPlayer.HasBuff(ModContent.BuffType<Buffs.ClericBonus.PriestessBlessingRadiance>()) || Main.LocalPlayer.HasBuff(ModContent.BuffType<Buffs.ClericBonus.PriestessBlessingNecrotic>()))
+                        {
+                            Main.npcChatText = Language.GetTextValue("Mods.excels.Dialogue.Priestess.BlessingAlreadyRecieved");
+                        }
+                        else
+                        {
+                            // play sound when getting blessed
+                            SoundEngine.PlaySound(SoundID.Item4, NPC.Center);
+
+                            Player mp = Main.LocalPlayer;
+                            float necrostrength = (1 + mp.GetModPlayer<ClericClassPlayer>().clericNecroticAdd) * mp.GetModPlayer<ClericClassPlayer>().clericNecroticMult;
+                            float radiantstrength = (1 + mp.GetModPlayer<ClericClassPlayer>().clericRadiantAdd + (mp.GetModPlayer<excelPlayer>().healBonus * 0.05f)) * mp.GetModPlayer<ClericClassPlayer>().clericRadiantMult;
+                            // healing bonuses give .05
+
+                            // if necrotic is stronger
+                            if (necrostrength > radiantstrength)
+                            {
+                                Main.npcChatText = Language.GetTextValue("Mods.excels.Dialogue.Priestess.BlessingNecrotic");
+                                Main.LocalPlayer.AddBuff(ModContent.BuffType<Buffs.ClericBonus.PriestessBlessingNecrotic>(), 36000);
+                            }
+                            else
+                            {
+                                // will normally default to this, radiant is equal or stronger
+                                Main.npcChatText = Language.GetTextValue("Mods.excels.Dialogue.Priestess.BlessingRadiant");
+                                Main.LocalPlayer.AddBuff(ModContent.BuffType<Buffs.ClericBonus.PriestessBlessingRadiance>(), 36000);
+                            }
+                        }
+                        // give player healer buff
+                        break;
+                    case 2:
+                        switch (guidanceIndex)
+                        {
+                            case 0:
+                                Main.npcChatText = Language.GetTextValue("Mods.excels.Dialogue.Priestess.Guidance1");
+                                break;
+                            case 1:
+                                Main.npcChatText = Language.GetTextValue("Mods.excels.Dialogue.Priestess.Guidance2");
+                                break;
+                            case 2:
+                                Main.npcChatText = Language.GetTextValue("Mods.excels.Dialogue.Priestess.Guidance3");
+                                break;
+                            case 3:
+                                Main.npcChatText = Language.GetTextValue("Mods.excels.Dialogue.Priestess.Guidance4");
+                                break;
+                            case 4:
+                                Main.npcChatText = Language.GetTextValue("Mods.excels.Dialogue.Priestess.Guidance5");
+                                break;
+                            case 5:
+                                Main.npcChatText = Language.GetTextValue("Mods.excels.Dialogue.Priestess.Guidance6");
+                                break;
+                        }
+                        if (++guidanceIndex > 5)
+                            guidanceIndex = 0;
+                        break;
+                }
             }
             else
             {
-                // if player has either of them
-                if (Main.LocalPlayer.HasBuff(ModContent.BuffType<Buffs.ClericBonus.PriestessBlessingRadiance>()) || Main.LocalPlayer.HasBuff(ModContent.BuffType<Buffs.ClericBonus.PriestessBlessingNecrotic>()))
-                {
-                    Main.npcChatText = Language.GetTextValue("Mods.excels.Dialogue.Priestess.BlessingAlreadyRecieved");
-                }
-                else
-                {
-                    // play sound when getting blessed
-                    SoundEngine.PlaySound(SoundID.Item4, NPC.Center);
-
-                    Player mp = Main.LocalPlayer;
-                    float necrostrength = (1 + mp.GetModPlayer<ClericClassPlayer>().clericNecroticAdd) * mp.GetModPlayer<ClericClassPlayer>().clericNecroticMult;
-                    float radiantstrength = (1 + mp.GetModPlayer<ClericClassPlayer>().clericRadiantAdd + (mp.GetModPlayer<excelPlayer>().healBonus * 0.05f)) * mp.GetModPlayer<ClericClassPlayer>().clericRadiantMult;
-                    // healing bonuses give .05
-
-                    // if necrotic is stronger
-                    if (necrostrength > radiantstrength)
-                    {
-                        Main.npcChatText = Language.GetTextValue("Mods.excels.Dialogue.Priestess.BlessingNecrotic");
-                        Main.LocalPlayer.AddBuff(ModContent.BuffType<Buffs.ClericBonus.PriestessBlessingNecrotic>(), 36000);
-                    }
-                    else
-                    {
-                        // will normally default to this, radiant is equal or stronger
-                        Main.npcChatText = Language.GetTextValue("Mods.excels.Dialogue.Priestess.BlessingRadiant");
-                        Main.LocalPlayer.AddBuff(ModContent.BuffType<Buffs.ClericBonus.PriestessBlessingRadiance>(), 36000);
-                    }
-                }
-                // give player healer buff
+                if (++shopIndex > 2)
+                    shopIndex = 0;
             }
         }
     }

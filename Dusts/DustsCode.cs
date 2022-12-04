@@ -165,6 +165,18 @@ namespace excels.Dusts
         }
     }
 
+    internal class StellarDust : ModDust
+    {
+        public override void OnSpawn(Dust dust)
+        {
+            dust.scale = Main.rand.NextFloat(1, 1.2f);
+        }
+
+        public override bool Update(Dust dust)
+        {
+            return true;
+        }
+    }
     internal class FossilBoneDust : ModDust
     {
         public override void OnSpawn(Dust dust)

@@ -48,7 +48,7 @@ namespace excels.Items.Weapons.Midnight
 		{
 			//	Main.projFrames[Projectile.type] = 2;
 			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 9;
-			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
+			ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
 		}
 
 		public override void SafeSetDefaults()
@@ -64,21 +64,18 @@ namespace excels.Items.Weapons.Midnight
 			Projectile.tileCollide = false;
 
 			healPenetrate = 1;
-			healRate = 0;
-			healPower = 1;
+			Projectile.GetGlobalProjectile<excelProjectile>().healRate = -1;
 			canDealDamage = true;
 			canHealOwner = true;
 		}
 
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
+			Projectile.damage = (int)(Projectile.damage * 0.9f);
 			if (target.CanBeChasedBy())
 			{
-				healPower++;
-				if (healPower > 15)
-                {
-					healPower = 15;
-                }
+				if (++Projectile.ai[1] > 9)
+					Projectile.ai[1] = 9;
 			}
         }
 
@@ -95,13 +92,27 @@ namespace excels.Items.Weapons.Midnight
 					speed = MathF.Abs(Projectile.velocity.Length());
                 }
 				Projectile.velocity = (Main.player[Projectile.owner].Center - Projectile.Center).SafeNormalize(Vector2.Zero) * (-(30+speed) + Projectile.ai[0]);
-				
+
 				HealDistance(Main.player[Projectile.owner], Main.player[Projectile.owner], 30, false);
             }
 			Projectile.rotation += MathHelper.ToRadians(15);
         }
 
-		public override bool PreDraw(ref Color lightColor)
+		public override void PostHealEffects(Player target, Player healer)
+		{
+			if (Projectile.ai[1] > 0) {
+				target.HealEffect((int)Projectile.ai[1], true);
+				target.statLife += (int)Projectile.ai[1];
+
+				if (target.statLife > target.statLifeMax2)
+				{
+					target.statLife = target.statLifeMax2;
+				}
+				NetMessage.SendData(66, -1, -1, null, target.whoAmI, Projectile.ai[1], 0f, 0f, 0, 0, 0);
+			}
+		}
+
+        public override bool PreDraw(ref Color lightColor)
 		{
 			Main.instance.LoadProjectile(Projectile.type);
 			Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
@@ -112,7 +123,7 @@ namespace excels.Items.Weapons.Midnight
 				Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
 				Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
 				Color color = Projectile.GetAlpha(lightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
-				Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.rotation, drawOrigin, 1, SpriteEffects.None, 0);
+				Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.oldRot[k], drawOrigin, 1, SpriteEffects.None, 0);
 			}
 
 			return true;

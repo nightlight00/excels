@@ -36,7 +36,7 @@ namespace excels.Items.WeaponHeal.Holyiest
 			Item.noMelee = true;
 
 			Item.mana = 10;
-			healAmount = 8;
+			healAmount = 10;
 			healRate = 1.5f;
 		}
 

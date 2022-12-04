@@ -27,6 +27,7 @@ namespace excels
         public int MarkedTimer = 0;
 
         public int SpellCurse = 0;
+        public int BlessedSpell = 0;
 
         public override void SetDefaults(NPC npc)
         {
@@ -52,6 +53,7 @@ namespace excels
         {
             MarkedTimer--;
             SpellCurse--;
+            BlessedSpell--;
             if (MarkedTimer > 0)
             {
                 for (var i = 0; i < 3; i++)
@@ -69,11 +71,15 @@ namespace excels
             
             if (npc.HasBuff(BuffID.Electrified))
             {
-                Dust d = Dust.NewDustDirect(npc.position, npc.width, npc.height/2, 226);
-                d.velocity = new Vector2(0, -Main.rand.NextFloat(3, 4)).RotatedByRandom(MathHelper.ToRadians(32));
-                d.noGravity = true;
-                d.scale = Main.rand.NextFloat(1, 1.2f);
-                d.noLight = true;
+                if (Main.rand.NextBool(3))
+                {
+                    Dust d = Dust.NewDustDirect(npc.position, npc.width, npc.height / 2, 226);
+                    d.velocity = new Vector2(Main.rand.NextFloat(-1, 1), -Main.rand.NextFloat(1.7f, 4)).RotatedByRandom(MathHelper.ToRadians(32));
+                    d.scale = Main.rand.NextFloat(1, 1.2f);
+                    if (Main.rand.NextBool(4))
+                        d.scale *= 0.2f;
+                    d.noLight = true;
+                }
             }
 
             return base.PreAI(npc);
@@ -215,6 +221,9 @@ namespace excels
                                 Item.NewItem(npc.GetSource_FromThis(), npc.getRect(), ModContent.ItemType<Items.Misc.MinorBlessing>());
                             }
                         else if (Main.rand.NextBool(7))
+                            Item.NewItem(npc.GetSource_FromThis(), npc.getRect(), ModContent.ItemType<Items.Misc.MinorBlessing>());
+                        
+                        if (BlessedSpell >= 0)
                             Item.NewItem(npc.GetSource_FromThis(), npc.getRect(), ModContent.ItemType<Items.Misc.MinorBlessing>());
                     }
                 }
@@ -456,6 +465,12 @@ namespace excels
         
         public override void SetupShop(int type, Chest shop, ref int nextSlot)
         { 
+            if (type == NPCID.Merchant)
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Accessories.Cleric.Healing.SoothingCream>());
+                shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 10);
+                nextSlot++;
+            }
             if (NPC.downedPlantBoss && type == NPCID.WitchDoctor)
             {
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Accessories.Banner.VenomBanner>());
@@ -464,7 +479,7 @@ namespace excels
             }
             if (type == NPCID.Demolitionist)
             {
-                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Furniture.Random.OilJit>());
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Placeable.Stations.OilJit>());
                 shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 15);
                 nextSlot++;
                 if (NPC.downedBoss1)

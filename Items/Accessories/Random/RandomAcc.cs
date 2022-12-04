@@ -119,6 +119,58 @@ namespace excels.Items.Accessories.Random
         }
     }
 
+    public class ApprenticesMedallion : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Apprentice's Medallion");
+            Tooltip.SetDefault("25% increased mining speed\nProvides a small amount of light\n'Keep up the good work!'");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+
+        public override void SetDefaults()
+        {
+            Item.rare = 2;
+            Item.defense = 2;
+            Item.width = Item.height = 22;
+            Item.accessory = true;
+            Item.value = 500;
+        }
+
+        public override void UpdateEquip(Player player)
+        {
+            player.pickSpeed += 0.25f;
+            Lighting.AddLight(player.Center, Color.LightGreen.ToVector3() * .8f);
+        }
+    }
+
+    public class MastersMedallion : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Master's Medallion");
+            Tooltip.SetDefault("40% increased mining speed\nProvides a moderate amount of light\nIncreases pick up range of items");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+
+        public override void SetDefaults()
+        {
+            Item.rare = 6;
+            Item.defense = 5;
+            Item.width = Item.height = 22;
+            Item.accessory = true;
+            Item.value = 500;
+            Item.treasureGrabRange += 40;
+        }
+
+        public override void UpdateEquip(Player player)
+        {
+            player.pickSpeed += 0.4f;
+            player.treasureMagnet = true;
+            player.aggro -= 400;
+            Lighting.AddLight(player.Center, Color.LightYellow.ToVector3() * 1.15f);
+        }
+    }
 
     /*
     [AutoloadEquip(EquipType.Face)]

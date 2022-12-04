@@ -29,7 +29,7 @@ namespace excels.Items.Misc
             Item.width = Item.height = 36;
             Item.rare = 1;
             Item.tileWand = ItemID.Mushroom;
-            Item.createTile = ModContent.TileType<Tiles.Misc.MushroomTile>();
+            Item.createTile = ModContent.TileType<Tiles.Blocks.MushroomTile>();
         }
     }
 }

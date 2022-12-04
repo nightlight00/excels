@@ -64,7 +64,13 @@ namespace excels.Items.Weapons.HolyWeap
 			return false;
 		}
 
-		public override void AddRecipes()
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+			if (target.GetGlobalNPC<excelNPC>().BlessedSpell < 300)
+				target.GetGlobalNPC<excelNPC>().BlessedSpell = 300;
+        }
+
+        public override void AddRecipes()
 		{
 			CreateRecipe()
 				.AddIngredient(ItemID.HellstoneBar, 8)

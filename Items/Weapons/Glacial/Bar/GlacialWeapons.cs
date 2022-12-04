@@ -353,7 +353,7 @@ namespace excels.Items.Weapons.Glacial.Bar
 			Item.sellPrice(0, 0, 35);
 
 			Item.mana = 10;
-			healAmount = 7;
+			healAmount = 13;
 			healRate = 1;
 		}
 

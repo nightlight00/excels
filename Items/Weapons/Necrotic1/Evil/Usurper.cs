@@ -8,14 +8,16 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
+using excels.Items.HealingTools.Crosses;
 
-namespace excels.Items.WeaponHeal.Generic
+namespace excels.Items.Weapons.Necrotic1.Evil
 {
-    internal class RoseWand : ClericDamageItem
+    internal class UsurperCross : ClericDamageItem
     {
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("Conjures a short-ranged healing bolt that can also cure poison");
+			DisplayName.SetDefault("Umbra Cross");
+			Tooltip.SetDefault("Conjures twin shadow healing bolts \nHealing allies also heals you");
 			Item.staff[Item.type] = true;
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
@@ -23,82 +25,100 @@ namespace excels.Items.WeaponHeal.Generic
 		public override void SafeSetDefaults()
 		{
 			Item.width = Item.height = 40;
-			Item.useTime = Item.useAnimation = 26;
+			Item.useTime = Item.useAnimation = 34;
 			Item.useStyle = ItemUseStyleID.Shoot;
 			Item.value = 10000;
-			Item.rare = 3;
+			Item.rare = 1;
 			Item.UseSound = SoundID.Item43;
 			Item.autoReuse = true;
-			Item.shoot = ModContent.ProjectileType<HealingRoseBolt>();
-			Item.shootSpeed = 6.4f;
+			Item.shoot = ModContent.ProjectileType<UsurperBolt>();
+			Item.shootSpeed = 7f;
 			Item.noMelee = true;
-			Item.sellPrice(0, 0, 85);
+			Item.damage = 17;
+			Item.knockBack = 5;
+			Item.sellPrice(0, 1, 15);
 
-			Item.mana = 15;
-			healAmount = 4;
+			clericBloodCost = 3;
+			clericEvil = true;
+
+			healAmount = 2;
+			healRate = 0.5f;
+		//	heal
 		}
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-			CreateHealProjectile(player, source, position, velocity, type, damage, knockback);
+			CreateHealProjectile(player, source, position, velocity.RotatedBy(MathHelper.ToRadians(7)), type, damage, knockback);
+			CreateHealProjectile(player, source, position, velocity.RotatedBy(MathHelper.ToRadians(-7)), type, damage, knockback);
 			return false;
         }
 
         public override void AddRecipes()
 		{
 			CreateRecipe()
-				.AddIngredient(ItemID.JungleRose)
-				.AddIngredient(ItemID.RichMahogany, 8)
-				.AddIngredient(ItemID.JungleSpores, 4)
-				.AddTile(TileID.WorkBenches)
+				.AddIngredient(ModContent.ItemType<WoodenCross>())
+				.AddIngredient(ItemID.DemoniteBar, 7)
+				.AddTile(TileID.Anvils)
+				.Register();
+
+			CreateRecipe()
+				.AddIngredient(ModContent.ItemType<WoodenCross>())
+				.AddIngredient(ItemID.CrimtaneBar, 7)
+				.AddTile(TileID.Anvils)
 				.Register();
 		}
 	}
 
-	public class HealingRoseBolt : clericHealProj
-    {
+	public class UsurperBolt : clericHealProj
+	{
 		public override void SetStaticDefaults()
 		{
-		//	Main.projFrames[Projectile.type] = 2;
-			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 10;
+	//		Main.projFrames[Projectile.type] = 2;
+			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 19;
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
 		}
 
 		public override void SafeSetDefaults()
-        {
-			Projectile.width = Projectile.height = 8;
-			Projectile.timeLeft = 50;
+		{
+			Projectile.width = Projectile.height = 12;
+			Projectile.timeLeft = 80;
 			Projectile.alpha = 0; // 255;
+			Projectile.CanBeReflected();
 
-			healPenetrate = 2;
-			canHealOwner = false;
-			healUsesBuffs = true;
+			canDealDamage = true;
+			healPenetrate = 1;
+			
+			clericEvil = true;
+		}
+		
+        public override void PostHealEffects(Player target, Player healer)
+        {
+			int healAmount = (int)(2 + (healer.GetModPlayer<excelPlayer>().healBonus * healRate)) / 2;
+			healer.HealEffect(healAmount);
+			healer.statLife += healAmount;
+			if (healer.statLife > healer.statLifeMax2)
+            {
+				healer.statLife = healer.statLifeMax2;
+            }
         }
 
         public override void AI()
-        {
+		{
 			Projectile.rotation = Projectile.velocity.ToRotation();
 			HealDistance(Main.LocalPlayer, Main.player[Projectile.owner], 10);
-			Dust d = Dust.NewDustPerfect(Projectile.Center, 298);
+			Dust d = Dust.NewDustPerfect(Projectile.Center, 27);
 			d.velocity = Projectile.velocity * -0.2f;
-			d.noGravity = true;
-			d.scale = 1.1f;
-        }
-
-        public override void BuffEffects(Player target, Player healer)
-        {
-			target.ClearBuff(BuffID.Poisoned);
-        }
+			d.scale = 0.94f;
+		}
 
 		public override void Kill(int timeLeft)
 		{
 			for (var i = 0; i < 20; i++)
 			{
-				Vector2 vel = new Vector2(Main.rand.NextFloat(0.25f, 2.25f)).RotatedByRandom(MathHelper.ToRadians(360));
-				Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 298);
-				d.scale = Main.rand.NextFloat(1.2f, 1.4f);
+				Vector2 vel = new Vector2(Main.rand.NextFloat(0.25f, 2.25f)).RotatedByRandom(MathHelper.ToRadians(180));
+				Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 27);
+				d.scale = Main.rand.NextFloat(1.05f, 1.15f);
 				d.fadeIn = d.scale * 1.15f;
-				d.noGravity = true;
 				d.velocity = vel;
 			}
 		}
@@ -108,7 +128,7 @@ namespace excels.Items.WeaponHeal.Generic
 			Main.instance.LoadProjectile(Projectile.type);
 			Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
 
-			float scale = 0.9f;
+			float scale = 1.15f;
 			// Redraw the projectile with the color not influenced by light
 			for (int k = 0; k < Projectile.oldPos.Length; k++)
 			{
@@ -116,10 +136,11 @@ namespace excels.Items.WeaponHeal.Generic
 				Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
 				Color color = Projectile.GetAlpha(lightColor); // * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
 				Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.rotation, drawOrigin, scale, SpriteEffects.None, 0);
-				scale -= 0.05f;
+				scale -= 0.04f;
 			}
 
 			return true;
 		}
+
 	}
 }

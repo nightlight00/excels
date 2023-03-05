@@ -14,6 +14,7 @@ using Terraria.Localization;
 using System.Collections.Generic;
 using Terraria.Chat;
 using System.IO;
+using excels.Items.HealingTools;
 
 namespace excels
 {
@@ -151,7 +152,7 @@ namespace excels
                     break;
 
                 case NPCID.Nurse:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.WeaponHeal.Generic.Syringe>(), 1, 40, 60));
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.HealingTools.Consumable.Syringe>(), 1, 40, 60));
                     break;
 
                 case NPCID.BloodZombie:
@@ -213,7 +214,7 @@ namespace excels
 
                 case NPCID.WallofFlesh:
                     LeadingConditionRule wallOfFleshRule = new LeadingConditionRule(new Conditions.NotExpert());
-                    wallOfFleshRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.WeaponHeal.Holyiest.PhoenixScepter>(), 3));
+                    wallOfFleshRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.HealingTools.HealBuff.Phoenix.PhoenixScepter>(), 3));
                     wallOfFleshRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Accessories.Cleric.Damage.ClericEmblem>(), 3));
                     npcLoot.Add(wallOfFleshRule);
                     break;

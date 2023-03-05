@@ -9,9 +9,8 @@ using Terraria.DataStructures;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 
-namespace excels.Items.WeaponHeal.Evil
+namespace excels.Items.HealingTools.Generic.BeatingHeart
 {
-
     internal class BeatingHeart : ClericDamageItem
     {
 		public override void SetStaticDefaults()

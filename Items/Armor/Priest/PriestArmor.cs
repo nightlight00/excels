@@ -107,7 +107,7 @@ namespace excels.Items.Armor.Priest
 
     public class PriestsAura : clericHealProj
     {
-        public override string Texture => "excels/Items/WeaponHeal/Generic/HealingBolt";
+        public override string Texture => "excels/Items/HealingTools/Crosses/HealingBolt";
         public override void SafeSetDefaults()
         {
             Projectile.width = Projectile.height = 4;

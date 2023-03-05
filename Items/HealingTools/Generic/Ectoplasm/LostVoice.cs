@@ -10,7 +10,7 @@ using Terraria.Graphics;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 
-namespace excels.Items.WeaponHeal.Evil
+namespace excels.Items.HealingTools.Generic.Ectoplasm
 {
     #region Lost Voices
     internal class LostVoices : ClericDamageItem
@@ -58,7 +58,7 @@ namespace excels.Items.WeaponHeal.Evil
 
 	internal class LostVoiceThrown : clericHealProj
 	{
-		public override string Texture => "excels/Items/WeaponHeal/Evil/LostVoices";
+		public override string Texture => "excels/Items/HealingTools/Generic/Ectoplasm/LostVoices";
         public override void SafeSetDefaults()
 		{
 			Projectile.width = Projectile.height = 28;

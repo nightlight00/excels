@@ -679,7 +679,7 @@ namespace excels
                         if (Main.rand.NextBool(3))
                             player.QuickSpawnItem(player.GetSource_DropAsItem(), ModContent.ItemType<Items.Accessories.Cleric.Damage.ClericEmblem>());
                         if (Main.rand.NextBool(3))
-                            player.QuickSpawnItem(player.GetSource_DropAsItem(), ModContent.ItemType<Items.WeaponHeal.Holyiest.PhoenixScepter>());
+                            player.QuickSpawnItem(player.GetSource_DropAsItem(), ModContent.ItemType<Items.HealingTools.HealBuff.Phoenix.PhoenixScepter>());
                         break;
 
                     case ItemID.GolemBossBag:

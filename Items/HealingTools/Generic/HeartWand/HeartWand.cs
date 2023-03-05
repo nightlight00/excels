@@ -9,7 +9,7 @@ using Terraria.DataStructures;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 
-namespace excels.Items.WeaponHeal.HeartWand
+namespace excels.Items.HealingTools.Generic.HeartWand
 {
     internal class HeartWand : ClericDamageItem
     {

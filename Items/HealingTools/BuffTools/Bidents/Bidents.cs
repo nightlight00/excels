@@ -7,7 +7,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 
-namespace excels.Items.WeaponHeal.Generic
+namespace excels.Items.HealingTools.BuffTools.Bidents
 {
     #region Gold
     internal class GoldBident : ClericDamageItem

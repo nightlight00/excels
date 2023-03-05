@@ -9,6 +9,7 @@ using Terraria.DataStructures;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using excels.Items.Materials.Ores;
+using excels.Items.HealingTools.Crosses;
 
 namespace excels.Items.Weapons.Prismite
 {
@@ -402,7 +403,7 @@ namespace excels.Items.Weapons.Prismite
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<WeaponHeal.Holyiest.GrandCross>())
+                .AddIngredient(ModContent.ItemType<GrandCross>())
                 .AddIngredient(ItemID.CrystalShard, 12)
                 .AddIngredient(ItemID.SoulofLight, 6)
                 .AddTile(TileID.MythrilAnvil)

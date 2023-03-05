@@ -180,12 +180,12 @@ namespace excels.NPCs.Town
             // healing tools
             if (excelWorld.downedNiflheim)
             {
-                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.WeaponHeal.Holyiest.Prophecy>());
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.HealingTools.Overtime.Prophecy.Prophecy>());
                 shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 35);
                 nextSlot++;
             }
 
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.WeaponHeal.Generic.ThrowableHealthPotion>());
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.HealingTools.Consumable.ThrowableHealthPotion>());
             shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 0, 70);
             nextSlot++;
 

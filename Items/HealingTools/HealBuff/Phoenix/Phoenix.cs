@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using System.Collections.Generic;
 
-namespace excels.Items.WeaponHeal.Holyiest
+namespace excels.Items.HealingTools.HealBuff.Phoenix
 {
     internal class PhoenixScepter : ClericDamageItem
     {

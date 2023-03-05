@@ -26,6 +26,7 @@ using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 using Terraria.UI;
 using excels.UI;
+using excels.Worldgen;
 
 namespace excels
 {
@@ -324,8 +325,11 @@ namespace excels
 			{
 				tasks.Insert(ShiniesIndex + 1, new SkylineOrePass("Skyline Ores", 237.4298f));
 				tasks.Insert(ShiniesIndex + 2, new GladiolusPass("Gladiolus", 237.429999f));
-				tasks.Insert(ShiniesIndex + 3, new HyperionPass("Hyperion", 280));
 			}
+
+			int HyperionCreation = tasks.FindIndex(genpass => genpass.Name.Equals("Ice"));
+			if (HyperionCreation != -1)
+				tasks.Insert(HyperionCreation + 1, new DeepDarkPass("Hyperion Caves", 280));
 
 		}
 
@@ -372,128 +376,6 @@ namespace excels
 
 				GladiolusTimer = Main.rand.Next(900, 1500) + 900;
 			}
-		}
-	}
-
-	public class HyperionPass : GenPass
-    {
-		/*
-		 *  Dark Caves Gen
-		 *  1 - Generate several large circles of stone and keep their centers in a list
-		 *    -> The frequency disaptes as it gets farther from the center
-		 *  2 - Generate tunnels by making wide lines through the centers
-		 *  3 - Generate Hyperion Crystals attached to the tiles
-		*/
-
-		public HyperionPass(string name, float loadWeight) : base(name, loadWeight)
-		{
-		}
-
-		protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
-		{
-			progress.Message = "Hyperion Crystals are forming down below";
-
-			// "6E-05" is "scientific notation". It simply means 0.00006 but in some ways is easier to read.
-			for (int t = 0; t < (int)((Main.maxTilesX * Main.maxTilesY) * 3E-05); t++)
-			{
-				int x = WorldGen.genRand.Next((int)(Main.maxTilesX * 0f), (int)(Main.maxTilesX * 0.4f));
-				if (Main.rand.NextBool())
-					x = WorldGen.genRand.Next((int)(Main.maxTilesX * 0.6f), (int)(Main.maxTilesX * 1f));
-
-				int y = WorldGen.genRand.Next((int)(Main.maxTilesY * 0.65f), (int)(Main.maxTilesY - 250));
-
-				if (Main.tile[x,y].HasTile && Main.tile[x, y].TileType == TileID.Stone)
-					GenerateCrystal(x, y);
-			}
-		}
-
-		private readonly int[,] _crystal1shape = {
-			{0,0,1,0,0},
-			{0,1,1,1,0},
-			{1,1,1,1,1},
-			{1,1,1,1,1},
-			{1,1,1,1,1},
-			{1,1,1,1,1},
-			{1,1,1,1,1},
-			{0,1,1,1,0},
-			{0,0,1,0,0},
-		};
-
-		private readonly int[,] _crystal2shape = {
-			{0,0,1,0,0},
-			{0,1,1,1,0},
-			{1,1,1,1,1},
-			{1,1,1,1,1},
-			{1,1,1,1,1},
-			{1,1,1,1,1},
-			{0,1,1,1,0},
-			{0,0,1,0,0},
-		};
-
-		private readonly int[,] _crystal3shape = {
-			{0,0,1,0,0},
-			{0,1,1,1,0},
-			{1,1,1,1,1},
-			{1,1,1,1,1},
-			{1,1,1,1,1},
-			{0,1,1,1,0},
-			{0,0,1,0,0},
-		};
-
-		private readonly int[,] _crystal4shape = {
-			{0,1,0},
-			{1,1,1},
-			{1,1,1},
-			{1,1,1},
-			{1,1,1},
-			{0,1,0},
-		};
-
-		private readonly int[,] _crystal5shape = {
-			{0,1,0},
-			{1,1,1},
-			{1,1,1},
-			{1,1,1},
-			{1,1,1},
-			{1,1,1},
-			{1,1,1},
-			{0,1,0},
-		};
-
-
-		public bool GenerateCrystal(int i, int j)
-		{
-			int[,] shape = _crystal1shape;
-			switch (Main.rand.Next(5))
-            {
-				case 0: shape = _crystal1shape; break;
-				case 1: shape = _crystal2shape; break;
-				case 2: shape = _crystal3shape; break;
-				case 3: shape = _crystal4shape; break;
-				case 4: shape = _crystal5shape; break;
-
-			}
-
-			for (int y = 0; y < shape.GetLength(0); y++)
-			{
-				for (int x = 0; x < shape.GetLength(1); x++)
-				{
-					int k = i - (shape.GetLength(1) / 2) + x;
-					int l = j - (shape.GetLength(0) / 2) + y;
-
-					if (shape[y,x] == 1)
-                    {
-						//int t = Main.tile[k, l].TileType;
-						//if (t == TileID.Stone || t == TileID.Dirt || t == TileID.Silt || t == TileID.Mud || t == TileID.ClayBlock)
-							Main.tile[k, l].ClearTile();
-
-						WorldGen.PlaceTile(k, l, ModContent.TileType<Tiles.OresBars.HyperionTile>());
-						Tile tile = Framing.GetTileSafely(k, l);
-					}
-
-				}
-			}
-			return true;
 		}
 	}
 

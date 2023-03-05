@@ -7,6 +7,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Terraria.Localization;
+using excels.Items.Materials.Ores;
 
 namespace excels.Items.Armor.Glacial
 {
@@ -51,7 +52,7 @@ namespace excels.Items.Armor.Glacial
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-				.AddIngredient(ModContent.ItemType<Items.Materials.GlacialBar>(), 12)
+				.AddIngredient(ModContent.ItemType<GlacialBar>(), 12)
 				.AddTile(TileID.Anvils)
 				.Register();
 		}
@@ -85,7 +86,7 @@ namespace excels.Items.Armor.Glacial
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-				.AddIngredient(ModContent.ItemType<Items.Materials.GlacialBar>(), 16)
+				.AddIngredient(ModContent.ItemType<GlacialBar>(), 16)
 				.AddTile(TileID.Anvils)
 				.Register();
 		}
@@ -119,7 +120,7 @@ namespace excels.Items.Armor.Glacial
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-				.AddIngredient(ModContent.ItemType<Items.Materials.GlacialBar>(), 12)
+				.AddIngredient(ModContent.ItemType<GlacialBar>(), 12)
 				.AddTile(TileID.Anvils)
 				.Register();
 		}

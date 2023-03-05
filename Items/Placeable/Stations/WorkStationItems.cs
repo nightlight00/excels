@@ -7,6 +7,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using excels.Tiles.Stations;
+using excels.Items.Materials.Ores;
 
 namespace excels.Items.Placeable.Stations
 {
@@ -43,14 +44,14 @@ namespace excels.Items.Placeable.Stations
 		{
 			CreateRecipe()
 				.AddIngredient(ModContent.ItemType<Materials.StellarPlating>(), 8)
-				.AddIngredient(ModContent.ItemType<Materials.GlacialBar>(), 8)
+				.AddIngredient(ModContent.ItemType<GlacialBar>(), 8)
 				.AddIngredient(ItemID.IronAnvil)
 				.AddTile(TileID.Hellforge)
 				.Register();
 
 			CreateRecipe()
 				.AddIngredient(ModContent.ItemType<Materials.StellarPlating>(), 8)
-				.AddIngredient(ModContent.ItemType<Materials.GlacialBar>(), 8)
+				.AddIngredient(ModContent.ItemType<GlacialBar>(), 8)
 				.AddIngredient(ItemID.LeadAnvil)
 				.AddTile(TileID.Hellforge)
 				.Register();

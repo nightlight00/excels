@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
+using excels.Items.Materials.Ores;
 
 namespace excels.Items.Bags
 {
@@ -157,7 +158,7 @@ namespace excels.Items.Bags
 
 			player.QuickSpawnItem(player.GetSource_FromThis(), ModContent.ItemType<Accessories.Expert.NiflheimExpertAcc>());
 			
-			player.QuickSpawnItem(player.GetSource_FromThis(), ModContent.ItemType<Items.Materials.GlacialOre>(), Main.rand.Next(66, 100));
+			player.QuickSpawnItem(player.GetSource_FromThis(), ModContent.ItemType<GlacialOre>(), Main.rand.Next(66, 100));
 			switch (Main.rand.Next(4))
 			{
 				case 0:

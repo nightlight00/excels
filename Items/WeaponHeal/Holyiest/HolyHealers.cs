@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
+using excels.Buffs.HealOverTime;
+using excels.Items.Materials.Ores;
 
 namespace excels.Items.WeaponHeal.Holyiest
 {
@@ -50,7 +52,7 @@ namespace excels.Items.WeaponHeal.Holyiest
 		{
 			CreateRecipe()
 				.AddIngredient(ModContent.ItemType<Generic.WoodenCross>())
-				.AddIngredient(ModContent.ItemType<Materials.MysticCrystal>(), 8)
+				.AddIngredient(ModContent.ItemType<MysticCrystal>(), 8)
 				.AddTile(TileID.Anvils)
 				.Register();
 		}
@@ -142,7 +144,7 @@ namespace excels.Items.WeaponHeal.Holyiest
 
 			Item.mana = 25;
 			healAmount = 12;
-			healRate = 0;
+			healRate = 1;
 		}
 
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -195,7 +197,7 @@ namespace excels.Items.WeaponHeal.Holyiest
 
         public override void BuffEffects(Player target, Player healer)
         {
-			target.AddBuff(ModContent.BuffType<Buffs.ClericBonus.PropheticWisdom>(), GetBuffTime(healer, 4));
+			target.GetModPlayer<HealOverTime>().AddHeal(healer, "Prohecy", 3, 4);
         }
 
         public override void Kill(int timeLeft)

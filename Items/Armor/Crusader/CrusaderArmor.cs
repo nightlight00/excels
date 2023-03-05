@@ -63,8 +63,8 @@ namespace excels.Items.Armor.Crusader
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.HallowedBar, 8)
-                .AddIngredient(ItemID.SoulofLight, 4)
+                .AddIngredient(ItemID.HallowedBar, 12)
+                .AddIngredient(ModContent.ItemType<Materials.BottleOfSunlight>(), 20)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }
@@ -99,8 +99,9 @@ namespace excels.Items.Armor.Crusader
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.HallowedBar, 18)
-                .AddIngredient(ItemID.SoulofLight, 6)
+                .AddIngredient(ItemID.HallowedBar, 16)
+                .AddIngredient(ModContent.ItemType<Materials.BottleOfSunlight>(), 24)
+                .AddIngredient(ItemID.Silk, 32)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }
@@ -135,8 +136,9 @@ namespace excels.Items.Armor.Crusader
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.HallowedBar, 14)
-                .AddIngredient(ItemID.SoulofLight, 3)
+                .AddIngredient(ItemID.HallowedBar, 8)
+                .AddIngredient(ModContent.ItemType<Materials.BottleOfSunlight>(), 18)
+                .AddIngredient(ItemID.Silk, 20)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }

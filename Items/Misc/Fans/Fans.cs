@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
+using excels.Items.Materials.Ores;
 
 namespace excels.Items.Misc.Fans
 {
@@ -58,7 +59,7 @@ namespace excels.Items.Misc.Fans
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Materials.SkylineBar>(), 5)
+                .AddIngredient(ModContent.ItemType<SkylineBar>(), 5)
                 .AddIngredient(ItemID.Feather, 10)
                 .AddTile(TileID.Anvils)
                 .Register();

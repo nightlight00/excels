@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.IO;
 using Terraria.Audio;
 using Terraria.GameContent;
+using excels.Items.Materials.Ores;
 
 namespace excels.NPCs.Space
 {
@@ -46,7 +47,7 @@ namespace excels.NPCs.Space
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Materials.SkylineOre>(), 3, 2, 4));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SkylineOre>(), 3, 2, 4));
             npcLoot.Add(ItemDropRule.Common(ItemID.Feather, 3));
             npcLoot.Add(ItemDropRule.Food(ItemID.ChickenNugget, 75));
         }

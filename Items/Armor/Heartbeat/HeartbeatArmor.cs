@@ -7,6 +7,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Terraria.Localization;
+using excels.Utilities;
 
 namespace excels.Items.Armor.Heartbeat
 {
@@ -63,7 +64,7 @@ namespace excels.Items.Armor.Heartbeat
             player.setBonus = Language.GetTextValue("Mods.excels.ItemDescriptions.ArmorSetBonus.HeartbeatSet");
 
             player.GetModPlayer<excelPlayer>().HeartbeatSet = true;
-            if (player.controlDown && player.releaseDown && player.doubleTapCardinalTimer[0] < 15)
+            if (Keybinds.ActivateArmorSet.JustPressed)
             {
                 heartStrength = 0;
                 heartbreak = !heartbreak;
@@ -160,7 +161,7 @@ namespace excels.Items.Armor.Heartbeat
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.HearbeatLegPiece"));
+            DisplayName.SetDefault(Language.GetTextValue("Mods.excels.ItemNames.HeartbeatLegPiece"));
             Tooltip.SetDefault(Language.GetTextValue("Mods.excels.ItemDescriptions.Generic.NecroticDamage", 4));
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

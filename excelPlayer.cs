@@ -7,6 +7,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using System.Collections.Generic;
+using excels.Items.Materials.Ores;
 
 namespace excels
 {
@@ -17,6 +18,7 @@ namespace excels
         public bool FlaskFrostfire = false;
         // debuffs
         public bool DebuffMycosis = false;
+        public bool DebuffBrimstone = false;
         // cleric bonuses
         public bool GlacialGuard = false;
         public bool HereticBreakerBuff = false;
@@ -80,6 +82,7 @@ namespace excels
         public bool lostKin = false;
         public bool soothingCream = false;
         public bool medicBag = false;
+        public bool ancientStone = false;
 
         public override void ResetEffects()
         {
@@ -88,6 +91,7 @@ namespace excels
             FlaskFrostfire = false;
             // debuffs
             DebuffMycosis = false;
+            DebuffBrimstone = false;
             // cleric bonuses
             GlacialGuard = false;
             HereticBreakerBuff = false;
@@ -146,6 +150,7 @@ namespace excels
             lostKin = false;
             soothingCream = false;
             medicBag = false;
+            ancientStone = false;
         }
 
         public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)
@@ -191,6 +196,15 @@ namespace excels
                     dot += 6;
                     if (NPC.downedPlantBoss) { dot += 10; }
                 }
+                if (Player.lifeRegen > 0)
+                {
+                    Player.lifeRegen = 0;
+                }
+                Player.lifeRegen -= dot;
+            }
+            if (DebuffBrimstone)
+            {
+                int dot = 30;
                 if (Player.lifeRegen > 0)
                 {
                     Player.lifeRegen = 0;
@@ -721,11 +735,11 @@ namespace excels
                             switch (Main.rand.Next(2))
                             {
                                 case 0:
-                                    player.QuickSpawnItem(player.GetSource_DropAsItem(), ModContent.ItemType<Items.Materials.GlacialBar>(), Main.rand.Next(1, 4));
+                                    player.QuickSpawnItem(player.GetSource_DropAsItem(), ModContent.ItemType<GlacialBar>(), Main.rand.Next(1, 4));
                                     break;
 
                                 case 1:
-                                    player.QuickSpawnItem(player.GetSource_DropAsItem(), ModContent.ItemType<Items.Materials.GlacialOre>(), Main.rand.Next(2, 7));
+                                    player.QuickSpawnItem(player.GetSource_DropAsItem(), ModContent.ItemType<GlacialOre>(), Main.rand.Next(2, 7));
                                     break;
                             }
                         }
@@ -738,11 +752,11 @@ namespace excels
                             switch (Main.rand.Next(2))
                             {
                                 case 0:
-                                    player.QuickSpawnItem(player.GetSource_DropAsItem(), ModContent.ItemType<Items.Materials.SkylineBar>(), Main.rand.Next(1, 4));
+                                    player.QuickSpawnItem(player.GetSource_DropAsItem(), ModContent.ItemType<SkylineBar>(), Main.rand.Next(1, 4));
                                     break;
 
                                 case 1:
-                                    player.QuickSpawnItem(player.GetSource_DropAsItem(), ModContent.ItemType<Items.Materials.SkylineOre>(), Main.rand.Next(2, 7));
+                                    player.QuickSpawnItem(player.GetSource_DropAsItem(), ModContent.ItemType<SkylineOre>(), Main.rand.Next(2, 7));
                                     break;
                             }
                         }

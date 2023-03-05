@@ -23,6 +23,7 @@ namespace excels
 
 
         public bool DebuffMycosis = false;
+        public bool DebuffBrimstone = false;
         public bool DebuffWound = false;
         public int MarkedTimer = 0;
 
@@ -47,6 +48,7 @@ namespace excels
         public override void ResetEffects(NPC npc)
         {
             DebuffMycosis = false;
+            DebuffBrimstone = false;
         }
 
         public override bool PreAI(NPC npc)
@@ -180,7 +182,28 @@ namespace excels
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Weapons.Eclipse.Harbringer>(), 60));
                     break;
 
+                case NPCID.NecromancerArmored:
+                case NPCID.Necromancer:
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Armor.DungeonNecro.PossessedSkull>(), 40));
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Armor.DungeonNecro.Necromancer.NecromancerRobe>(), 20));
+                    break;
+                case NPCID.DiabolistWhite:
+                case NPCID.DiabolistRed:
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Armor.DungeonNecro.PossessedSkull>(), 40));
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Armor.DungeonNecro.Diabolist.DiabolistRobe>(), 20));
+                    break;
+                case NPCID.RaggedCaster:
+                case NPCID.RaggedCasterOpenCoat:
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Armor.DungeonNecro.PossessedSkull>(), 40));
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Armor.DungeonNecro.Ragged.RaggedRobe>(), 20));
+                    break;
 
+                case NPCID.Lihzahrd:
+                case NPCID.LihzahrdCrawler:
+                    LeadingConditionRule postPlanteraRule = new LeadingConditionRule(new Conditions.DownedPlantera());
+                    postPlanteraRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Accessories.Cleric.Healing.AncientSolarRelic>(), 40));
+                    npcLoot.Add(postPlanteraRule);
+                    break;
 
                 case NPCID.QueenBee:
                     LeadingConditionRule queenBeeRule = new LeadingConditionRule(new Conditions.NotExpert());
@@ -372,6 +395,19 @@ namespace excels
                     damage = (dot / 4);
                 }
                 //npc.color = new Color(1.13f, 1.46f, 2.45f);
+            }
+            if (DebuffBrimstone)
+            {
+                int dot = 40;
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= dot;
+                if (damage < (dot / 4))
+                {
+                    damage = (dot / 4);
+                }
             }
             if (DebuffWound)
             {

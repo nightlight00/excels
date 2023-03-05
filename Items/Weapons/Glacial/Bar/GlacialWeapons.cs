@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
+using excels.Items.Materials.Ores;
 
 namespace excels.Items.Weapons.Glacial.Bar
 {
@@ -56,7 +57,7 @@ namespace excels.Items.Weapons.Glacial.Bar
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-				.AddIngredient(ModContent.ItemType<Items.Materials.GlacialBar>(), 8)
+				.AddIngredient(ModContent.ItemType<GlacialBar>(), 8)
 				.AddTile(TileID.Anvils)
 				.Register();
 		}
@@ -182,7 +183,7 @@ namespace excels.Items.Weapons.Glacial.Bar
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-				.AddIngredient(ModContent.ItemType<Items.Materials.GlacialBar>(), 8)
+				.AddIngredient(ModContent.ItemType<GlacialBar>(), 8)
 				.AddTile(TileID.Anvils)
 				.Register();
 		}
@@ -277,7 +278,7 @@ namespace excels.Items.Weapons.Glacial.Bar
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-				.AddIngredient(ModContent.ItemType<Items.Materials.GlacialBar>(), 8)
+				.AddIngredient(ModContent.ItemType<GlacialBar>(), 8)
 				.AddTile(TileID.Anvils)
 				.Register();
 		}
@@ -366,7 +367,7 @@ namespace excels.Items.Weapons.Glacial.Bar
         public override void AddRecipes()
 		{
 			CreateRecipe()
-				.AddIngredient(ModContent.ItemType<Materials.GlacialBar>(), 8)
+				.AddIngredient(ModContent.ItemType<GlacialBar>(), 8)
 				.AddTile(TileID.Anvils)
 				.Register();
 		}

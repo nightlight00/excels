@@ -74,6 +74,40 @@ namespace excels.Items.Placeable.Walls
 		}
 	}
 	#endregion
+	
+	#region Reinforced Darkslate Wall
+	internal class ReinforcedDarkslateWallItem : ModItem
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Reinforced Darkslate Wall");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 400;
+		}
+
+		public override void SetDefaults()
+		{
+			Item.rare = 1;
+			Item.useStyle = ItemUseStyleID.Swing;
+			Item.useTurn = true;
+			Item.useAnimation = 15;
+			Item.useTime = 10;
+			Item.autoReuse = true;
+			Item.maxStack = 9999;
+			Item.consumable = true;
+			Item.createWall = ModContent.WallType<HyperionBrickWall>();
+			Item.width = 24;
+			Item.height = 24;
+		}
+
+		public override void AddRecipes()
+		{
+			CreateRecipe(4)
+				.AddIngredient(ModContent.ItemType<ReinforcedDarkslateItem>())
+				.AddTile(TileID.WorkBenches)
+				.Register();
+		}
+	}
+	#endregion
 
 	#region Stellar Wall
 	internal class StellarWallItem : ModItem

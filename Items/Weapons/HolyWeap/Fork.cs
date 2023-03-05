@@ -7,6 +7,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using System.Collections.Generic;
+using excels.Items.Materials.Ores;
 
 namespace excels.Items.Weapons.HolyWeap
 {
@@ -183,7 +184,7 @@ namespace excels.Items.Weapons.HolyWeap
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-				.AddIngredient(ModContent.ItemType<Materials.MysticCrystal>(), 4)
+				.AddIngredient(ModContent.ItemType<MysticCrystal>(), 4)
 				.AddTile(TileID.Anvils)
 				.Register();
 		}

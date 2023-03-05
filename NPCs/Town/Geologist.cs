@@ -9,7 +9,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 using Terraria.ModLoader.IO;
-using excels.Items.Materials;
+using excels.Items.Materials.Ores;
 
 namespace excels.NPCs.Town
 {

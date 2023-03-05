@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
+using excels.Items.Materials.Ores;
 
 namespace excels.Items.Potions.Flasks
 {
@@ -26,7 +27,7 @@ namespace excels.Items.Potions.Flasks
         {
             CreateRecipe()
                 .AddIngredient(ItemID.Bottle)
-                .AddIngredient(ModContent.ItemType<Materials.GlacialOre>(), 3)
+                .AddIngredient(ModContent.ItemType<GlacialOre>(), 3)
                 .AddTile(TileID.ImbuingStation)
                 .Register();
         }

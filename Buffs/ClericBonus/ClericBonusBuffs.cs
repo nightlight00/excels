@@ -9,7 +9,7 @@ using Terraria.DataStructures;
 
 namespace excels.Buffs.ClericBonus
 {
-    public abstract class ClericBonusBuff : HoTBuffBase
+    public abstract class ClericBonusBuff : ModBuff
     {
         public string BuffName;
         public string BuffDesc;
@@ -124,72 +124,6 @@ namespace excels.Buffs.ClericBonus
             player.manaRegen += 2;
             player.GetModPlayer<ClericClassPlayer>().radianceRegenRate += 2;
             // ammo reduction is done in mod player
-        }
-    }
-
-    internal class SoothingSoul : ClericBonusBuff
-    {
-        public override void Names()
-        {
-            BuffName = "Soothing Soul : [c/76d550:6HP/s]";
-            BuffDesc = "Cured from minor damaging status effects and healing over time";
-
-            healAmount = 3;
-            healFrames = 30;
-        }
-
-        public override bool ReApply(Player player, int time, int buffIndex)
-        {
-            player.buffTime[buffIndex] += time / 2;
-            return false;
-        }
-    }
-
-    internal class NaturesHeart : ClericBonusBuff
-    {
-        public override void Names()
-        {
-            BuffName = "Nature's Heart : [c/76d550:2HP/s]";
-            BuffDesc = "Slowly transforming nature's energy into health";
-
-            healAmount = 1;
-            healFrames = 30;
-        }
-
-        public override bool ReApply(Player player, int time, int buffIndex)
-        {
-            player.buffTime[buffIndex] += time / 2;
-            if (player.buffTime[buffIndex] > 480)
-                player.buffTime[buffIndex] = 480;
-            return false;
-        }
-
-        public override void SafeUpdate(Player player, ref int buffIndex)
-        {
-            player.statDefense += 2;
-        }
-    }
-
-    internal class PropheticWisdom : ClericBonusBuff
-    {
-        public override void Names()
-        {
-            BuffName = "Prophetic Wisdom : [c/76d550:3HP/s]";
-            BuffDesc = "Blessings purify your soul";
-
-            healAmount = 1;
-            healFrames = 20;
-        }
-
-        public override bool ReApply(Player player, int time, int buffIndex)
-        {
-            player.buffTime[buffIndex] += time / 2;
-            return false;
-        }
-
-        public override void SafeUpdate(Player player, ref int buffIndex)
-        {
-            player.lifeRegen++;
         }
     }
 

@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
+using excels.Items.Materials.Ores;
 
 namespace excels.Items.Weapons.Hyperion
 {
@@ -55,7 +56,8 @@ namespace excels.Items.Weapons.Hyperion
         public override void AddRecipes()
         {
             CreateRecipe(150)
-                .AddIngredient(ModContent.ItemType<Items.Materials.HyperionCrystal>(), 8)
+                .AddIngredient(ModContent.ItemType<DarksteelBar>())
+                .AddIngredient(ModContent.ItemType<HyperionCrystal>(), 4)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }
@@ -197,7 +199,8 @@ namespace excels.Items.Weapons.Hyperion
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Items.Materials.HyperionCrystal>(), 30)
+                .AddIngredient(ModContent.ItemType<DarksteelBar>(), 12)
+                .AddIngredient(ModContent.ItemType<HyperionCrystal>(), 20)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }
@@ -316,7 +319,8 @@ namespace excels.Items.Weapons.Hyperion
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Items.Materials.HyperionCrystal>(), 26)
+                .AddIngredient(ModContent.ItemType<DarksteelBar>(), 8)
+                .AddIngredient(ModContent.ItemType<HyperionCrystal>(), 18)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }
@@ -518,7 +522,8 @@ namespace excels.Items.Weapons.Hyperion
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Items.Materials.HyperionCrystal>(), 28)
+                .AddIngredient(ModContent.ItemType<DarksteelBar>(), 14)
+                .AddIngredient(ModContent.ItemType<HyperionCrystal>(), 16)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }
@@ -598,7 +603,8 @@ namespace excels.Items.Weapons.Hyperion
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Items.Materials.HyperionCrystal>(), 22)
+                .AddIngredient(ModContent.ItemType<DarksteelBar>(), 10)
+                .AddIngredient(ModContent.ItemType<HyperionCrystal>(), 20)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }

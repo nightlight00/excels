@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.Localization;
+using excels.Items.Materials.Ores;
 
 namespace excels.Items.Armor.Skyline
 {
@@ -66,7 +67,7 @@ namespace excels.Items.Armor.Skyline
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-				.AddIngredient(ModContent.ItemType<Items.Materials.SkylineBar>(), 12)
+				.AddIngredient(ModContent.ItemType<SkylineBar>(), 12)
 				.AddTile(TileID.Anvils)
 				.Register();
 		}
@@ -100,7 +101,7 @@ namespace excels.Items.Armor.Skyline
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-				.AddIngredient(ModContent.ItemType<Items.Materials.SkylineBar>(), 14)
+				.AddIngredient(ModContent.ItemType<SkylineBar>(), 14)
 				.AddTile(TileID.Anvils)
 				.Register();
 		}
@@ -133,7 +134,7 @@ namespace excels.Items.Armor.Skyline
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-				.AddIngredient(ModContent.ItemType<Items.Materials.SkylineBar>(), 10)
+				.AddIngredient(ModContent.ItemType<SkylineBar>(), 10)
 				.AddTile(TileID.Anvils)
 				.Register();
 		}

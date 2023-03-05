@@ -137,9 +137,14 @@ namespace excels.Items.Placeable.Decorations.Torches
 		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
 		public override void AddRecipes()
 		{
-			CreateRecipe(25)
-				.AddIngredient(ItemID.Torch, 25)
+			CreateRecipe(20)
+				.AddIngredient(ItemID.Torch, 20)
 				.AddIngredient(ModContent.ItemType<Materials.StellarPlating>())
+				.Register();
+
+			CreateRecipe()
+				.AddIngredient(ItemID.Torch)
+				.AddIngredient(ModContent.ItemType<Tiles.StellarBrick>())
 				.Register();
 		}
 	}

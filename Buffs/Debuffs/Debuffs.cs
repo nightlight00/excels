@@ -106,4 +106,41 @@ namespace excels.Buffs.Debuffs
 			npc.GetGlobalNPC<excelNPC>().DebuffWound = true;
 		}
 	}
+
+	public class BrimstoneHellscape : ModBuff
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Brimstone Hellscape"); // Buff display name
+			Description.SetDefault("Flames of hell burn through your flesh"); // Buff description
+			Main.debuff[Type] = true;  // Is it a debuff?
+			Main.pvpBuff[Type] = true; // Players can give other players buffs, which are listed as pvpBuff
+			Main.buffNoSave[Type] = true; // Causes this buff not to persist when exiting and rejoining the world
+			BuffID.Sets.LongerExpertDebuff[Type] = true; // If this buff is a debuff, setting this to true will make this buff last twice as long on players in expert mode
+		}
+
+		public override void Update(Player player, ref int buffIndex)
+		{
+			player.GetModPlayer<excelPlayer>().DebuffBrimstone = true;
+			if (Main.rand.NextBool())
+			{
+				Dust d = Dust.NewDustDirect(player.position, player.width, player.height, ModContent.DustType<Dusts.BrimstoneDust>());
+				d.noGravity = true;
+				d.velocity = new Vector2(Main.rand.NextFloat(-0.7f, 0.7f), Main.rand.NextFloat(-3, -3.6f));
+				d.scale = Main.rand.NextFloat(1.2f, 1.6f);
+			}
+		}
+
+		public override void Update(NPC npc, ref int buffIndex)
+		{
+			npc.GetGlobalNPC<excelNPC>().DebuffMycosis = true;
+			if (Main.rand.NextBool())
+			{
+				Dust d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<Dusts.BrimstoneDust>());
+				d.noGravity = true;
+				d.velocity = new Vector2(Main.rand.NextFloat(-0.7f, 0.7f), Main.rand.NextFloat(-3, -3.6f));
+				d.scale = Main.rand.NextFloat(1.2f, 1.6f);
+			}
+		}
+	}
 }

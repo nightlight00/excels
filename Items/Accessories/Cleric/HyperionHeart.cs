@@ -6,6 +6,7 @@ using Terraria.GameContent.Creative;
 using System;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
+using excels.Items.Materials.Ores;
 
 namespace excels.Items.Accessories.Cleric
 {
@@ -38,7 +39,7 @@ namespace excels.Items.Accessories.Cleric
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Items.Materials.HyperionCrystal>(), 18)
+                .AddIngredient(ModContent.ItemType<HyperionCrystal>(), 18)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }

@@ -34,8 +34,8 @@ namespace excels.Items.WeaponHeal.Generic
 			Item.noMelee = true;
 			Item.sellPrice(0, 0, 85);
 
-			Item.mana = 12;
-			healAmount = 3;
+			Item.mana = 15;
+			healAmount = 4;
 		}
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

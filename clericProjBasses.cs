@@ -9,6 +9,8 @@ using Terraria.DataStructures;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using excels.Buffs.ClericBonus;
+using excels.Buffs.HealOverTime;
 
 namespace excels
 {
@@ -247,17 +249,21 @@ namespace excels
             }
         }
 
-        public void HealDistance(Player target, Player healer, int distance = 10, bool affectedByHeartreach = true, bool canHealFullHealth = false)
+        public void HealDistance(Player target, Player healer, int distance = 10, bool affectedByHeartreach = true, bool canHealFullHealth = false, bool useOwnerPos = false)
         {
+            Vector2 originPos = Projectile.Center;
+            if (useOwnerPos)
+                originPos = healer.Center;   
+
             float mult = 1;
             if (target.HasBuff(BuffID.Heartreach) && affectedByHeartreach) { mult = 1.4f; }
             // find whichever is closest for most accurate 'collision'
             Vector2 pos = target.Center;
-            float dist = Vector2.Distance(pos, Projectile.Center);
-            if (Vector2.Distance(target.TopLeft, Projectile.Center) < dist) { pos = target.TopLeft; dist = Vector2.Distance(target.TopLeft, Projectile.Center);  }
-            if (Vector2.Distance(target.TopRight, Projectile.Center) < dist) { pos = target.TopRight; dist = Vector2.Distance(target.TopRight, Projectile.Center); }
-            if (Vector2.Distance(target.BottomLeft, Projectile.Center) < dist) { pos = target.BottomLeft; dist = Vector2.Distance(target.BottomLeft, Projectile.Center); }
-            if (Vector2.Distance(target.BottomRight, Projectile.Center) < dist) { pos = target.BottomRight; dist = Vector2.Distance(target.BottomRight, Projectile.Center); }
+            float dist = Vector2.Distance(pos, originPos);
+            if (Vector2.Distance(target.TopLeft, originPos) < dist) { pos = target.TopLeft; dist = Vector2.Distance(target.TopLeft, originPos);  }
+            if (Vector2.Distance(target.TopRight, originPos) < dist) { pos = target.TopRight; dist = Vector2.Distance(target.TopRight, originPos); }
+            if (Vector2.Distance(target.BottomLeft, originPos) < dist) { pos = target.BottomLeft; dist = Vector2.Distance(target.BottomLeft, originPos); }
+            if (Vector2.Distance(target.BottomRight, originPos) < dist) { pos = target.BottomRight; dist = Vector2.Distance(target.BottomRight, originPos); }
             // check if within range, then apply heal
             if (Vector2.Distance(pos, Projectile.Center) < (distance))
             {
@@ -317,9 +323,16 @@ namespace excels
 
             #region Accessory Bonuses
 
+            /// HEALING OVER TIME ///
+
             // Medic Bag : Applies health over time buff
             if (healer.GetModPlayer<excelPlayer>().medicBag && target != healer)
-                target.AddBuff(ModContent.BuffType<Buffs.ClericBonus.SoothingSoul>(), GetBuffTime(healer, 6));
+                target.GetModPlayer<HealOverTime>().AddHeal(healer, "Medic Bag", 2, 6);
+
+            // Ancient Prayer Stone : Additional healing over time
+            if (healer.GetModPlayer<excelPlayer>().ancientStone)
+                target.GetModPlayer<HealOverTime>().AddHeal(healer, "Worship Stone", 1, 2);
+
 
             // Antitoxin Bottle : If target is poisoned, remove it and heal 7 health
             if (healer.GetModPlayer<excelPlayer>().antitoxinBottle && target.HasBuff(BuffID.Poisoned))
@@ -384,9 +397,9 @@ namespace excels
                 healer.buffTime[soul] -= (target.statLife - priorHealth) * 30;
             }
 
-            var GetClassPlayer = healer.GetModPlayer<ClericClassPlayer>();
+            // Replenish radiance
             if (target != healer)
-                GetClassPlayer.radianceStatCurrent += (target.statLife - priorHealth);
+                healer.GetModPlayer<ClericClassPlayer>().radianceStatCurrent += (target.statLife - priorHealth) * 2;
 
             // still want this to happen to heals with special properties
             healPenetrate--;

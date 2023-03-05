@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 using excels.Items.Placeable.Platforms;
 using excels.Items.Placeable.Walls;
 using excels.Tiles.Blocks;
+using excels.Items.Materials.Ores;
 
 namespace excels.Items.Placeable.Tiles
 {
@@ -36,7 +37,7 @@ namespace excels.Items.Placeable.Tiles
 		{
 			CreateRecipe(5)
 				.AddIngredient(ItemID.StoneBlock, 5)
-				.AddIngredient(ModContent.ItemType<Materials.SkylineOre>())
+				.AddIngredient(ModContent.ItemType<SkylineOre>())
 				.AddTile(TileID.Furnaces)
 				.Register();
 
@@ -48,12 +49,106 @@ namespace excels.Items.Placeable.Tiles
 	}
 	#endregion
 
+	#region Darkslate
+	internal class DarkslateItem : ModItem
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Darkslate");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
+		}
+
+		public override void SetDefaults()
+		{
+			Item.rare = 1;
+			Item.useStyle = ItemUseStyleID.Swing;
+			Item.useTurn = true;
+			Item.useAnimation = 15;
+			Item.useTime = 10;
+			Item.autoReuse = true;
+			Item.maxStack = 999;
+			Item.consumable = true;
+			Item.createTile = ModContent.TileType<DarkslateTile>();
+			Item.width = 16;
+			Item.height = 16;
+		}
+	}
+		#endregion
+
+	#region Sunlight Block
+		internal class SunlightBlockItem : ModItem
+    {
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Sunlight Block");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
+		}
+
+		public override void SetDefaults()
+		{
+			Item.rare = 1;
+			Item.useStyle = ItemUseStyleID.Swing;
+			Item.useTurn = true;
+			Item.useAnimation = 15;
+			Item.useTime = 10;
+			Item.autoReuse = true;
+			Item.maxStack = 999;
+			Item.consumable = true;
+			Item.createTile = ModContent.TileType<SunlightBlockPlaced>();
+			Item.width = 16;
+			Item.height = 16;
+		}
+
+		public override void AddRecipes()
+		{
+			CreateRecipe(4)
+				.AddIngredient(ModContent.ItemType<Materials.BottleOfSunlight>())
+				.AddTile(TileID.CrystalBall)
+				.Register();
+		}
+	}
+	#endregion
+
 	#region Glacial Brick
+	internal class GlacialBrickNew : ModItem
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Glacial Brick");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
+		}
+
+		public override void SetDefaults()
+		{
+			Item.useStyle = ItemUseStyleID.Swing;
+			Item.useTurn = true;
+			Item.useAnimation = 15;
+			Item.useTime = 10;
+			Item.autoReuse = true;
+			Item.maxStack = 999;
+			Item.consumable = true;
+			Item.createTile = ModContent.TileType<GlacialBrickNewTile>();
+			Item.width = 16;
+			Item.height = 16;
+		}
+
+		public override void AddRecipes()
+		{
+			CreateRecipe(5)
+				.AddIngredient(ItemID.StoneBlock, 5)
+				.AddIngredient(ModContent.ItemType<GlacialOre>())
+				.AddTile(TileID.Furnaces)
+				.Register();
+		}
+	}
+	#endregion
+
+	#region Ancient Glacial Brick
 	internal class GlacialBrick : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Granite Energy Torch");
+			DisplayName.SetDefault("Ancient Glacial Brick");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
 		}
 
@@ -75,7 +170,7 @@ namespace excels.Items.Placeable.Tiles
 		{
 			CreateRecipe(5)
 				.AddIngredient(ItemID.StoneBlock, 5)
-				.AddIngredient(ModContent.ItemType<Materials.GlacialOre>())
+				.AddIngredient(ModContent.ItemType<GlacialOre>())
 				.AddTile(TileID.Furnaces)
 				.Register();
 		}
@@ -121,17 +216,57 @@ namespace excels.Items.Placeable.Tiles
 	}
 	#endregion
 
-	#region Hyperion Lamp
-	internal class HyperionLampBlock : ModItem
+	#region Reinforced Darkslate
+	internal class ReinforcedDarkslateItem : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Granite Energy Torch");
+			DisplayName.SetDefault("Reinforced Darkslate");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
 		}
 
 		public override void SetDefaults()
 		{
+			Item.rare = 1;
+			Item.useStyle = ItemUseStyleID.Swing;
+			Item.useTurn = true;
+			Item.useAnimation = 15;
+			Item.useTime = 10;
+			Item.autoReuse = true;
+			Item.maxStack = 9999;
+			Item.consumable = true;
+			Item.createTile = ModContent.TileType<HyperionBrickTile>();
+			Item.width = 16;
+			Item.height = 16;
+		}
+
+		public override void AddRecipes()
+		{
+			CreateRecipe(5)
+				.AddIngredient(ModContent.ItemType<DarkslateItem>(), 2)
+				.AddIngredient(ModContent.ItemType<DarksteelOre>())
+				.AddTile(TileID.Furnaces)
+				.Register();
+			
+			CreateRecipe()
+				.AddIngredient(ModContent.ItemType<ReinforcedDarkslateWallItem>(), 4)
+				.AddTile(TileID.WorkBenches)
+				.Register();
+		}
+	}
+	#endregion
+	
+	#region Hyperion Lamp
+	internal class HyperionLampBlock : ModItem
+	{
+		public override void SetStaticDefaults()
+		{
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
+		}
+
+		public override void SetDefaults()
+		{
+			Item.rare = 1;
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.useTurn = true;
 			Item.useAnimation = 15;
@@ -147,8 +282,8 @@ namespace excels.Items.Placeable.Tiles
 		public override void AddRecipes()
 		{
 			CreateRecipe(5)
-				.AddIngredient(ItemID.StoneBlock, 5)
-				.AddIngredient(ModContent.ItemType<Materials.HyperionCrystal>())
+				.AddIngredient(ModContent.ItemType<DarkslateItem>(), 2)
+				.AddIngredient(ModContent.ItemType<HyperionCrystal>())
 				.AddTile(TileID.Furnaces)
 				.Register();
 		}
@@ -181,7 +316,7 @@ namespace excels.Items.Placeable.Tiles
 		{
 			CreateRecipe(5)
 				.AddIngredient(ItemID.StoneBlock, 5)
-				.AddIngredient(ModContent.ItemType<Materials.PurifiedStone>())
+				.AddIngredient(ModContent.ItemType<PurifiedStone>())
 				.AddTile(TileID.Furnaces)
 				.Register();
 		}

@@ -50,6 +50,10 @@ Mods.excels: {
 		}
 	}
 
+    Keybind: {
+        ActivateSet: Activate Set Bonus
+    }
+
     DeathMessages: {
         Heartbreak: {
             1: "{0}'s heart broke"
@@ -108,7 +112,7 @@ Mods.excels: {
                 '''
             HeartbeatSet:
                 '''
-                Double tap down to activate / deactivate 'Heartbreak'
+                Press [Activate Set Bonus] to activate / deactivate 'Heartbreak'
                 While in 'Heartbreak', necrotic damage is greatly increased while your life force suffers
                 If under 25% health while 'Heartbreak' is active, gain 'Panic!'
                 Increases life regeneration while 'Heartbreak' isn't active

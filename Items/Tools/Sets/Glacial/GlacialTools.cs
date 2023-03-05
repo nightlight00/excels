@@ -8,6 +8,7 @@ using System;
 using Terraria.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
+using excels.Items.Materials.Ores;
 
 namespace excels.Items.Tools.Sets.Glacial
 {
@@ -39,7 +40,7 @@ namespace excels.Items.Tools.Sets.Glacial
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Items.Materials.GlacialBar>(), 12)
+                .AddIngredient(ModContent.ItemType<GlacialBar>(), 12)
                 .AddTile(TileID.Anvils)
                 .Register();
         }
@@ -77,7 +78,7 @@ namespace excels.Items.Tools.Sets.Glacial
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Items.Materials.GlacialBar>(), 12)
+                .AddIngredient(ModContent.ItemType<GlacialBar>(), 12)
                 .AddTile(TileID.Anvils)
                 .Register();
         }

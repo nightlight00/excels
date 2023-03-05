@@ -7,6 +7,7 @@ using Terraria.GameContent.Creative;
 using System;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
+using excels.Buffs.HealOverTime;
 
 namespace excels.Items.Weapons.Radiant1
 {
@@ -126,7 +127,8 @@ namespace excels.Items.Weapons.Radiant1
 
         public override void BuffEffects(Player target, Player healer)
         {
-            target.AddBuff(ModContent.BuffType<Buffs.ClericBonus.NaturesHeart>(), GetBuffTime(healer, 4));
+            target.GetModPlayer<HealOverTime>().AddHeal(healer, "Acorn Staff", 2, 3);
+            //target.AddBuff(ModContent.BuffType<Buffs.ClericBonus.NaturesHeart>(), GetBuffTime(healer, 4));
         }
 
 

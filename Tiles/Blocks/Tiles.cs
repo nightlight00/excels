@@ -28,6 +28,30 @@ namespace excels.Tiles.Blocks
 	#endregion
 
 	#region Glacial Brick
+	internal class GlacialBrickNewTile : ModTile
+	{
+		public override void SetStaticDefaults()
+		{
+			Main.tileSolid[Type] = true;
+
+			AddMapEntry(new Color(48, 184, 246));
+
+			DustType = ModContent.DustType<Dusts.GlacialDust>();
+			ItemDrop = ModContent.ItemType<Items.Placeable.Tiles.GlacialBrickNew>();
+			HitSound = SoundID.Tink;
+			//SoundStyle = 1;
+		}
+
+		public override bool HasWalkDust() => true;
+
+		public override void WalkDust(ref int dustType, ref bool makeDust, ref Color color)
+		{
+			dustType = DustID.Snow;
+		}
+	}
+	#endregion
+
+	#region Ancient Glacial Brick
 	internal class GlacialBrickTile : ModTile
 	{
 		public override void SetStaticDefaults()
@@ -49,10 +73,34 @@ namespace excels.Tiles.Blocks
 			dustType = DustID.Snow;
         }
     }
-    #endregion
+	#endregion
 
-    #region Checker Bricks
-    internal class CheckerTile : ModTile
+	#region Deepslate 
+	internal class DarkslateTile : ModTile
+	{
+		public override void SetStaticDefaults()
+		{
+			Main.tileSolid[Type] = true;
+			Main.tileMerge[Type][TileID.Stone] = true;
+			Main.tileMerge[TileID.Stone][Type] = true;
+			Main.tileMerge[Type][ModContent.TileType<OresBars.HyperionTile>()] = true;
+			Main.tileMerge[ModContent.TileType<OresBars.HyperionTile>()][Type] = true;
+
+			AddMapEntry(new Color(38, 29, 48));
+
+			DustType = DustID.Granite;
+			ItemDrop = ModContent.ItemType<Items.Placeable.Tiles.DarkslateItem>();
+			HitSound = SoundID.Tink;
+			MinPick = 120;
+			//SoundStyle = 1;
+		}
+
+		public override bool CanExplode(int i, int j) => false;
+	}
+	#endregion
+
+	#region Checker Bricks
+	internal class CheckerTile : ModTile
 	{
 		public override void SetStaticDefaults()
 		{
@@ -67,6 +115,31 @@ namespace excels.Tiles.Blocks
 		}
 	}
 	#endregion
+	
+	#region Sunlight Block
+    internal class SunlightBlockPlaced : ModTile
+	{
+		public override void SetStaticDefaults()
+		{
+			Main.tileLighted[Type] = true;
+			Main.tileSolid[Type] = true;
+
+			AddMapEntry(new Color(251, 216, 91));
+
+			DustType = 204;
+			ItemDrop = ModContent.ItemType<Items.Placeable.Tiles.SunlightBlockItem>();
+			HitSound = SoundID.Tink;
+			//SoundStyle = 1;
+		}
+
+		public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
+		{
+			r = 2.44f * 0.75f;
+			g = 2.55f * 0.75f;
+			b = 1.32f * 0.75f;
+		}
+	}
+	#endregion
 
 	#region Hyperion Lamp
 	internal class HyperionLampTile : ModTile
@@ -78,6 +151,8 @@ namespace excels.Tiles.Blocks
 			Main.tileSolid[Type] = true;
 			Main.tileBlockLight[Type] = true;
 			Main.tileLighted[Type] = true;
+			Main.tileMerge[Type][ModContent.TileType<HyperionBrickTile>()] = true;
+			Main.tileMerge[ModContent.TileType<HyperionBrickTile>()][Type] = true;
 
 			AddMapEntry(new Color(124, 255, 234));
 
@@ -91,7 +166,7 @@ namespace excels.Tiles.Blocks
 				flameTexture = ModContent.Request<Texture2D>("excels/Tiles/Blocks/HyperionLampTile_Flame"); // We could also reuse Main.FlameTexture[] textures, but using our own texture is nice.
 			}
 		}
-		
+
 		public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
 		{
 			r = 255 / 124;
@@ -148,6 +223,27 @@ namespace excels.Tiles.Blocks
 	}
 	#endregion
 
+	#region Reinforced Darkslate
+	internal class HyperionBrickTile : ModTile
+	{
+
+		public override void SetStaticDefaults()
+		{
+			Main.tileSolid[Type] = true;
+			Main.tileBlendAll[Type] = true;
+
+			AddMapEntry(new Color(67, 78, 121));
+
+			DustType = ModContent.DustType<Dusts.HyperionMetalDust>();
+			ItemDrop = ModContent.ItemType<Items.Placeable.Tiles.ReinforcedDarkslateItem>();
+			HitSound = SoundID.Tink;
+			//SoundStyle = 1;
+		}
+
+		public override bool CanExplode(int i, int j) => false;
+	}
+	#endregion
+
 	#region Mushroom Tile
 	internal class MushroomTile : ModTile
 	{
@@ -172,6 +268,7 @@ namespace excels.Tiles.Blocks
 		public override void SetStaticDefaults()
 		{
 			Main.tileSolid[Type] = true;
+			Main.tileBlendAll[Type] = true;
 
 			AddMapEntry(new Color(221, 227, 233));
 

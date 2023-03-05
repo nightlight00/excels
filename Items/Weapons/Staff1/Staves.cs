@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
+using excels.Items.Materials.Ores;
 
 namespace excels.Items.Weapons.Staff1
 {
@@ -172,7 +173,7 @@ namespace excels.Items.Weapons.Staff1
 		{
 			CreateRecipe()
 				.AddIngredient(ItemID.HellstoneBar, 9)
-				.AddIngredient(ModContent.ItemType<Materials.GlacialBar>(), 9)
+				.AddIngredient(ModContent.ItemType<GlacialBar>(), 9)
 				.AddTile(TileID.Anvils)
 				.Register();
 		}
@@ -360,7 +361,7 @@ namespace excels.Items.Weapons.Staff1
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-				.AddIngredient(ModContent.ItemType<Materials.MysticCrystal>(), 6)
+				.AddIngredient(ModContent.ItemType<MysticCrystal>(), 6)
 				.AddTile(TileID.Anvils)
 				.Register();
 		}

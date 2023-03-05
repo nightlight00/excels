@@ -63,7 +63,7 @@ namespace excels.Tiles.Stations
 			TileObjectData.newTile.CoordinateWidth = 16;
 			TileObjectData.addTile(Type);
 
-			//ItemDrop = ModContent.ItemType<Items.Furniture.Anvils.StarlightAnvil>();
+			ItemDrop = ModContent.ItemType<OilJit>();
 			HitSound = SoundID.Tink;
 			//SoundStyle = 1;
 

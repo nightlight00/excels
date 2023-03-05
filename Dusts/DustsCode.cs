@@ -84,6 +84,15 @@ namespace excels.Dusts
         }
     }
 
+    internal class WitherSmoke : ModDust
+    {
+        public override void OnSpawn(Dust dust)
+        {
+            dust.alpha = 100;
+            dust.scale = Main.rand.NextFloat(1.3f, 1.5f);
+        }
+    }
+
     internal class ShadowFire2 : ModDust
     {
         public override void OnSpawn(Dust dust)
@@ -111,6 +120,35 @@ namespace excels.Dusts
 
         public override Color? GetAlpha(Dust dust, Color lightColor)
             => new Color(lightColor.R, lightColor.G, lightColor.B, 140);
+    }
+
+    internal class BrimstoneDust : ModDust
+    {
+        public override void OnSpawn(Dust dust)
+        {
+            dust.scale = Main.rand.NextFloat(1.3f, 1.5f);
+            if (Main.rand.NextBool(3))
+                dust.scale *= 1.6f;
+        }
+
+        public override bool MidUpdate(Dust dust)
+        {
+            if (dust.noLight)
+            {
+                return false;
+            }
+
+            float strength = dust.scale * 1.4f;
+            if (strength > 1f)
+            {
+                strength = 1f;
+            }
+            Lighting.AddLight(dust.position, 0.5f * strength, 0.6f * strength, 0.95f * strength);
+            return false;
+        }
+
+        public override Color? GetAlpha(Dust dust, Color lightColor)
+            => new Color(lightColor.R, lightColor.G, lightColor.B, 200);
     }
 
     internal class ChasmHeadDust : ModDust

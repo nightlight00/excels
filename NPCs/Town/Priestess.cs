@@ -131,6 +131,9 @@ namespace excels.NPCs.Town
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Placeable.Decorations.Paintings.ReflectivePrayer>());
                 shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 0, 75);
                 nextSlot++;
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Placeable.Decorations.Paintings.SelfPortrait>());
+                shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 0, 75);
+                nextSlot++;
             }
 
             shop.item[nextSlot].SetDefaults(ItemID.PeaceCandle);
@@ -157,6 +160,12 @@ namespace excels.NPCs.Town
 
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Armor.Priest.PriestBoots>());
                 shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 15);
+                nextSlot++;
+            }
+
+            if (Main.hardMode)
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Materials.BottleOfSunlight>());
                 nextSlot++;
             }
 

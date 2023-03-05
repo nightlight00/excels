@@ -297,4 +297,29 @@ namespace excels.Items.Accessories.Cleric.Healing
         }
     }
     #endregion
+
+    #region Ancient Worship Stone
+    internal class AncientSolarRelic : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Ancient Worship Stone");
+            Tooltip.SetDefault("Increases healing potency by 2\nHealing provides additional healing over time");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+
+        public override void SetDefaults()
+        {
+            Item.accessory = true;
+            Item.width = Item.height = 26;
+            Item.rare = 8;
+        }
+
+        public override void UpdateEquip(Player player)
+        {
+            player.GetModPlayer<excelPlayer>().healBonus += 2;
+            player.GetModPlayer<excelPlayer>().ancientStone = true;
+        }
+    }
+    #endregion
 }

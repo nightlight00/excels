@@ -7,6 +7,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Terraria.Localization;
+using excels.Items.Materials.Ores;
 
 namespace excels.Items.Armor.HolyKnight
 {
@@ -62,7 +63,7 @@ namespace excels.Items.Armor.HolyKnight
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Materials.MysticCrystal>(), 8)
+                .AddIngredient(ModContent.ItemType<MysticCrystal>(), 8)
                 .AddTile(TileID.Anvils)
                 .Register();
         }
@@ -95,7 +96,7 @@ namespace excels.Items.Armor.HolyKnight
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Materials.MysticCrystal>(), 12)
+                .AddIngredient(ModContent.ItemType<MysticCrystal>(), 12)
                 .AddTile(TileID.Anvils)
                 .Register();
         }
@@ -128,7 +129,7 @@ namespace excels.Items.Armor.HolyKnight
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Materials.MysticCrystal>(), 10)
+                .AddIngredient(ModContent.ItemType<MysticCrystal>(), 10)
                 .AddTile(TileID.Anvils)
                 .Register();
         }

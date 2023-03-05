@@ -7,6 +7,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Terraria.Enums;
+using excels.Items.Materials.Ores;
 
 namespace excels.Items.Ammo.Other
 {
@@ -129,7 +130,7 @@ namespace excels.Items.Ammo.Other
         {
             CreateRecipe(40)
                 .AddIngredient(ModContent.ItemType<LampOil>(), 40)
-                .AddIngredient(ModContent.ItemType<Items.Materials.GlacialOre>())
+                .AddIngredient(ModContent.ItemType<GlacialOre>())
                 .AddTile(TileID.AdamantiteForge)
                 .Register();
         }

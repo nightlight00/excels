@@ -7,6 +7,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Terraria.Enums;
+using excels.Items.Materials.Ores;
 
 namespace excels.Items.Ammo.Bullets
 {
@@ -36,7 +37,7 @@ namespace excels.Items.Ammo.Bullets
         {
             CreateRecipe(100)
                 .AddIngredient(ItemID.MusketBall, 100)
-                .AddIngredient(ModContent.ItemType<Items.Materials.GlacialBar>())
+                .AddIngredient(ModContent.ItemType<GlacialBar>())
                 .AddTile(TileID.Anvils)
                 .Register();
         }

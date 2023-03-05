@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
+using excels.Items.Materials.Ores;
 
 namespace excels.Items.Weapons.Prismite
 {
@@ -57,7 +58,7 @@ namespace excels.Items.Weapons.Prismite
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Materials.MysticCrystal>(), 5)
+                .AddIngredient(ModContent.ItemType<MysticCrystal>(), 5)
                 .AddIngredient(ItemID.CrystalShard, 8)
                 .AddIngredient(ItemID.SoulofLight, 5)
                 .AddTile(TileID.MythrilAnvil)
@@ -173,7 +174,7 @@ namespace excels.Items.Weapons.Prismite
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Materials.MysticCrystal>(), 7)
+                .AddIngredient(ModContent.ItemType<MysticCrystal>(), 7)
                 .AddIngredient(ItemID.CrystalShard, 10)
                 .AddIngredient(ItemID.SoulofLight, 5)
                 .AddTile(TileID.MythrilAnvil)
@@ -280,7 +281,7 @@ namespace excels.Items.Weapons.Prismite
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Materials.MysticCrystal>(), 6)
+                .AddIngredient(ModContent.ItemType<MysticCrystal>(), 6)
                 .AddIngredient(ItemID.CrystalShard, 8)
                 .AddIngredient(ItemID.SoulofLight, 5)
                 .AddTile(TileID.MythrilAnvil)

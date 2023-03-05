@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Terraria.Localization;
 using Terraria.ObjectData;
+using excels.Items.Materials.Ores;
 
 namespace excels.Tiles.OresBars
 {
@@ -29,11 +30,37 @@ namespace excels.Tiles.OresBars
 			AddMapEntry(new Color(48, 184, 246), name);
 
 			DustType = ModContent.DustType<Dusts.GlacialDust>();
-			ItemDrop = ModContent.ItemType<Items.Materials.GlacialOre>();
+			ItemDrop = ModContent.ItemType<GlacialOre>();
 			HitSound = SoundID.Tink;
 			//SoundStyle = 1;
 			// mineResist = 4f;
 			// minPick = 200;
+		}
+	}
+	
+	public class DarksteelOreTile : ModTile
+    {
+		public override void SetStaticDefaults()
+		{
+			TileID.Sets.Ore[Type] = true;
+			Main.tileSpelunker[Type] = true; // The tile will be affected by spelunker highlighting
+			Main.tileOreFinderPriority[Type] = 660; // Metal Detector value, see https://terraria.gamepedia.com/Metal_Detector
+			Main.tileShine2[Type] = true; // Modifies the draw color slightly.
+			Main.tileShine[Type] = 900; // How often tiny dust appear off this tile. Larger is less frequently
+		//	Main.tileMergeDirt[Type] = true;
+			Main.tileSolid[Type] = true;
+			Main.tileBlockLight[Type] = true;
+
+			ModTranslation name = CreateMapEntryName();
+			name.SetDefault("Darksteel Ore");
+			AddMapEntry(new Color(53, 70, 136), name);
+
+			DustType = DustID.Granite;
+			ItemDrop = ModContent.ItemType<DarksteelOre>();
+			HitSound = SoundID.Tink;
+			//SoundStyle = 1;
+			// mineResist = 4f;
+			MinPick = 150;
 		}
 	}
 
@@ -56,7 +83,7 @@ namespace excels.Tiles.OresBars
 			AddMapEntry(new Color(197, 246, 245), name);
 
 			DustType = ModContent.DustType<Dusts.SkylineDust>(); 
-			ItemDrop = ModContent.ItemType<Items.Materials.SkylineOre>();
+			ItemDrop = ModContent.ItemType<SkylineOre>();
 			HitSound = SoundID.Tink;
 			//SoundStyle = 1;
 			MinPick = 50;
@@ -82,7 +109,7 @@ namespace excels.Tiles.OresBars
 			AddMapEntry(new Color(197, 246, 245), name);
 
 		//	DustType = ModContent.DustType<Dusts.SkylineDust>();
-			ItemDrop = ModContent.ItemType<Items.Materials.PurifiedStone>();
+			ItemDrop = ModContent.ItemType<PurifiedStone>();
 			HitSound = SoundID.Tink;
 			//SoundStyle = 1;
 			//MinPick = 50;
@@ -109,10 +136,10 @@ namespace excels.Tiles.OresBars
 			AddMapEntry(new Color(124, 255, 234), name);
 
 			DustType = ModContent.DustType<Dusts.HyperionEnergyDust>();
-			ItemDrop = ModContent.ItemType<Items.Materials.HyperionCrystal>();
+			ItemDrop = ModContent.ItemType<HyperionCrystal>();
 			HitSound = SoundID.Tink;
 			MineResist = 4f;
-			MinPick = 170;
+			MinPick = 150;
 		}
 
         public override bool CanExplode(int i, int j)
@@ -161,6 +188,9 @@ namespace excels.Tiles.OresBars
 			}
 			else if (style == 2) {
 
+            } else if (style == 3)
+            {
+				type = DustID.Granite;
             }
 			return true;
         }
@@ -170,19 +200,25 @@ namespace excels.Tiles.OresBars
 			Tile t = Main.tile[i, j];
 			int style = t.TileFrameX / 18;
 
+			int item = -1;
 			// It can be useful to share a single tile with multiple styles. This code will let you drop the appropriate bar if you had multiple.
 			if (style == 0)
 			{
-				Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Materials.SkylineBar>());
+				item = ModContent.ItemType<SkylineBar>();
 			}
 			else if (style == 1)
 			{
-				Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Materials.GlacialBar>());
+				item = ModContent.ItemType<GlacialBar>();
 			}
 			else if (style == 2)
 			{
-				Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Materials.MysticCrystal>());
+				item = ModContent.ItemType<MysticCrystal>();
 			}
+			else if (style == 3)
+				item = ModContent.ItemType<DarksteelBar>();
+
+			if (item != -1)
+				Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, item);
 
 			return base.Drop(i, j);
 		}

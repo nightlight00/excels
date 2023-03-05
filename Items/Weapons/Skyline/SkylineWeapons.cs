@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria.GameContent;
 using ReLogic.Content;
+using excels.Items.Materials.Ores;
 
 namespace excels.Items.Weapons.Skyline
 {
@@ -46,7 +47,7 @@ namespace excels.Items.Weapons.Skyline
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Items.Materials.SkylineBar>(), 6)
+                .AddIngredient(ModContent.ItemType<SkylineBar>(), 6)
                 .AddIngredient(ItemID.Feather, 6)
                 .AddTile(TileID.Anvils)
                 .Register();
@@ -132,7 +133,7 @@ namespace excels.Items.Weapons.Skyline
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Items.Materials.SkylineBar>(), 6)
+                .AddIngredient(ModContent.ItemType<SkylineBar>(), 6)
                 .AddIngredient(ItemID.Feather, 2)
                 .AddTile(TileID.Anvils)
                 .Register();
@@ -212,7 +213,7 @@ namespace excels.Items.Weapons.Skyline
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Items.Materials.SkylineBar>(), 8)
+                .AddIngredient(ModContent.ItemType<SkylineBar>(), 8)
                 .AddTile(TileID.Anvils)
                 .Register();
         }
@@ -266,7 +267,7 @@ namespace excels.Items.Weapons.Skyline
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Items.Materials.SkylineBar>(), 4)
+                .AddIngredient(ModContent.ItemType<SkylineBar>(), 4)
                 .AddIngredient(ItemID.Feather, 8)
                 .AddTile(TileID.Anvils)
                 .Register();
@@ -375,7 +376,7 @@ namespace excels.Items.Weapons.Skyline
         public override void AddRecipes()
         {
             CreateRecipe(80)
-                .AddIngredient(ModContent.ItemType<Items.Materials.SkylineBar>(), 3)
+                .AddIngredient(ModContent.ItemType<SkylineBar>(), 3)
                 .AddTile(TileID.Anvils)
                 .Register();
         }
@@ -498,7 +499,7 @@ namespace excels.Items.Weapons.Skyline
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Items.Materials.SkylineBar>(), 8)
+                .AddIngredient(ModContent.ItemType<SkylineBar>(), 8)
                 .AddIngredient(ItemID.Feather, 6)
                 .AddTile(TileID.Anvils)
                 .Register();
@@ -1052,7 +1053,7 @@ namespace excels.Items.Weapons.Skyline
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Items.Materials.SkylineBar>(), 6)
+                .AddIngredient(ModContent.ItemType<SkylineBar>(), 6)
                 .AddIngredient(ItemID.Feather, 4)
                 .AddTile(TileID.Anvils)
                 .Register();

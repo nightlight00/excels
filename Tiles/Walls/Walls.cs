@@ -25,6 +25,20 @@ namespace excels.Tiles.Walls
 		}
 	}
 
+	internal class DarkslateWall : ModWall
+	{
+		public override void SetStaticDefaults()
+		{
+			Main.wallHouse[Type] = true;
+
+			DustType = DustID.Granite;
+
+			AddMapEntry(new Color(19, 11, 26));
+		}
+
+		public override bool CanExplode(int i, int j) => false;
+    }
+
 
 	internal class CheckerWall : ModWall
 	{
@@ -36,6 +50,19 @@ namespace excels.Tiles.Walls
 			ItemDrop = ModContent.ItemType<CheckerWallItem>();
 
 			AddMapEntry(new Color(143, 158, 168));
+		}
+	}
+
+	internal class HyperionBrickWall : ModWall
+	{
+		public override void SetStaticDefaults()
+		{
+			Main.wallHouse[Type] = true;
+
+			DustType = ModContent.DustType<Dusts.HyperionMetalDust>();
+			ItemDrop = ModContent.ItemType<ReinforcedDarkslateWallItem>();
+
+			AddMapEntry(new Color(44, 46, 82));
 		}
 	}
 

@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using Terraria.Chat;
 using System.IO;
 using Terraria.Audio;
+using excels.Items.Materials.Ores;
 
 namespace excels.NPCs.Glacial
 {
@@ -132,7 +133,7 @@ namespace excels.NPCs.Glacial
 
             // rule that checks if not expert mode
             LeadingConditionRule leadingConditionRule = new LeadingConditionRule(new Conditions.NotExpert());
-            leadingConditionRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Materials.GlacialOre>(), 1, 44, 66));
+            leadingConditionRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<GlacialOre>(), 1, 44, 66));
           //  npcLoot.Add(ItemDropRule.ByCondition(new Conditions.NotExpert(), ModContent.ItemType<Items.Materials.GlacialOre>(), 1, 44, 66));
             int[] WeapDrops = {
                 ModContent.ItemType<Items.Weapons.Glacial.Boss.DarkEye>(),
